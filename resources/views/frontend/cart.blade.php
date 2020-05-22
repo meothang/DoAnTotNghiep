@@ -1,0 +1,110 @@
+@extends('layouts.master')
+
+@section('main')
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-start">
+                <div class="col-first">
+                    <h1>Giỏ hàng</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="index.html">Trang chủ<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="category.html">Giỏ hàng</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Sản phẩm</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Sổ lượng</th>
+                                <th scope="col">Tổng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @php
+                                $i=1;
+                                @endphp
+                                @foreach ($content as $cart_item)
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="{{ url('/')}}/public/img/product/macair-1.jpg" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p>{{$cart_item -> name}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>$ {{ number_format($cart_item -> price, 0, ',', '.')}}</h5>
+                                    Đã Giảm : {{$cart_item-> options -> sale}} %
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="{{ $cart_item -> qty}}" title="Quantity:"
+                                            class="input-text qty">
+                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>$ {{number_format($cart_item -> price * $cart_item -> qty,0, ',', '.')}}</h5>
+                                </td>
+                            </tr>
+                           @php
+                                $i++;
+                                @endphp
+                                @endforeach
+                            <tr class="bottom_button">
+                                <td>
+                                    <a class="gray_btn" href="#">Cập nhật giỏ hàng</a>
+                                </td>                    
+                                <td>
+                                    <h5>Tổng</h5>
+                                </td>
+                                <td>
+                                    <h5>$ {{$total}}</h5>
+                                </td>
+                            </tr>
+                          
+                            <tr class="out_button_area">
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center">
+                                        <a class="gray_btn" href="#">Tiếp tục mua sắm</a>
+                                        <a class="primary-btn" href="{{ route('get.checkout') }}">Thanh toán</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Cart Area =================-->
+
+@stop
