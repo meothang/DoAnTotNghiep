@@ -53,12 +53,12 @@
 								<br>
 								<b class="pull-left">$
 									<input size="2" type="text" id="amount_min" name="start_price"
-									value="15" style="border:0px; font-weight: bold; color:green; width: 70px;" readonly="readonly" />
+									value="15" style="border:0px; font-weight: bold; color:green; width: 80px;" readonly="readonly" />
 								</b>
 
 								<b class="pull-right">$
 									<input size="2" type="text"  id="amount_max" name="end_price" value="65"
-									style="border:0px; font-weight: bold; color:green; width: 70px" readonly="readonly"/>
+									style="border:0px; font-weight: bold; color:green; width: 80px" readonly="readonly"/>
 								</b>
 
 							</div>
