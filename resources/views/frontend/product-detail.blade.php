@@ -123,7 +123,7 @@
 		<div class="container">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
-					<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Giới thiệu</a>
+					<a class="nav-link  active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Giới thiệu</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
@@ -134,12 +134,12 @@
 					aria-selected="false">Bình luận</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+					<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
 					aria-selected="false">Đánh giá</a>
 				</li>
 			</ul>
 			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 					<p> {{ $productDetail -> pro_detail}}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -239,7 +239,12 @@
 										</div>
 										<div class="media-body">
 											<h4>{{ $cm ->user -> name}}</h4>
-											<h5>{{ $cm -> created_at}}</h5>
+											<h5>
+												@php
+												\Carbon\Carbon::setlocale('vi');
+												echo \Carbon\Carbon::createFromTimeStamp(strtotime($cm->created_at))->diffForHumans();
+												@endphp
+											</h5>
 											<a class="reply_btn"  href="javascript:void(0)" data-cm ="{{$cm -> id}}">Trả lời</a>
 										</div>
 									</div>
@@ -262,11 +267,12 @@
 												</h5>
 											</div>
 										</div>
-										<p>{{ $rep_item -> content}}</p>
+										<p>{{ $rep_item ->rep_content}}</p>
 									</div>
 									@endif	
 									@endforeach
 									@endif
+
 									{{-- Phần Reply Comment --}}
 									<div id="formComment{{$cm -> id}}" style="display:none;">
 										<div style=" margin-top: 15px; width: 400px; margin-left: 30px;">
@@ -331,7 +337,7 @@
 					$age = round($productDetail -> pro_total_number/ $productDetail -> pro_total_rating, 1);
 				} 
 				?>
-				<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+				<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="row total_rate">
@@ -433,7 +439,7 @@
 
 						</div>
 						@endif
-						
+
 					</div>
 				</div>
 

@@ -121,9 +121,11 @@ Route::get('/dang-xuat-user','UserController@getLogout')->name('get.user.logout'
 // Phần sản phẩm và chi tiết sản phẩm
 Route::get('/san-pham-type','ProductController@getProduct')->name('get.list.product');
 Route::get('product-detail/{slug}-{id}','ProductController@getProductDetail')->name('get.product.detail');
+Route::get('/san-pham-type/{name}','ProductController@getProductType')->name('get.list.product.type');
  // Phần Giỏ Hàng
-Route::get('/add/{id}', 'CartController@addProduct')->name('add.cart');
+Route::get('/cart-add/{id}', 'CartController@addProduct')->name('add.cart');
 Route::get('/list-cart', 'CartController@listProduct')->name('list.cart');
+Route::post('cart-update/{id}','CartController@updateProduct');
 // thanh toán
 Route::group(['prefix' => 'giohang', 'middleware' =>'CheckLogin'], function() {
   Route::get('/thanh-toan', 'CartController@getFormPay')->name('get.checkout');
@@ -136,6 +138,7 @@ Route::post('/comment-user/{id}', 'CommentController@saveComment')->name('get.us
 Route::post('/reply/{id}', 'CommentController@replyComment')->name('post.reply.comment');  
 Route::post('/danh-gia/{id}', 'CommentController@saveRating')->name('post.rating.product');
 Route::get('/ajax-type','ProductController@getProduct')->name('get.ajax.product');
+Route::get('/xac-nhan-order', 'CartController@verifyOrderReceive')->name('get.receive.user');
 
 ?>
 

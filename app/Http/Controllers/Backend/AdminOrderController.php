@@ -8,12 +8,13 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Bill;
+use Carbon\Carbon;
 class AdminOrderController extends Controller
 {
     // danh sách sản phẩm
     public function getOrderApprove()
     {
-        $orders = Order::where('status',1)->get();
+        $orders = Order::where('status',1)->paginate(4);
         return view('backend.order.orderApprove',compact('orders'));
         // return view('backend.order.orderApprove');
     }
@@ -49,6 +50,7 @@ class AdminOrderController extends Controller
                 }
             }
             $orders -> status = 1;
+            $orders -> updated_at = Carbon::now();
             $orders -> save();
             return redirect()->route('admin.get.list.order.not');
             break;
@@ -62,7 +64,7 @@ class AdminOrderController extends Controller
                 $orders -> delete($id);
             }
             
-            return redirect()->route('admin.get.list.order.not');
+            return redirect()->back();
             break;
         }
     }
@@ -130,14 +132,14 @@ public function update(Request $request){
 }
 public function add(Request $request)
 {
- \Cart::add([
+   \Cart::add([
     'id' => $request->id,
     'name' => $request->pro_name,
     'price' => $request->pro_price,
     'quantity' => $request->quantity,
     'attributes' => ['image' => $request->pro_image]
 ]);
- return redirect()->back();
+   return redirect()->back();
 }
 public function checkout()
 {
@@ -157,16 +159,16 @@ public function saveOrder(Request $request)
     $detail = [];
     foreach($cartCollection as $item)
     {
-     array_push($detail,$item->name);
-     array_push($detail,$item->quantity);
-     array_push($detail,$item->price);
- }
- $order->info_order = implode(",", $detail);
- $order->price_order = \Cart::getTotal();
- $order->status = 0;
- $order->save();
- \Cart::clear();
- return route('admin.get.list.order.not');
+       array_push($detail,$item->name);
+       array_push($detail,$item->quantity);
+       array_push($detail,$item->price);
+   }
+   $order->info_order = implode(",", $detail);
+   $order->price_order = \Cart::getTotal();
+   $order->status = 0;
+   $order->save();
+   \Cart::clear();
+   return route('admin.get.list.order.not');
 
 }
 // public function action($action,$id)
