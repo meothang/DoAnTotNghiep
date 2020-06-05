@@ -92,8 +92,8 @@
 					max: 50000000,
 					values: [0, 50000000],
 					slide: function(event, ui) {
-						$("#amount_min").val(ui.values[0]);
-						$("#amount_max").val(ui.values[1]);
+						$("#amount_min").val(addCommas(ui.values[0].toString()));
+						$("#amount_max").val(addCommas(ui.values[1]));
 						var start = $('#amount_min').val();
 						var end = $('#amount_max').val();
 						$.ajax({
@@ -204,6 +204,17 @@
 				})
 
 			});
+			function addCommas(nStr){
+				nStr += '';
+				x = nStr.split('.');
+				x1 = x[0];
+				x2 = x.length > 1 ? '.' + x[1] : '';
+				var rgx = /(\d+)(\d{3})/;
+				while (rgx.test(x1)) {
+					x1 = x1.replace(rgx, '$1' + ',' + '$2');
+				}
+				return x1 + x2;
+			}
 		</script>
 	</body>
 

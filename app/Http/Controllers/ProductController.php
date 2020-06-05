@@ -61,9 +61,8 @@ class ProductController extends Controller
          }
 
          if ($request->ajax() && isset($request->start)) {
-            $start = $request->start; // min price value
-            $end = $request->end; // max price value
-
+            $start =  str_replace(',','',$request->start); // min price value
+            $end =  str_replace(',','', $request->end); // max price value
             $product = DB::table('products')
             ->where('pro_price', '>=', $start)->where('pro_price', '<=', $end)->orderby('pro_price', 'ASC')->paginate(6);
             $html = view('frontend.products-filter', compact('product'))->render();
@@ -88,8 +87,8 @@ class ProductController extends Controller
 
 
         else  {
-           $product = Product::orderby('id', 'DESC')->paginate(6);
-           $viewData = [
+         $product = Product::orderby('id', 'DESC')->paginate(6);
+         $viewData = [
             'product' => $product,
             'category' => $category,
         ];
