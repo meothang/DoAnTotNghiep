@@ -107,7 +107,7 @@
 						<div class="single-deal">
 							<div class="overlay"></div>
 							<img class="img-fluid w-100" src="img/category/c1.jpg" alt="">
-							<a href="#">
+							<a href="{{ route('get.list.product.type', ['game']) }}">
 								<div class="deal-details">
 									<h6 class="deal-title">Laptop chơi game</h6>
 								</div>
@@ -118,7 +118,7 @@
 						<div class="single-deal">
 							<div class="overlay"></div>
 							<img class="img-fluid w-100" src="img/category/c2.jpg" alt="">
-							<a href="#">
+							<a href="{{ route('get.list.product.type', ['office']) }}">
 								<div class="deal-details">
 									<h6 class="deal-title">Laptop văn phòng</h6>
 								</div>
@@ -129,7 +129,7 @@
 						<div class="single-deal">
 							<div class="overlay"></div>
 							<img class="img-fluid w-100" src="img/category/c3.jpg" alt="">
-							<a href="#">
+							<a href="{{ route('get.list.product.type', ['compact']) }}">
 								<div class="deal-details">
 									<h6 class="deal-title">Laptop mỏng nhẹ</h6>
 								</div>
@@ -140,7 +140,7 @@
 						<div class="single-deal">
 							<div class="overlay"></div>
 							<img class="img-fluid w-100" src="img/category/c4.jpg" alt="">
-							<a href="#">
+							<a href="{{ route('get.list.product.type', ['design']) }}">
 								<div class="deal-details">
 									<h6 class="deal-title">Laptop đồ họa</h6>
 								</div>
@@ -153,7 +153,7 @@
 				<div class="single-deal">
 					<div class="overlay"></div>
 					<img class="img-fluid w-100" src="img/category/c5.jpg" alt="">
-					<a href="#""img-pop-up" target="_blank">
+					<a href="{{ route('get.list.product.type', ['business']) }}">
 						<div class="deal-details">
 							<h6 class="deal-title">Laptop doanh nhân</h6>
 						</div>
@@ -177,6 +177,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="row">
 				<!-- single product -->
 				@if (isset($productNews))

@@ -36,7 +36,13 @@
 
 	</head>
 	<body>
-
+		{{-- Kiểm trả và thông báo   --}}
+		@if (Session::has('flash_message'))
+		<div class="alert alert-{!!Session::get('flash_level')!!} alert-dismissible" style="width:900px; position: fixed; z-index: 100; top: 15px;left: 50%; transform: translateX(-50%); text-align: center">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<strong style="text-align: center;">{!!Session::get('flash_message')!!}</strong>
+		</div>
+		@endif
 		{{-- HEADER --}}
 		@include('layouts.header')
 		{{-- /HEADER --}}
@@ -66,10 +72,15 @@
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 		<script src="js/gmaps.min.js"></script>
 		<script src="js/main.js"></script>
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		@yield('script')
 		<script>
 			$(function(){
+				event.preventDefault();
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
 				$("#keySearch").keyup(function(){
 					let key = $("#keySearch").val();
 					let urlSearch = '{{ route('get.form.search') }}';
@@ -90,8 +101,71 @@
 						}) 
 					}
 
+				})  
 
-				})                
+				
+				$('.try').click(function(){
+					// event.preventDefault();
+					var brand = [];
+
+					$('.try').each(function(){
+						if($(this).is(":checked")){
+
+							brand.push($(this).val());
+						}
+					});
+					Finalbrand  = brand.toString();
+
+					$.ajax({
+						type: 'get',
+						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
+						url: 'san-pham-type',
+						data: "brand=" + Finalbrand,
+						success: function (response) {
+							console.log(response);
+							$('#updateDiv').html("").append(response.data);
+						}
+					});
+				}); 
+
+
+				$('.filter_type').click(function(){
+					var type = [];
+					$('.filter_type').each(function(){
+						if($(this).is(":checked")){
+
+							type.push($(this).val());
+						}
+					});
+					Finaltype  = type.toString();
+
+					$.ajax({
+						type: 'get',
+						dataType: 'json',
+						url: 'san-pham-type',
+						data: "filter_type=" + 	Finaltype,
+						success: function (response) {
+							console.log(response);
+							$('#updateDiv').html("").append(response.data);
+						}
+					});
+				});  
+
+				$('.filter-select').change(function(){
+					event.preventDefault();
+					var select = $(".filter-select :selected").val();
+					$.ajax({
+						type: 'get',
+						dataType: 'html',
+						url: 'san-pham-type',
+						data: "select=" + select,
+						success: function (response) {
+							console.log(response);
+							$('#updateDiv').html(response);
+						}
+					});
+				})
+
 			});
 		</script>
 	</body>
