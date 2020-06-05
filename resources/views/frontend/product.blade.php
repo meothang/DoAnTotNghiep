@@ -23,12 +23,12 @@
 				<div class="sidebar-categories">
 					<div class="head">Danh mục</div>
 					<ul class="main-categories">	
-						<?php $productType = DB::table('products')->get();
+						<?php $productType = DB::table('product_type')->get();
 						?>
 						@foreach($productType as $pro_type)			
 						<li class="filter-list">
 							<input class="pixel-radio filter_type"  type="checkbox" id="apple" value="{{$pro_type->id}}" name="filter_type">
-							<label for="apple">{{ucwords($pro_type -> pro_type)}}</label>
+							<label for="apple">{{ucwords($pro_type -> name)}}</label>
 						</li>
 						@endforeach
 					</ul>
@@ -47,15 +47,20 @@
 						<div class="head">Khoảng giá</div>
 						<div class="list-group">
 							<div class="price-range-area">
-								<div id="price-range"></div>
-								<div class="value-wrapper d-flex">
-									<div class="price">Price:</div>
-									<span>$</span>
-									<div id="lower-value"></div>
-									<div class="to">to</div>
-									<span>$</span>
-									<div id="upper-value"></div>
-								</div>
+
+
+								<div id="slider-range"></div>
+								<br>
+								<b class="pull-left">$
+									<input size="2" type="text" id="amount_min" name="start_price"
+									value="15" style="border:0px; font-weight: bold; color:green; width: 70px;" readonly="readonly" />
+								</b>
+
+								<b class="pull-right">$
+									<input size="2" type="text"  id="amount_max" name="end_price" value="65"
+									style="border:0px; font-weight: bold; color:green; width: 70px" readonly="readonly"/>
+								</b>
+
 							</div>
 						</div>    
 					</div>
@@ -125,7 +130,7 @@
 
 						{{-- phân trang --}}
 						<!-- Start Filter Bar -->
-					
+
 					{{-- 	<div class="clearfix "> </div>
 						<div class="filter-bar d-flex flex-wrap align-items-center">
 							<div class="sorting mr-auto">
@@ -136,7 +141,7 @@
 								</select>
 							</div> --}}
 							<div class="pagination">
-									{{$product->links()}}
+								{{$product->links()}}
 							</div>
 						{{-- </div> --}}
 						<!-- End Filter Bar -->

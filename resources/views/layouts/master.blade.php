@@ -34,6 +34,10 @@
 		<link rel="stylesheet" href="css/magnific-popup.css"/>
 		<link rel="stylesheet" href="css/main.css"/>
 
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	</head>
 	<body>
 		{{-- Kiểm trả và thông báo   --}}
@@ -57,7 +61,7 @@
 		@include('layouts.footer')
 		{{-- /FOOTER --}}
 
-		<script src="js/vendor/jquery-2.2.4.min.js"></script>
+		{{-- <script src="js/vendor/jquery-2.2.4.min.js"></script> --}}
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 		crossorigin="anonymous"></script>
 		<script src="js/vendor/bootstrap.min.js"></script>
@@ -81,6 +85,39 @@
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 					}
 				});
+
+				$("#slider-range").slider({
+					range: true,
+					min: 0,
+					max: 50000000,
+					values: [0, 50000000],
+					slide: function(event, ui) {
+						$("#amount_min").val(ui.values[0]);
+						$("#amount_max").val(ui.values[1]);
+						var start = $('#amount_min').val();
+						var end = $('#amount_max').val();
+						$.ajax({
+							type: 'get',
+							dataType: 'json',
+							url: '',
+							data: "start=" + start + "& end=" + end,
+							success: function (response) {
+								console.log(response);
+								$('#updateDiv').html("").append(response.data);
+							}
+						});
+					}
+				});
+				$("#amount_min").val($("#slider-range").slider("values", 0));
+				$("#amount_max").val($("#slider-range").slider("values", 1));
+				$("#amount_min").change(function() {
+					$("#slider-range").slider("values", 0, $(this).val());
+				});
+				$("#amount_max").change(function() {
+					$("#slider-range").slider("values", 1, $(this).val());
+				})
+				
+
 				$("#keySearch").keyup(function(){
 					let key = $("#keySearch").val();
 					let urlSearch = '{{ route('get.form.search') }}';
