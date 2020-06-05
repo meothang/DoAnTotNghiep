@@ -18,4 +18,7 @@ class Product extends Model
         if(isset($cate))
          {return $cate->name;}
     }
+     public function product_type(){
+        return $this->belongsTo('App\Models\ProductType','pro_type', 'id');
+    }
 }

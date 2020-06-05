@@ -107,7 +107,7 @@
 						<div class="single-deal">
 							<div class="overlay"></div>
 							<img class="img-fluid w-100" src="img/category/c1.jpg" alt="">
-							<a href="{{ route('get.list.product.type', ['game']) }}">
+							<a href="{{ route('get.list.product.type', ['1']) }}">
 								<div class="deal-details">
 									<h6 class="deal-title">Laptop chơi game</h6>
 								</div>
@@ -118,7 +118,7 @@
 						<div class="single-deal">
 							<div class="overlay"></div>
 							<img class="img-fluid w-100" src="img/category/c2.jpg" alt="">
-							<a href="{{ route('get.list.product.type', ['office']) }}">
+							<a href="{{ route('get.list.product.type', ['3']) }}">
 								<div class="deal-details">
 									<h6 class="deal-title">Laptop văn phòng</h6>
 								</div>
@@ -129,7 +129,7 @@
 						<div class="single-deal">
 							<div class="overlay"></div>
 							<img class="img-fluid w-100" src="img/category/c3.jpg" alt="">
-							<a href="{{ route('get.list.product.type', ['compact']) }}">
+							<a href="{{ route('get.list.product.type', ['5']) }}">
 								<div class="deal-details">
 									<h6 class="deal-title">Laptop mỏng nhẹ</h6>
 								</div>
@@ -140,7 +140,7 @@
 						<div class="single-deal">
 							<div class="overlay"></div>
 							<img class="img-fluid w-100" src="img/category/c4.jpg" alt="">
-							<a href="{{ route('get.list.product.type', ['design']) }}">
+							<a href="{{ route('get.list.product.type', ['2']) }}">
 								<div class="deal-details">
 									<h6 class="deal-title">Laptop đồ họa</h6>
 								</div>
@@ -153,7 +153,7 @@
 				<div class="single-deal">
 					<div class="overlay"></div>
 					<img class="img-fluid w-100" src="img/category/c5.jpg" alt="">
-					<a href="{{ route('get.list.product.type', ['business']) }}">
+					<a href="{{ route('get.list.product.type', ['4']) }}">
 						<div class="deal-details">
 							<h6 class="deal-title">Laptop doanh nhân</h6>
 						</div>

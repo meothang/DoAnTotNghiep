@@ -45,13 +45,15 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Loại</label>
                                         <div class="col-md-9">
+                                            <?php $productType = DB::table('product_type')->get();
+                                            ?>
                                             <select class="form-control select" name="pro_type">
                                                 <option>Vui lòng chọn loại laptop</option>
-                                                <option>Game</option>
-                                                <option>Design</option>
-                                                <option>Office</option>
-                                                <option>Compact</option>
-                                                <option>Business</option>
+                                                @foreach ($productType as $pro_type)
+                                                <option value="{{$pro_type->id}}">{{ucwords($pro_type -> name)}}</option>
+                                                @endforeach
+
+
                                             </select>
                                         </div>
                                     </div>

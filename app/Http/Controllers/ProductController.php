@@ -59,21 +59,37 @@ class ProductController extends Controller
 
 
          }
-         if($request->ajax() && isset($request->filter_type)){
-            $filter_type = $request->filter_type; //filter_type
-            $product = DB::table('products')->whereIN('id', explode( ',', $filter_type ))->paginate(6);
+
+         if ($request->ajax() && isset($request->start)) {
+            $start = $request->start; // min price value
+            $end = $request->end; // max price value
+
+            $product = DB::table('products')
+            ->where('pro_price', '>=', $start)->where('pro_price', '<=', $end)->orderby('pro_price', 'ASC')->paginate(6);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()-> json(['data' => $html] ); //return to ajax
         }
+
+
+        if($request->ajax() && isset($request->filter_type)){
+            $filter_type = $request->filter_type; //filter_type
+            $product = DB::table('products')->whereIN('pro_type', explode( ',', $filter_type ))->paginate(6);
+            $html = view('frontend.products-filter', compact('product'))->render();
+            return response()-> json(['data' => $html] ); //return to ajax
+        }
+
+
         if( $request->ajax() && isset($request->brand)){
             $brand = $request->brand; //brand
             $product = DB::table('products')->whereIN('pro_cate_id', explode( ',', $brand ))->paginate(6);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()-> json(['data' => $html] ); //return to ajax
         }
+
+
         else  {
-         $product = Product::orderby('id', 'DESC')->paginate(6);
-         $viewData = [
+           $product = Product::orderby('id', 'DESC')->paginate(6);
+           $viewData = [
             'product' => $product,
             'category' => $category,
         ];
