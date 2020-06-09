@@ -75,7 +75,7 @@ class AdminProductController extends Controllers
     }
     public function update(EditProductRequest $req,$id)
     {
-        
+
         $product= Product::find($id);
         $product->pro_name = $req->pro_name;
         $product->pro_type = $req->pro_type;
@@ -84,35 +84,39 @@ class AdminProductController extends Controllers
         $product->pro_price  = $req->pro_price;
         $product->pro_cate_id = $req->pro_cate_id;
         if($req->hasFile('pro_image'))
-        {   $path_img_old ="img/product/".$product->pro_image;
+            {   $path_img_old ="img/product/".$product->pro_image;
             // dd($path_img_old);
-            if(file_exists($path_img_old))
-            {
-                @unlink($path_img_old);
-            }
-            $file = $req->file('pro_image');
-            $filename = $file->getclientoriginalName();
-            $file->move('img/product',$filename);
-            $product->pro_image = $filename;
+        if(file_exists($path_img_old))
+        {
+            @unlink($path_img_old);
         }
+        $file = $req->file('pro_image');
+        $filename = $file->getclientoriginalName();
+        $file->move('img/product',$filename);
+        $product->pro_image = $filename;
+    }
         // $product->pro_amount = $req->pro_amount;
-        $pro_detail = $req->only('cpu','ram', 'screen', 'card','harddrive','weight', 'camera', 'port','pin');
-        $product->pro_detail = implode(",", $pro_detail);
-        $product->save();
-        return redirect()->back()->with('success','Cập nhật sản phẩm thành công');
+    $pro_detail = $req->only('cpu','ram', 'screen', 'card','harddrive','weight', 'camera', 'port','pin');
+    $product->pro_detail = implode(",", $pro_detail);
+    $product->save();
+    return redirect()->back()->with('success','Cập nhật sản phẩm thành công');
+}
+public function action($action,$id)
+{
+    if(isset($action))
+    {   
+     $product   = Product::find($id);
+     switch($action)
+     {
+        case 'delete':
+        $product->delete();
+        break;
+        case 'status':
+        $product -> status = $product-> status ? 0 : 1;
+        $product -> save();
+        break;
     }
-    public function action($action,$id)
-    {
-        if(isset($action))
-        {   
-             $product   = Product::find($id);
-            switch($action)
-            {
-                case 'delete':
-                 $product->delete();
-                break;
-            }
-        }
-        return redirect()->back();
-    }
+}
+return redirect()->back();
+}
 }
