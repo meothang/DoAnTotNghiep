@@ -1,6 +1,7 @@
 <?php
-Route::get('/', 'FrontendController@index')->name('admin.frontend');
+
 Auth::routes();
+Route::get('/', 'FrontendController@index')->name('admin.frontend');
 Route::get('/home', 'FrontendController@index')->name('admin.frontend');
 
 
@@ -94,16 +95,18 @@ Route::group(['namespace'=>'Auth'],function(){
   Route::get('/admin','RegisterController@index')->name('get.home.login');
   Route::get('/register','RegisterController@create')->name('get.register');
   Route::post('/register','RegisterController@store')->name('post.register');
-  Route::get('/login','LoginController@getlogin')->name('admin.get.login');
+
+
+  Route::get('/login','LoginController@login')->name('admin.get.login');
   Route::post('/login','LoginController@postlogin')->name('admin.post.login');
+
+
   Route::get('/logout','LoginController@logout')->name('admin.logout');
   Route::get('/forgetpassword','ForgotPasswordController@getforgetpassword')->name('admin.get.forgetpassword');
   Route::post('/forgetpassword','ForgotPasswordController@postforgetpassword')->name('admin.post.forgetpassword');
           // Route::get('/resetpassword','ForgotPasswordController@getresetpassword')->name('admin.get.resetpassword');
   Route::post('/resetpassword','ForgotPasswordController@postresetpassword')->name('admin.post.resetpassword');
 });
-
- 
 });
 
 
