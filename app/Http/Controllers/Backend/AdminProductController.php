@@ -54,6 +54,30 @@ class AdminProductController extends Controllers
             $file->move('img/product',$filename);
             $product->pro_image = $filename;
         }
+
+        if($req->hasFile('image1'))
+        {
+            $file = $req->file('image1');
+            $filename = $file->getclientoriginalName();
+            $file->move('img/product',$filename);
+            $product->image1 = $filename;
+        }
+
+        if($req->hasFile('image2'))
+        {
+            $file = $req->file('image2');
+            $filename = $file->getclientoriginalName();
+            $file->move('img/product',$filename);
+            $product->image2 = $filename;
+        }
+
+        if($req->hasFile('image3'))
+        {
+            $file = $req->file('image3');
+            $filename = $file->getclientoriginalName();
+            $file->move('img/product',$filename);
+            $product->image3 = $filename;
+        }
         $pro_detail = $req->only('cpu','ram', 'screen', 'card','harddrive','weight', 'camera', 'port','pin');
         $product->pro_detail = implode(",", $pro_detail);
         $product->pro_amount += $req->pro_amount; 

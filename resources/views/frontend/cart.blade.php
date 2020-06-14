@@ -28,7 +28,7 @@
                             <th scope="col">Sản phẩm</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Sổ lượng</th>
-                            <th scope="col">Tổng</th>
+                            <th scope="col" width="200">Tổng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,13 +43,13 @@
                                     <div class="d-flex">
                                         <img src="{{ url('/')}}/public/img/product/macair-1.jpg" alt="">
                                     </div>
-                                    <div class="media-body">
+                                    <div class="media-body" style="font-weight:bold ">
                                         <p>{{$cart_item -> name}}</p>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <h5>$ {{ number_format($cart_item -> price, 0, ',', '.')}}</h5>
+                                <h5>{{ number_format($cart_item -> price, 0, ',', '.')}} VNĐ</h5>
                                 Đã Giảm : {{$cart_item-> options -> sale}} %
                             </td>
                             <td>
@@ -63,7 +63,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$ {{number_format($cart_item -> price * $cart_item -> qty,0, ',', '.')}}</h5>
+                                    <h5>{{number_format($cart_item -> price * $cart_item -> qty,0, ',', '.')}} VNĐ</h5>
                                 </td>
                             </tr>
                             @php
@@ -77,8 +77,9 @@
                                 <td>
                                     <h5>Tổng</h5>
                                 </td>
+                                <td></td>
                                 <td>
-                                    <h5>$ {{$total}}</h5>
+                                    <h5 style="font-size: 18px;font-weight:bold">{{$total}} VNĐ</h5>
                                 </td>
                             </tr>
 

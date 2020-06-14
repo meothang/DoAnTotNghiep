@@ -111,6 +111,8 @@ public function getProductDetail (Request $request){
     if ($id = array_pop($url)) {
         $productDetail = Product::find($id);
         $cateProduct = Category::find($productDetail->pro_cate_id);
+        $pro_detail = $request->only('cpu','ram', 'screen', 'card','harddrive','weight', 'camera', 'port','pin');
+        $productDetail->pro_detail = implode(",", $pro_detail);
 
         $comment = Comment::where('idPro', $id)-> orderBy('id', 'DESC') ->limit(5) -> get();
         $reply = ReplyComment::where('rep_product_id', $id)-> orderBy('id', 'DESC')-> get();
