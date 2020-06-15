@@ -47,7 +47,7 @@
       <a href="#"><span class="fa fa-laptop"></span> <span class="xn-text">Sản phẩm</span></a>
       <ul>                            
         <li><a href="{{ route('admin.get.list.product')}}"><span class="fa fa-align-justify"></span> Danh sách sản phẩm</a></li>
-        <li><a href="{{route('admin.get.create.product')}}"><span class="fa fa-plus"></span> Thêm đơn hàng</a></li>
+        <li><a href="{{route('admin.get.create.product')}}"><span class="fa fa-plus"></span> Thêm sản phẩm</a></li>
       </ul>
     </li>
     <li class="xn-openable  {{\Request::route()->getName() == 'admin.get.list.order.not' || \Request::route()->getName() == 'admin.get.list.order' ? 'active' : ''}}">

@@ -100,7 +100,7 @@
 									<div class="product-details">
 										<a href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
 										<div class="price">
-											<h6>{{ number_format($proAll -> pro_price, 0,',','.')}} VNĐ</h6>
+											<h6>Giá: <span style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}} VNĐ</span></h6>
 											<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
 										</div>
 										<div class="prd-bottom">

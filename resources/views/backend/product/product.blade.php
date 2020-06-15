@@ -94,7 +94,7 @@
                                     <th width="250" class="text-center">Tên sản phẩm</th>
                                     <th class="text-center">Mô tả</th>
                                     <th width="150" class="text-center">Hình ảnh</th>
-                                    <th width="150" class="text-center">Loại</th>
+                                    <th width="100" class="text-center">Loại</th>
                                     <th width="120" class="text-center">Giá</th>
                                     <th width="100" class="text-center">Danh mục</th>
                                     <th width="50" class="text-center">Trạng thái</th>
