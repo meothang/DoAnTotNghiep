@@ -41,7 +41,7 @@
                             <td>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="{{ url('/')}}/public/img/product/macair-1.jpg" alt="">
+                                        <img src="{{asset("/img/product/".$product->categories -> name."/$product->pro_image")}}"  alt="">
                                     </div>
                                     <div class="media-body" style="font-weight:bold ">
                                         <p>{{$cart_item -> name}}</p>

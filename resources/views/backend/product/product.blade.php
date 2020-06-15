@@ -114,7 +114,7 @@
                                     {{$product->pro_content}}</td>
                                     <td class="text-center"><img class="img-fluid" style="width:100px"
                                         {{-- src="{{ asset("img/product/$product->pro_image")}}" alt=""></td> --}}
-                                        src="{{asset("/img/product/$product->pro_image")}}" alt=""></td>
+                                        src="{{asset("/img/product/".$product->categories -> name."/$product->pro_image")}}" alt=""></td>
                                         <td class="text-center">{{ $product->product_type->name}}</td>
                                         <td class="text-center">{{ number_format($product->pro_price) }} VNĐ</td>
                                         <?php

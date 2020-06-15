@@ -10,6 +10,7 @@ use App\Http\Requests\EditProductRequest;
 use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use App\Models\ProductType;
 use App\Http\Controllers\Controller as Controllers;
 
 
@@ -43,15 +44,17 @@ class AdminProductController extends Controllers
         $product= new Product();
         $product->pro_name = $req->pro_name;
         $product->pro_type = $req->pro_type;
+
         $product->pro_slug =Str::slug($req->pro_name,'-');
         $product->pro_content= $req->pro_content;
         $product->pro_price  = $req->pro_price;
         $product->pro_cate_id = $req->pro_cate_id;
+        $pro_cate_path = Category::find($req -> pro_cate_id);
         if($req->hasFile('pro_image'))
         {
             $file = $req->file('pro_image');
             $filename = $file->getclientoriginalName();
-            $file->move('img/product',$filename);
+            $file->move('img/product/'.$pro_cate_path -> name ,$filename);
             $product->pro_image = $filename;
         }
 
@@ -59,7 +62,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image1');
             $filename = $file->getclientoriginalName();
-            $file->move('img/product',$filename);
+            $file->move('img/product/'.$pro_cate_path -> name ,$filename);
             $product->image1 = $filename;
         }
 
@@ -67,7 +70,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image2');
             $filename = $file->getclientoriginalName();
-            $file->move('img/product',$filename);
+            $file->move('img/product/'.$pro_cate_path -> name ,$filename);
             $product->image2 = $filename;
         }
 
@@ -75,7 +78,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image3');
             $filename = $file->getclientoriginalName();
-            $file->move('img/product',$filename);
+            $file->move('img/product/'.$pro_cate_path -> name ,$filename);
             $product->image3 = $filename;
         }
         $pro_detail = $req->only('cpu','ram', 'screen', 'card','harddrive','weight', 'camera', 'port','pin');
@@ -107,8 +110,9 @@ class AdminProductController extends Controllers
         $product->pro_content= $req->pro_content;
         $product->pro_price  = $req->pro_price;
         $product->pro_cate_id = $req->pro_cate_id;
+          $pro_cate_path = Category::find($req -> pro_cate_id);
         if($req->hasFile('pro_image'))
-            {   $path_img_old ="img/product/".$product->pro_image;
+            {   $path_img_old ="img/product/".$pro_cate_path -> name.'/'.$product->pro_image;
             // dd($path_img_old);
         if(file_exists($path_img_old))
         {
@@ -116,7 +120,7 @@ class AdminProductController extends Controllers
         }
         $file = $req->file('pro_image');
         $filename = $file->getclientoriginalName();
-        $file->move('img/product',$filename);
+        $file->move('img/product'.$pro_cate_path -> name,$filename);
         $product->pro_image = $filename;
     }
         // $product->pro_amount = $req->pro_amount;
@@ -129,9 +133,9 @@ public function action($action,$id)
 {
     if(isset($action))
     {   
-     $product   = Product::find($id);
-     switch($action)
-     {
+       $product   = Product::find($id);
+       switch($action)
+       {
         case 'delete':
         $product->delete();
         break;

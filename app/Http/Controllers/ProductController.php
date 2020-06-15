@@ -33,27 +33,27 @@ class ProductController extends Controller
             $select = $request -> select; //brand
             switch ($select) {
                 case 'abc':
-                $product = DB::table('products')-> orderBy('pro_name', 'DESC')->paginate(6);
+                $product = Product::rderBy('pro_name', 'DESC')->paginate(6);
                  response()->json($product); //return to ajax
                  return view('frontend.products-filter', compact('product'));
                  break;
                  case 'new':
-                 $product = DB::table('products')-> orderBy('id', 'DESC')->paginate(6);
+                 $product = Product::rderBy('id', 'DESC')->paginate(6);
                  response()->json($product); //return to ajax
                  return view('frontend.products-filter', compact('product'));
                  break;
                  case 'asc':
-                 $product = DB::table('products') -> orderBy('pro_price', 'ASC')->paginate(6);
+                 $product = Product::orderBy('pro_price', 'ASC')->paginate(6);
                  response()->json($product); //return to ajax
                  return view('frontend.products-filter', compact('product'));
                  break;
                  case 'desc':
-                 $product = DB::table('products') -> orderBy('pro_price', 'DESC')->paginate(6);
+                 $product = Product::orderBy('pro_price', 'DESC')->paginate(6);
                  response()->json($product); //return to ajax
                  return view('frontend.products-filter', compact('product'));
                  break;
                  default:
-                 $product = DB::table('products') -> orderBy('id', 'DESC');
+                 $product = Product::orderBy('id', 'DESC');
                  break;
              }
 
@@ -63,8 +63,7 @@ class ProductController extends Controller
          if ($request->ajax() && isset($request->start)) {
             $start =  str_replace(',','',$request->start); // min price value
             $end =  str_replace(',','', $request->end); // max price value
-            $product = DB::table('products')
-            ->where('pro_price', '>=', $start)->where('pro_price', '<=', $end)->orderby('pro_price', 'ASC')->paginate(6);
+            $product = Product::where('pro_price', '>=', $start)->where('pro_price', '<=', $end)->orderby('pro_price', 'ASC')->paginate(6);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()-> json(['data' => $html] ); //return to ajax
         }
@@ -72,7 +71,7 @@ class ProductController extends Controller
 
         if($request->ajax() && isset($request->filter_type)){
             $filter_type = $request->filter_type; //filter_type
-            $product = DB::table('products')->whereIN('pro_type', explode( ',', $filter_type ))->paginate(6);
+            $product = Product::whereIN('pro_type', explode( ',', $filter_type ))->paginate(6);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()-> json(['data' => $html] ); //return to ajax
         }
@@ -80,7 +79,7 @@ class ProductController extends Controller
 
         if( $request->ajax() && isset($request->brand)){
             $brand = $request->brand; //brand
-            $product = DB::table('products')->whereIN('pro_cate_id', explode( ',', $brand ))->paginate(6);
+            $product = Product::whereIN('pro_cate_id', explode( ',', $brand ))->paginate(6);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()-> json(['data' => $html] ); //return to ajax
         }
