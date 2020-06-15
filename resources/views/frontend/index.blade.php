@@ -185,7 +185,7 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="single-product">
 						<div class="product-image">
-							<img class="img-fluid-product" src="img/product/{{$proNews -> pro_image}}" alt="">
+							<img class="img-fluid-product"src="{{asset("/img/product/".$proNews->categories -> name."/$proNews->pro_image")}}"  alt="">
 						</div>
 						<div class="product-details">
 							<a href="{{ route('get.product.detail',[$proNews -> pro_slug, $proNews ->id]) }}">{{$proNews -> pro_name}}</a>
@@ -241,7 +241,7 @@
 						<div class="col-lg-3 col-md-6">
 							<div class="single-product">
 								<div class="product-image">
-									<img class="img-fluid-product" src="img/product/{{ $proHot -> pro_image}}" alt="">
+									<img class="img-fluid-product" src="{{asset("/img/product/".$proHot->categories -> name."/$proHot->pro_image")}}"  alt="">
 								</div>
 								<div class="product-details">
 									<a href="{{ route('get.product.detail',[$proHot -> pro_slug, $proHot ->id]) }}"> {{$proHot -> pro_name}}</a>

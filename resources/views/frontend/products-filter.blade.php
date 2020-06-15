@@ -5,7 +5,7 @@ sorry, products not found
 @foreach ($product as $key => $proAll)
 <div class="col-lg-4 col-md-6">
 	<div class="single-product">
-		<img class="img-fluid" src="img/product/{{$proAll -> pro_image}}" alt="">
+		<img class="img-fluid" src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}" alt="">
 		<div class="product-details">
 			<a href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
 			<div class="price">

@@ -10,7 +10,7 @@ class Product extends Model
     protected $guarded =[''];
     public function categories()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo('App\Models\Category', 'pro_cate_id', 'id');
     } 
     public function getCategory()
     {

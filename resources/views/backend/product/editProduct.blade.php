@@ -118,7 +118,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-offset-3 col-md-9">
-                                            <img id="img_upload" class="img img-responsive" src=" {{ isset($product->pro_image) ? asset('img/product/'.$product->pro_image) : ''}}" alt="">
+                                            <img id="img_upload" class="img img-responsive" src=" {{ isset($product->pro_image) ? asset('img/product/'.$product -> categories -> name.'/'.$product->pro_image) : ''}}" alt="">
                                         </div>
                                     </div>
                                 </div>

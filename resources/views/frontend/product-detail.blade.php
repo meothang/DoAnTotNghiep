@@ -72,16 +72,16 @@
 				<div class="s_Product_carousel">
 					@if (isset($productDetail))
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="{{asset("/img/product/".$productDetail->categories -> name."/$productDetail->pro_image")}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="{{asset("/img/product/".$productDetail->categories -> name."/$productDetail->image1")}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="{{asset("/img/product/".$productDetail->categories -> name."/$productDetail->image2")}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="{{asset("/img/product/".$productDetail->categories -> name."/$productDetail->image3")}}" alt="">
 					</div>
 					@endif
 				</div>
