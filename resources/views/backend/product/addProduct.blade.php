@@ -111,22 +111,83 @@
                                         </div>
                                         
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Hình ảnh</label>
                                         <div class="col-md-9">
                                             <input type="file" class="fileinput btn-primary" name="pro_image" id="filename"
-                                            title="Chọn hình ảnh" />
+                                            title="Chọn hình ảnh chính" />
                                             @if($errors->has('pro_image'))
                                             <div class="help-block">
                                                 {!!$errors->first('pro_image')!!}
                                             </div>
                                             @endif
                                         </div>
-                                        
                                     </div>
+
                                     <div class="form-group">
                                         <div class="col-md-offset-3 col-md-9">
                                             <img id="img_upload" class="img img-responsive" src="" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Hình ảnh</label>
+                                       
+                                        <div class="col-md-9">
+                                            <input type="file" class="fileinput btn-primary" name="image1" id="filename2"
+                                            title="Chọn hình ảnh 2" />
+                                            @if($errors->has('image1'))
+                                            <div class="help-block">
+                                                {!!$errors->first('image1')!!}
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <img id="img_upload2" class="img img-responsive" src="" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Hình ảnh</label>
+                                       
+                                        <div class="col-md-9">
+                                            <input type="file" class="fileinput btn-primary" name="image2" id="filename3"
+                                            title="Chọn hình ảnh 3" />
+                                            @if($errors->has('image2'))
+                                            <div class="help-block">
+                                                {!!$errors->first('image2')!!}
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <img id="img_upload3" class="img img-responsive" src="" alt="">
+                                        </div>
+                                    </div>
+                                        
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Hình ảnh</label>
+                                       
+                                        <div class="col-md-9">
+                                            <input type="file" class="fileinput btn-primary" name="image3" id="filename4"
+                                            title="Chọn hình ảnh 4" />
+                                            @if($errors->has('image3'))
+                                            <div class="help-block">
+                                                {!!$errors->first('image3')!!}
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>   
+                                        
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <img id="img_upload4" class="img img-responsive" src="" alt="">
                                         </div>
                                     </div>
                                 </div>

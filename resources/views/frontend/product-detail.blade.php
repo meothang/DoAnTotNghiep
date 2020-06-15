@@ -75,13 +75,13 @@
 						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="img/product/{{$productDetail -> image1}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="img/product/{{$productDetail -> image2}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="img/product/{{$productDetail -> image3}}" alt="">
 					</div>
 					@endif
 				</div>
@@ -90,7 +90,7 @@
 				@if (isset($productDetail))
 				<div class="s_product_text">
 					<h3>{{ $productDetail -> pro_name}}</h3>
-					<h2>$ {{$productDetail -> pro_price}}</h2>
+					<h2><span>Giá:<span> {{number_format($productDetail -> pro_price)}} VNĐ</h2>
 					<ul class="list">
 						<li><a class="active" href="#"><span>Danh mục</span> : {{ $cateProduct -> name}}</a></li>
 						<li><a href="#"><span>Tình trạng</span> : Có sẵn</a></li>
@@ -98,7 +98,7 @@
 					<p>{{ $productDetail -> pro_content}}</p>
 					<div class="product_count">
 						<label for="qty">Số lượng:</label>
-						<input type="text" name="qty" id="sst" maxlength="12" value="{{ $productDetail -> pro_amount}}" title="Quantity:" class="input-text qty">
+						<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
 						class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
@@ -140,7 +140,7 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<p> {{ $productDetail -> pro_detail}}</p>
+					<p> {{ $productDetail -> pro_content}}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="table-responsive">
