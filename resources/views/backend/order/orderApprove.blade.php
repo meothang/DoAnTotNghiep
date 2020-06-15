@@ -128,7 +128,7 @@
                                     <div class="pull-right">
                                         <button class="btn btn-warning btn-lg mb-control-yes">
                                             <a
-                                            href="{{ route('admin.get.active.order', ['delete', $order -> id])}}">Xóa</a>
+                                            href="{{ route('admin.get.active.order', ['delete_app', $order -> id])}}">Xóa</a>
                                         </button>
                                         <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
                                     </div>
