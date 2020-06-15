@@ -53,8 +53,21 @@ class AdminOrderController extends Controller
             $orders -> updated_at = Carbon::now();
             $orders -> save();
             return redirect()->route('admin.get.list.order.not');
+
             break;
-            case 'delete':
+            case 'delete_app':
+            if ($orders) {
+                $bills = Bill::where('order_id', $id)-> get();
+                foreach ($bills as $value) {
+                    $bill = Bill::find($value -> id);
+                    $bill -> delete();
+                }
+                $orders -> delete($id);
+            }
+            return redirect()->route('admin.get.list.order');
+            break;
+            
+            case 'delete_not':
             if ($orders) {
                 $bills = Bill::where('order_id', $id)-> get();
                 foreach ($bills as $value) {
@@ -64,7 +77,7 @@ class AdminOrderController extends Controller
                 $orders -> delete($id);
             }
             
-            return redirect()->back();
+            return redirect()->route('admin.get.list.order.not');
             break;
         }
     }
@@ -132,14 +145,14 @@ public function update(Request $request){
 }
 public function add(Request $request)
 {
-   \Cart::add([
+ \Cart::add([
     'id' => $request->id,
     'name' => $request->pro_name,
     'price' => $request->pro_price,
     'quantity' => $request->quantity,
     'attributes' => ['image' => $request->pro_image]
 ]);
-   return redirect()->back();
+ return redirect()->back();
 }
 public function checkout()
 {
@@ -159,16 +172,16 @@ public function saveOrder(Request $request)
     $detail = [];
     foreach($cartCollection as $item)
     {
-       array_push($detail,$item->name);
-       array_push($detail,$item->quantity);
-       array_push($detail,$item->price);
-   }
-   $order->info_order = implode(",", $detail);
-   $order->price_order = \Cart::getTotal();
-   $order->status = 0;
-   $order->save();
-   \Cart::clear();
-   return route('admin.get.list.order.not');
+     array_push($detail,$item->name);
+     array_push($detail,$item->quantity);
+     array_push($detail,$item->price);
+ }
+ $order->info_order = implode(",", $detail);
+ $order->price_order = \Cart::getTotal();
+ $order->status = 0;
+ $order->save();
+ \Cart::clear();
+ return route('admin.get.list.order.not');
 
 }
 // public function action($action,$id)
