@@ -43,7 +43,7 @@
                                     <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                     <input name="name" type="text" class="form-control" id="" value="{{old('name')}}" >
                                 </div>
-
+                                <span style="color:red">{{$errors->first('name')}}</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -70,6 +70,7 @@
                                     <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                     <input name="birthday" type="date" class="form-control" id="" value="{{old('birthday')}}" >
                                 </div>
+                                <span style="color:red">{{$errors->first('birthday')}}</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -79,7 +80,7 @@
                                     <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
                                     <input name="email" type="email"  required="" class="form-control" id="" value="{{old('email')}}" >
                                 </div>
-
+                                <span style="color:red">{{$errors->first('email')}}</span>
                             </div>
                         </div>
 
@@ -90,7 +91,7 @@
                                     <span class="input-group-addon"><span class="fa fa-phone"></span></span>
                                     <input name="phone" type="text" class="form-control" id="" value="{{old('phone')}}" >
                                 </div>
-
+                                <span style="color:red">{{$errors->first('phone')}}</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -99,9 +100,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-home"></span></span>
                                     <input name="address" type="text" class="form-control" id="" value="{{old('address')}}" >
-
                                 </div>
-
+                                <span style="color:red">{{$errors->first('address')}}</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -110,9 +110,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
                                     <input name="password" type="password" class="form-control" id="" >
-
                                 </div>
-
+                                <span style="color:red">{{$errors->first('password')}}</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -121,31 +120,30 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><span class="fa fa-unlock-alt"></span></span>
                                     <input name="rePassword" type="password" class="form-control" id="" >
-
                                 </div>
-
+                                <span style="color:red">{{$errors->first('rePassword')}}</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 col-xs-12 control-label">Vai trò</label>
                             <div class="col-md-6 col-xs-12">
-                               <select name="roleID[]" id="input" class="mdb-select md-form form-control" multiple>
-                                 @foreach($listRole as $role)
-                                 <option  value="{{$role->id}}"{{old('roleID')==$role->id?'selected':''}}>{{$role->name}}</option>
-                                 @endforeach
-                             </select>
-                             <span style="color:red">{{$errors->first('roleID')}}</span>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="panel-footer">
-                    <button type="reset" class="btn btn-default">Xóa trường</button>
-                    <button type="submit" class="btn btn-primary pull-right">Thêm</button>
-                </div>
+                             <select name="roleID[]" id="input" class="mdb-select md-form form-control" multiple>
+                               @foreach($listRole as $role)
+                               <option  value="{{$role->id}}"{{old('roleID')==$role->id?'selected':''}}>{{$role->name}}</option>
+                               @endforeach
+                           </select>
+                           <span style="color:red">{{$errors->first('roleID')}}</span>
+                       </div>
+                   </div>
+               </div>
+               <div class="panel-footer">
+                <button type="reset" class="btn btn-default">Xóa trường</button>
+                <button type="submit" class="btn btn-primary pull-right">Thêm</button>
             </div>
-        </form>
+        </div>
+    </form>
 
-    </div>
+</div>
 </div>
 
 </div>

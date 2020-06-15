@@ -106,10 +106,10 @@ class CartController extends Controller
       ];
       // gởi mail xác nhận giao hàng
       Mail::send('mail.shopping',array('data' => $data['route'], 'name' => $request -> name), function ($message) use ($email, $data) {
-        $message->to($email, 'User')->subject('Kích Hoạt Tài Khoản');
+        $message->to($email, 'User')->subject('Xác Nhận Giao Hàng');
       });
       \Cart::destroy();
-      return redirect()->route('admin.frontend')->with(['flash_level' => 'success', 'flash_message' => 'Thành Toán Thành Công. Click vô Mail để xác nhận đã giao hàng->  <a href="https://mail.google.com/" title="">Gmail</a> ']);
+      return redirect()->route('admin.frontend')->with(['flash_level' => 'success', 'flash_message' => 'Thành Toán Thành Công. Click vô Mail để xác nhận đã giao hàng->  <a target="_blank" href="https://mail.google.com/" title="">Gmail</a> ']);
     }
     // check giao giao thanh công
     public function verifyOrderReceive(Request $request){

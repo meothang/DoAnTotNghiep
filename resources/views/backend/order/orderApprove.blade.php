@@ -103,37 +103,59 @@
                             class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
                             class="fa fa-info"></span></button></a>
 
-                            <a href="{{ route('admin.get.active.order', ['delete', $order -> id])}}"><button class="btn btn-danger btn-rounded btn-condensed btn-sm"
-                                onClick="delete_row('trow_2');"><span class="fa fa-times"></span></button>
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @endif
+                            <a>  
+                                <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete"><span
+                                    class="fa fa-times"></span></button>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
 
 
-                </tbody>
-            </table>
-
-            <!-- shop toolbar start -->
-            <div class="shop-content-bottom">
-                <div class="shop-toolbar btn-tlbr">
-                    <div class="col-md-4 col-sm-4 col-xs-12 text-center">
-                        <div class="pages">
-                            {{$orders->links()}}
+                    </tbody>
+                </table>
+                <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                    <div class="mb-container">
+                        <div class="mb-middle">
+                            <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                <strong>Xóa Đơn Hàng</strong> ?</div>
+                                <div class="mb-content">
+                                    <p>Nếu bạn muốn xóa đơn hàng này</p>
+                                    <p>Hãy ấn XÓA</p>
+                                </div>
+                                <div class="mb-footer">
+                                    <div class="pull-right">
+                                        <button class="btn btn-warning btn-lg mb-control-yes">
+                                            <a
+                                            href="{{ route('admin.get.active.order', ['delete', $order -> id])}}">Xóa</a>
+                                        </button>
+                                        <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- END MESSAGE BOX-->
+                    <!-- shop toolbar start -->
+                    <div class="shop-content-bottom">
+                        <div class="shop-toolbar btn-tlbr">
+                            <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                                <div class="pages">
+                                    {{$orders->links()}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- shop toolbar end -->
+
+
                 </div>
+
             </div>
-            <!-- shop toolbar end -->
-
-
         </div>
 
     </div>
-</div>
-
-</div>
 </div>
 <!-- END RESPONSIVE TABLES -->
 

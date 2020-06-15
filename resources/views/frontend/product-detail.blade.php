@@ -75,13 +75,13 @@
 						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> image1}}" alt="">
+						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> image2}}" alt="">
+						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> image3}}" alt="">
+						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
 					</div>
 					@endif
 				</div>
@@ -145,13 +145,13 @@
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="table-responsive">
 						<table class="table">
-							<tbody>
+							@if (isset($pro_detail))
 								<tr>
 									<td>
 										<h5><strong>Bộ xử lý CPU:</strong></h5>
 									</td>
 									<td>
-										<h5>Core i5 1.6GHz dual-core 8th-generation - 8210Y</h5>
+										<h5>{{ $pro_detail[0] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -159,7 +159,7 @@
 										<h5><strong>Bộ nhớ RAM:</strong></h5>
 									</td>
 									<td>
-										<h5>8GB</h5>
+										<h5>{{ $pro_detail[1] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -167,7 +167,7 @@
 										<h5><strong>Màn hình:</strong></h5>
 									</td>
 									<td>
-										<h5>13.3 inch, Retina (2560 x 1600 pixels)</h5>
+										<h5>{{ $pro_detail[2] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -175,7 +175,7 @@
 										<h5><strong>Card màn hình:</strong></h5>
 									</td>
 									<td>
-										<h5>Intel UHD Graphics 617 graphics</h5>
+										<h5>{{ $pro_detail[3] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -183,7 +183,7 @@
 										<h5><strong>Ổ cứng:</strong></h5>
 									</td>
 									<td>
-										<h5>SSD, 128 GB</h5>
+										<h5>{{ $pro_detail[4] }}B</h5>
 									</td>
 								</tr>
 								<tr>
@@ -191,7 +191,7 @@
 										<h5><strong>Kích thước và trọng lượng:</strong></h5>
 									</td>
 									<td>
-										<h5>1.25 kg</h5>
+										<h5>{{ $pro_detail[5] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -199,7 +199,7 @@
 										<h5><strong>Camera:</strong></h5>
 									</td>
 									<td>
-										<h5>720p FaceTime HD</h5>
+										<h5>{{ $pro_detail[6] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -207,7 +207,7 @@
 										<h5><strong>Cổng kết nối:</strong></h5>
 									</td>
 									<td>
-										<h5>Two Thunderbolt 3 ports</h5>
+										<h5>{{ $pro_detail[7] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -215,9 +215,10 @@
 										<h5><strong>Pin và sạc:</strong></h5>
 									</td>
 									<td>
-										<h5>49.9 W h Li-Poly</h5>
+										<h5>{{ $pro_detail[8] }}</h5>
 									</td>
-								</tr>
+								</tr>							@endif
+							<tbody>
 							</tbody>
 						</table>
 					</div>
@@ -229,7 +230,6 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="comment_list">
-
 								@if (isset($comment))
 								@foreach ($comment as $cm)
 								<div class="review_item">

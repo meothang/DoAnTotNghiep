@@ -139,20 +139,44 @@
                                         </td>
                                         <td class="text-center">{{ date_format($product->created_at,'d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.get.action.product',['delete',$product->id])}}">
-                                                <button class="btn btn-danger btn-rounded btn-condensed btn-sm">
-                                                    <span class="fa fa-times"></span></button>
+                                            <a>
+                                               <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete"><span
+                                                class="fa fa-times"></span></button>
+                                            </a>
+                                            <a href="{{ route('admin.get.edit.product',$product->id) }}">
+                                                <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
+                                                    <span class="fa fa-pencil"></span></button>
                                                 </a>
-                                                <a href="{{ route('admin.get.edit.product',$product->id) }}">
-                                                    <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
-                                                        <span class="fa fa-pencil"></span></button>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                            @endif
-                                        </tbody>
-                                    </table>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+
+                                <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                                    <div class="mb-container">
+                                        <div class="mb-middle">
+                                            <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                                <strong>Xóa Sản Phẩm</strong> ?</div>
+                                                <div class="mb-content">
+                                                    <p>Nếu bạn muốn xóa sản phẩm này</p>
+                                                    <p>Hãy ấn XÓA</p>
+                                                </div>
+                                                <div class="mb-footer">
+                                                    <div class="pull-right">
+                                                        <button class="btn btn-warning btn-lg mb-control-yes">
+                                                            <a
+                                                           href="{{ route('admin.get.action.product',['delete',$product->id])}}">Xóa</a>
+                                                        </button>
+                                                        <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END MESSAGE BOX-->
+
                                 </div>
 
                             </div>
