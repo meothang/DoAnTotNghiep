@@ -109,7 +109,7 @@ class CartController extends Controller
         $message->to($email, 'User')->subject('Xác Nhận Giao Hàng');
       });
       \Cart::destroy();
-      return redirect()->route('admin.frontend')->with(['flash_level' => 'success', 'flash_message' => 'Thành Toán Thành Công. Click vô Mail để xác nhận đã giao hàng->  <a href="https://mail.google.com/" title="">Gmail</a> ']);
+      return redirect()->route('admin.frontend')->with(['flash_level' => 'success', 'flash_message' => 'Thành Toán Thành Công. Click vô Mail để xác nhận đã giao hàng->  <a target="_blank" href="https://mail.google.com/" title="">Gmail</a> ']);
     }
     // check giao giao thanh công
     public function verifyOrderReceive(Request $request){
