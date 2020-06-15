@@ -148,76 +148,11 @@
 							<tbody>
 								<tr>
 									<td>
-										<h5><strong>Bộ xử lý CPU:</strong></h5>
+										<h5><strong> {{ $productDetail -> pro_detail}}</strong></h5>
 									</td>
-									<td>
-										<h5>Core i5 1.6GHz dual-core 8th-generation - 8210Y</h5>
-									</td>
+									
 								</tr>
-								<tr>
-									<td>
-										<h5><strong>Bộ nhớ RAM:</strong></h5>
-									</td>
-									<td>
-										<h5>8GB</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5><strong>Màn hình:</strong></h5>
-									</td>
-									<td>
-										<h5>13.3 inch, Retina (2560 x 1600 pixels)</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5><strong>Card màn hình:</strong></h5>
-									</td>
-									<td>
-										<h5>Intel UHD Graphics 617 graphics</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5><strong>Ổ cứng:</strong></h5>
-									</td>
-									<td>
-										<h5>SSD, 128 GB</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5><strong>Kích thước và trọng lượng:</strong></h5>
-									</td>
-									<td>
-										<h5>1.25 kg</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5><strong>Camera:</strong></h5>
-									</td>
-									<td>
-										<h5>720p FaceTime HD</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5><strong>Cổng kết nối:</strong></h5>
-									</td>
-									<td>
-										<h5>Two Thunderbolt 3 ports</h5>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h5><strong>Pin và sạc:</strong></h5>
-									</td>
-									<td>
-										<h5>49.9 W h Li-Poly</h5>
-									</td>
-								</tr>
+								
 							</tbody>
 						</table>
 					</div>
