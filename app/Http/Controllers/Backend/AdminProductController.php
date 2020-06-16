@@ -54,7 +54,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('pro_image');
             $filename = $file->getclientoriginalName();
-            $file->move('img/product/'.$pro_cate_path -> name ,$filename);
+            $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
             $product->pro_image = $filename;
         }
 
@@ -62,7 +62,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image1');
             $filename = $file->getclientoriginalName();
-            $file->move('img/product/'.$pro_cate_path -> name ,$filename);
+            $file->move('img/product/'.$pro_cate_path -> name .'/',$filename);
             $product->image1 = $filename;
         }
 
@@ -70,7 +70,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image2');
             $filename = $file->getclientoriginalName();
-            $file->move('img/product/'.$pro_cate_path -> name ,$filename);
+            $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
             $product->image2 = $filename;
         }
 
@@ -78,7 +78,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image3');
             $filename = $file->getclientoriginalName();
-            $file->move('img/product/'.$pro_cate_path -> name ,$filename);
+            $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
             $product->image3 = $filename;
         }
         $pro_detail = $req->only('cpu','ram', 'screen', 'card','harddrive','weight', 'camera', 'port','pin');
@@ -110,7 +110,7 @@ class AdminProductController extends Controllers
         $product->pro_content= $req->pro_content;
         $product->pro_price  = $req->pro_price;
         $product->pro_cate_id = $req->pro_cate_id;
-          $pro_cate_path = Category::find($req -> pro_cate_id);
+        $pro_cate_path = Category::find($req -> pro_cate_id);
         if($req->hasFile('pro_image'))
             {   $path_img_old ="img/product/".$pro_cate_path -> name.'/'.$product->pro_image;
             // dd($path_img_old);
@@ -120,22 +120,63 @@ class AdminProductController extends Controllers
         }
         $file = $req->file('pro_image');
         $filename = $file->getclientoriginalName();
-        $file->move('img/product'.$pro_cate_path -> name,$filename);
+        $file->move('img/product'.$pro_cate_path -> name.'/',$filename);
         $product->pro_image = $filename;
     }
+    if($req->hasFile('image1'))
+    {
+        $path_img_old1 ="img/product/".$pro_cate_path -> name.'/'.$product->image1;
+            // dd($path_img_old);
+        if(file_exists($path_img_old1))
+        {
+            @unlink($path_img_old1);
+        }
+        $file = $req->file('image1');
+        $filename = $file->getclientoriginalName();
+        $file->move('img/product/'.$pro_cate_path -> name .'/',$filename);
+        $product->image1 = $filename;
+    }
+
+    if($req->hasFile('image2'))
+    {
+     $path_img_old2 ="img/product/".$pro_cate_path -> name.'/'.$product->image2;
+            // dd($path_img_old);
+     if(file_exists($path_img_old2))
+     {
+        @unlink($path_img_old2);
+    }
+    $file = $req->file('image2');
+    $filename = $file->getclientoriginalName();
+    $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
+    $product->image2 = $filename;
+}
+
+if($req->hasFile('image3'))
+{
+ $path_img_old3 ="img/product/".$pro_cate_path -> name.'/'.$product->image3;
+            // dd($path_img_old);
+ if(file_exists($path_img_old3))
+ {
+    @unlink($path_img_old3);
+}
+$file = $req->file('image3');
+$filename = $file->getclientoriginalName();
+$file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
+$product->image3 = $filename;
+}
         // $product->pro_amount = $req->pro_amount;
-    $pro_detail = $req->only('cpu','ram', 'screen', 'card','harddrive','weight', 'camera', 'port','pin');
-    $product->pro_detail = implode(",", $pro_detail);
-    $product->save();
-    return redirect()->back()->with('success','Cập nhật sản phẩm thành công');
+$pro_detail = $req->only('cpu','ram', 'screen', 'card','harddrive','weight', 'camera', 'port','pin');
+$product->pro_detail = implode(",", $pro_detail);
+$product->save();
+return redirect()->back()->with('success','Cập nhật sản phẩm thành công');
 }
 public function action($action,$id)
 {
     if(isset($action))
     {   
-       $product   = Product::find($id);
-       switch($action)
-       {
+     $product   = Product::find($id);
+     switch($action)
+     {
         case 'delete':
         $product->delete();
         break;

@@ -60,7 +60,8 @@
     <li class="xn-openable  {{\Request::route()->getName() == 'get.backend.list.user' || \Request::route()->getName() == 'get.backend.list.employee' ? 'active' : ''}}">
       <a href="#"><span class="fa fa-users"></span> <span class="xn-text">Tài khoản</span></a>
       <ul>                            
-        <li><a href="{{ route('get.backend.list.user') }}"><span class="fa fa-users"></span> Khách hàng</a></li>
+        <li><a href="{{ route('get.backend.list.user') }}"><span class="fa fa-users"></span>DS Khách hàng</a></li>
+        <li><a href="{{ route('get.backend.list.admin') }}"><span class="fa fa-users"></span>DS Quản Trị Viên</a></li>
         <li><a href="{{ route('get.backend.list.employee') }}"><span class="fa fa-user"></span> Nhân viên</a></li>
       </ul>
     </li>

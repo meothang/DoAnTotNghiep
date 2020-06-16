@@ -39,6 +39,7 @@
                                     <th width="200" class="text-center">Email</th>
                                     <th width="120" class="text-center">Số điện thoại</th>
                                     <th width="300" class="text-center">Địa chỉ</th>
+                                    <th width="300" class="text-center">Quyền</th>
                                     <th width="120" class="text-center">Hành động</th>
                                 </tr>
                             </thead>
@@ -47,8 +48,8 @@
                                 @foreach ($users as $key =>  $user)
 
                                 <tr id="trow_3">
-                                    <td class="text-center">1</td>
-                                    <td class="text-center"><strong>{{$user -> name}}</strong></td>
+                                    <td class="text-center">{{ $user -> userid}}</td>
+                                    <td class="text-center"><strong>{{$user -> username}}</strong></td>
                                     <td class="text-center">
                                        @if ($user -> sex == 1)
                                        {{'Nam'}}
@@ -59,50 +60,53 @@
                                    <td class="text-center">{{$user -> email}}</td>
                                    <td class="text-center">{{$user -> phone}}</td>
                                    <td class="text-center">{{$user -> address}}</td>
+                                   <td class="text-center">{{$user -> name}}</td>
                                    <td class="text-center">
-                                    <a>
-                                        <button class="btn btn-danger btn-rounded btn-condensed btn-sm"
-                                        onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                            @endif
-
-                        </tbody>
-                    </table>
-                    <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
-                        <div class="mb-container">
-                            <div class="mb-middle">
-                                <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
-                                    <strong>Xóa Khách Hàng</strong> ?</div>
-                                    <div class="mb-content">
-                                        <p>Nếu bạn muốn xóa người này</p>
-                                        <p>Hãy ấn XÓA</p>
-                                    </div>
-                                    <div class="mb-footer">
-                                        <div class="pull-right">
-                                            <button class="btn btn-warning btn-lg mb-control-yes">
-                                                <a
-                                                href="{{ route('delete.user', $user -> id) }}">Xóa</a>
-                                            </button>
-                                            <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                       <a href="{{ route('employee.user.edit', $user ->userid) }}">
+                                        <button
+                                        class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
+                                        class="fa fa-pencil"></span></button></a>
+                                        <a>
+                                            <button class="btn btn-danger btn-rounded btn-condensed btn-sm"
+                                            onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                            <div class="mb-container">
+                                <div class="mb-middle">
+                                    <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                        <strong>Xóa Quản Trị Viên</strong> ?</div>
+                                        <div class="mb-content">
+                                            <p>Nếu bạn muốn xóa người này</p>
+                                            <p>Hãy ấn XÓA</p>
+                                        </div>
+                                        <div class="mb-footer">
+                                            <div class="pull-right">
+                                                <button class="btn btn-warning btn-lg mb-control-yes">
+                                                    <a
+                                                    href="{{ route('delete.user', $user -> userid) }}">Xóa</a>
+                                                </button>
+                                                <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- END MESSAGE BOX-->
                         </div>
-                        <!-- END MESSAGE BOX-->
+
                     </div>
                 </div>
 
             </div>
         </div>
+        <!-- END RESPONSIVE TABLES -->
 
     </div>
-</div>
-<!-- END RESPONSIVE TABLES -->
-
-</div>
 <!-- PAGE CONTENT WRAPPER 
 @stop
