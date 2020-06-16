@@ -4,7 +4,7 @@
 <ul class="breadcrumb">
     <li><a href="#">Trang chủ</a></li>
     <li><a href="#">Tài khoản</a></li>
-    <li class="active">Khách hàng</li>
+    <li class="active">Quản Trị Viên</li>
 </ul>
 <!-- END BREADCRUMB -->
 {{-- <!-- PAGE TITLE -->
@@ -23,7 +23,7 @@
 
                 <div class="panel-heading">
                     <div class="page-head-text">
-                        <h1 class="panel-title"><strong>Quản lý</strong> khách hàng</h1>
+                        <h1 class="panel-title"><strong>Quản lý</strong> Quản Trị Viên</h1>
                     </div>
                 </div>
 
