@@ -23,8 +23,9 @@ class CheckLoginAdmin
         }  
         else{
             //về lại đăng nhập ngược trang user
-            return view('backend.login');
+           return redirect()->route('admin.frontend')-> with(['flash_level' => 'danger', 'flash_message' => 'Xin Lỗi Bạn Không Có Quyền Vào Trang Này!']);;
         }
     }
 }
+
 

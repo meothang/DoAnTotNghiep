@@ -44,23 +44,23 @@
                             </thead>
                             <tbody>
                                 @if (isset($users))
-                                @foreach ($users as $user)
+                                @foreach ($users as $key =>  $user)
 
                                 <tr id="trow_3">
                                     <td class="text-center">1</td>
                                     <td class="text-center"><strong>{{$user -> name}}</strong></td>
                                     <td class="text-center">
-                                     @if ($user['sex'] == 1)
-                                     {{'Nam'}}
-                                     @else
-                                     {{'Nữ'}}
-                                     @endif
-                                 </td>
-                                 <td class="text-center">{{$user -> email}}</td>
-                                 <td class="text-center">{{$user -> phone}}</td>
-                                 <td class="text-center">{{$user -> address}}</td>
-                                 <td class="text-center">
-                                    <a href="{{ route('delete.user', $user -> id) }}">
+                                       @if ($user -> sex == 1)
+                                       {{'Nam'}}
+                                       @else
+                                       {{'Nữ'}}
+                                       @endif
+                                   </td>
+                                   <td class="text-center">{{$user -> email}}</td>
+                                   <td class="text-center">{{$user -> phone}}</td>
+                                   <td class="text-center">{{$user -> address}}</td>
+                                   <td class="text-center">
+                                    <a>
                                         <button class="btn btn-danger btn-rounded btn-condensed btn-sm"
                                         onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
                                     </a>
@@ -71,6 +71,29 @@
 
                         </tbody>
                     </table>
+                    <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                        <div class="mb-container">
+                            <div class="mb-middle">
+                                <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                    <strong>Xóa Khách Hàng</strong> ?</div>
+                                    <div class="mb-content">
+                                        <p>Nếu bạn muốn xóa người này</p>
+                                        <p>Hãy ấn XÓA</p>
+                                    </div>
+                                    <div class="mb-footer">
+                                        <div class="pull-right">
+                                            <button class="btn btn-warning btn-lg mb-control-yes">
+                                                <a
+                                                href="{{ route('delete.user', $user -> id) }}">Xóa</a>
+                                            </button>
+                                            <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END MESSAGE BOX-->
+                    </div>
                 </div>
 
             </div>

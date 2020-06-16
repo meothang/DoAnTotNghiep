@@ -72,16 +72,16 @@
 				<div class="s_Product_carousel">
 					@if (isset($productDetail))
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="{{asset("/img/product/".$productDetail->categories -> name."/$productDetail->pro_image")}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="{{asset("/img/product/".$productDetail->categories -> name."/$productDetail->image1")}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="{{asset("/img/product/".$productDetail->categories -> name."/$productDetail->image2")}}" alt="">
 					</div>
 					<div class="single-prd-item">
-						<img class="img-fluid" src="img/product/{{$productDetail -> pro_image}}" alt="">
+						<img class="img-fluid" src="{{asset("/img/product/".$productDetail->categories -> name."/$productDetail->image3")}}" alt="">
 					</div>
 					@endif
 				</div>
@@ -90,7 +90,7 @@
 				@if (isset($productDetail))
 				<div class="s_product_text">
 					<h3>{{ $productDetail -> pro_name}}</h3>
-					<h2>$ {{$productDetail -> pro_price}}</h2>
+					<h2><span>Giá:<span> {{number_format($productDetail -> pro_price)}} VNĐ</h2>
 					<ul class="list">
 						<li><a class="active" href="#"><span>Danh mục</span> : {{ $cateProduct -> name}}</a></li>
 						<li><a href="#"><span>Tình trạng</span> : Có sẵn</a></li>
@@ -98,7 +98,7 @@
 					<p>{{ $productDetail -> pro_content}}</p>
 					<div class="product_count">
 						<label for="qty">Số lượng:</label>
-						<input type="text" name="qty" id="sst" maxlength="12" value="{{ $productDetail -> pro_amount}}" title="Quantity:" class="input-text qty">
+						<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
 						class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
 						<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
@@ -123,7 +123,7 @@
 		<div class="container">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
-					<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Giới thiệu</a>
+					<a class="nav-link  active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Giới thiệu</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
@@ -134,24 +134,24 @@
 					aria-selected="false">Bình luận</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+					<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
 					aria-selected="false">Đánh giá</a>
 				</li>
 			</ul>
 			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<p> {{ $productDetail -> pro_detail}}</p>
+				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+					<p> {{ $productDetail -> pro_content}}</p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="table-responsive">
 						<table class="table">
-							<tbody>
+							@if (isset($pro_detail))
 								<tr>
 									<td>
 										<h5><strong>Bộ xử lý CPU:</strong></h5>
 									</td>
 									<td>
-										<h5>Core i5 1.6GHz dual-core 8th-generation - 8210Y</h5>
+										<h5>{{ $pro_detail[0] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -159,7 +159,7 @@
 										<h5><strong>Bộ nhớ RAM:</strong></h5>
 									</td>
 									<td>
-										<h5>8GB</h5>
+										<h5>{{ $pro_detail[1] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -167,7 +167,7 @@
 										<h5><strong>Màn hình:</strong></h5>
 									</td>
 									<td>
-										<h5>13.3 inch, Retina (2560 x 1600 pixels)</h5>
+										<h5>{{ $pro_detail[2] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -175,7 +175,7 @@
 										<h5><strong>Card màn hình:</strong></h5>
 									</td>
 									<td>
-										<h5>Intel UHD Graphics 617 graphics</h5>
+										<h5>{{ $pro_detail[3] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -183,7 +183,7 @@
 										<h5><strong>Ổ cứng:</strong></h5>
 									</td>
 									<td>
-										<h5>SSD, 128 GB</h5>
+										<h5>{{ $pro_detail[4] }}B</h5>
 									</td>
 								</tr>
 								<tr>
@@ -191,7 +191,7 @@
 										<h5><strong>Kích thước và trọng lượng:</strong></h5>
 									</td>
 									<td>
-										<h5>1.25 kg</h5>
+										<h5>{{ $pro_detail[5] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -199,7 +199,7 @@
 										<h5><strong>Camera:</strong></h5>
 									</td>
 									<td>
-										<h5>720p FaceTime HD</h5>
+										<h5>{{ $pro_detail[6] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -207,7 +207,7 @@
 										<h5><strong>Cổng kết nối:</strong></h5>
 									</td>
 									<td>
-										<h5>Two Thunderbolt 3 ports</h5>
+										<h5>{{ $pro_detail[7] }}</h5>
 									</td>
 								</tr>
 								<tr>
@@ -215,9 +215,10 @@
 										<h5><strong>Pin và sạc:</strong></h5>
 									</td>
 									<td>
-										<h5>49.9 W h Li-Poly</h5>
+										<h5>{{ $pro_detail[8] }}</h5>
 									</td>
-								</tr>
+								</tr>							@endif
+							<tbody>
 							</tbody>
 						</table>
 					</div>
@@ -229,7 +230,6 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="comment_list">
-
 								@if (isset($comment))
 								@foreach ($comment as $cm)
 								<div class="review_item">
@@ -239,7 +239,12 @@
 										</div>
 										<div class="media-body">
 											<h4>{{ $cm ->user -> name}}</h4>
-											<h5>{{ $cm -> created_at}}</h5>
+											<h5>
+												@php
+												\Carbon\Carbon::setlocale('vi');
+												echo \Carbon\Carbon::createFromTimeStamp(strtotime($cm->created_at))->diffForHumans();
+												@endphp
+											</h5>
 											<a class="reply_btn"  href="javascript:void(0)" data-cm ="{{$cm -> id}}">Trả lời</a>
 										</div>
 									</div>
@@ -262,11 +267,12 @@
 												</h5>
 											</div>
 										</div>
-										<p>{{ $rep_item -> content}}</p>
+										<p>{{ $rep_item ->rep_content}}</p>
 									</div>
 									@endif	
 									@endforeach
 									@endif
+
 									{{-- Phần Reply Comment --}}
 									<div id="formComment{{$cm -> id}}" style="display:none;">
 										<div style=" margin-top: 15px; width: 400px; margin-left: 30px;">
@@ -331,7 +337,7 @@
 					$age = round($productDetail -> pro_total_number/ $productDetail -> pro_total_rating, 1);
 				} 
 				?>
-				<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+				<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="row total_rate">
@@ -433,7 +439,7 @@
 
 						</div>
 						@endif
-						
+
 					</div>
 				</div>
 

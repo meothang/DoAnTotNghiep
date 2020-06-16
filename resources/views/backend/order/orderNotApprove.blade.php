@@ -23,7 +23,7 @@
 
                 <div class="panel-heading">
                     <div class="page-head-text">
-                        <h1 class="panel-title"><strong>Quản lý</strong> đơn hàng chưa duyệt</h1>
+                        <h1 class="panel-title"><strong>Quản lý</strong> Đơn hàng chưa duyệt</h1>
                         <a href="">
                             <button class="btn btn-primary btn-rounded pull-right"><span class="fa fa-check"></span> Đơn hàng đã duyệt</button>
                         </a>
@@ -49,6 +49,7 @@
                                     <th width="200" class="text-center">Tổng Tiền Trả</th>
                                     <th class="text-center">Chú thích</th>
                                     <th width="120" class="text-center">Trạng thái</th>
+                                    <th width="120" class="text-center">Ngày Đặt</th>
                                     <th width="120" class="text-center">Hành động</th>
                                 </tr>
                             </thead>
@@ -73,16 +74,23 @@
                                         </button>
                                     </a>
                                     @endif
-
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('order.detail', $order -> id) }}"><button
-                                        class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
-                                        class="fa fa-info"></span></button></a>
+                                   @php
+                    // hiển thị tiếng việt
+                                   \Carbon\Carbon::setLocale('vi'); 
+                                   echo \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
+                                   @endphp
+                               </td>
+                               <td class="text-center">
+                                <a href="{{ route('order.detail', $order -> id) }}"><button
+                                    class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
+                                    class="fa fa-info"></span></button></a>
 
-                                        <a href="{{ route('admin.get.active.order', ['delete', $order -> id])}}"><button class="btn btn-danger btn-rounded btn-condensed btn-sm"
-                                        onClick="delete_row('trow_2');"><span class="fa fa-times"></span></button>
-                                    </a>
+                                    <a>  
+                                        <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete"><span
+                                            class="fa fa-times"></span></button>
+                                        </a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -91,29 +99,50 @@
 
                             </tbody>
                         </table>
-
-                        <!-- shop toolbar start -->
-                        <div class="shop-content-bottom">
-                            <div class="shop-toolbar btn-tlbr">
-                                <div class="col-md-4 col-sm-4 col-xs-12 text-center">
-                                    <div class="pages">
-                                        {{$orders->links()}}
+                        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                            <div class="mb-container">
+                                <div class="mb-middle">
+                                    <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                        <strong>xóa Đơn Hàng</strong> ?</div>
+                                        <div class="mb-content">
+                                            <p>Nếu bạn muốn xóa đơn hàng này</p>
+                                            <p>Hãy ấn XÓA</p>
+                                        </div>
+                                        <div class="mb-footer">
+                                            <div class="pull-right">
+                                                <button class="btn btn-warning btn-lg mb-control-yes">
+                                                    <a
+                                                    href="{{ route('admin.get.active.order', ['delete_not', $order -> id])}}">Xóa</a>
+                                                </button>
+                                                <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- shop toolbar end -->
+                            <!-- END MESSAGE BOX-->
+                            <!-- shop toolbar start -->
+                            <div class="shop-content-bottom">
+                                <div class="shop-toolbar btn-tlbr">
+                                    <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                                        <div class="pages">
+                                            {{$orders->links()}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- shop toolbar end -->
 
+
+                        </div>
 
                     </div>
-
                 </div>
+
             </div>
-
         </div>
-    </div>
-    <!-- END RESPONSIVE TABLES -->
+        <!-- END RESPONSIVE TABLES -->
 
-</div>
+    </div>
 <!-- PAGE CONTENT WRAPPER 
 @stop

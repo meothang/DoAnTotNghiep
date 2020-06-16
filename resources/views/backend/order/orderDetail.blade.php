@@ -86,7 +86,7 @@
                                         {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis sed mi sit amet porta.</p> --}}
                                     </td>
                                     <td class="text-right">
-                                        <img src="img/product/{{$bill -> product -> pro_image}}" height="50px" width="50px">
+                                        <img src="{{asset("/img/product/".$product->categories -> name."/$product->pro_image")}}"  height="50px" width="50px">
                                     </td>
                                     <td class="text-center">{{$bill -> qty}}</td>
                                      <td class="text-center">{{ number_format($bill -> price_sale, 0, ',','.')}} VNĐ</td>

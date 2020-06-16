@@ -15,10 +15,26 @@ class AdminUserController extends Controller
     // lấy thong tin khách hàng
   public function getCustomer()
   {
-    $users = User::all();
+    $users = $listRoleOfUser = DB::table('users')
+    ->LeftJoin('user_roles', 'users.id', '=', 'user_roles.user_id')
+    ->where('user_roles.id', NULL)
+    ->select('users.*')
+    ->get();
+    // dd($users);
     return view('backend.user.userCustomer',['users' => $users]);
   }
- 
+     // lấy thong tin quản trị viên
+  public function getListAdmin()
+  {
+    $users = $listRoleOfUser = DB::table('users')
+    ->Join('user_roles', 'users.id', '=', 'user_roles.user_id')
+    ->join('roles','user_roles.role_id','=','roles.id')
+    ->select('users.name as username','users.id as userid', 'users.*', 'roles.*')
+    ->get();
+    return view('backend.user.adminlist',['users' => $users]);
+  }
+
+
     // phần quản trị admin user
   public function getUserEmphloyee()
   {

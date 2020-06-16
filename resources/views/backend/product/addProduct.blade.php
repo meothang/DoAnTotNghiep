@@ -17,7 +17,7 @@
                 @csrf
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Thêm</strong> sản phẩm</h3>   
+                        <h3 class="panel-title"><strong>Thêm</strong> sản phẩm</h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -28,11 +28,11 @@
                                         <select class="form-control select" name="pro_cate_id" id="">
                                             <option value="">Chọn thương hiệu</option>
                                             @if(isset($categories))
-                                                @foreach($categories as $category )
-                                                <option value="{{$category->id}} 
+                                            @foreach($categories as $category )
+                                            <option value="{{$category->id}} 
                                                 {{ old('pro_cate_id',isset($product->pro_cate_id) ? $product->pro_cate_id : '')== $category->id ? "selected='selected'":"" }}">
                                                 {{$category->name}}</option>
-                                                @endforeach
+                                            @endforeach
                                             @endif
                                         </select>
                                         @if($errors->has('pro_cate_id'))
@@ -45,13 +45,15 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Loại</label>
                                     <div class="col-md-9">
+                                        <?php $productType = DB::table('product_type')->get();
+                                        ?>
                                         <select class="form-control select" name="pro_type">
                                             <option>Vui lòng chọn loại laptop</option>
-                                            <option>Laptop chơi game</option>
-                                            <option>Laptop đồ họa</option>
-                                            <option>Laptop văn phòng</option>
-                                            <option>Laptop mỏng nhẹ</option>
-                                            <option>Laptop doanh nhân</option>
+                                            @foreach ($productType as $pro_type)
+                                            <option value="{{$pro_type->id}}">{{ucwords($pro_type -> name)}}</option>
+                                            @endforeach
+
+
                                         </select>
                                     </div>
                                 </div>
@@ -60,9 +62,9 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                            <input type="text" class="form-control" name="pro_name"/>
+                                            <input type="text" class="form-control" name="pro_name" />
                                         </div>
-                                         @if($errors->has('pro_name'))
+                                        @if($errors->has('pro_name'))
                                         <div class="help-block">
                                             {!!$errors->first('pro_name')!!}
                                         </div>
@@ -107,24 +109,88 @@
                                         </div>
                                         @endif
                                     </div>
-                                   
+
                                 </div>
+
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Hình ảnh</label>
                                     <div class="col-md-9">
-                                        <input type="file" class="fileinput btn-primary" name="pro_image" id="filename"
-                                            title="Chọn hình ảnh" />
-                                            @if($errors->has('pro_image'))
-                                        <div class="help-block">
-                                            {!!$errors->first('pro_image')!!}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="col-md-12">
+                                                    <div style="text-align: center;">
+                                                        <input type="file" class="fileinput btn-primary" name="pro_image" id="filename" title="Chọn hình chính" />
+                                                        @if($errors->has('pro_image'))
+                                                        <div class="help-block">
+                                                            {!!$errors->first('pro_image')!!}
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="col-md-12">
+                                                    <div style="text-align: center;">
+                                                        <input type="file" class="fileinput btn-primary" name="image1" id="filename2" title="Chọn hình ảnh 2" />
+                                                        @if($errors->has('image1'))
+                                                        <div class="help-block">
+                                                            {!!$errors->first('image1')!!}
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        @endif
                                     </div>
-                                    
                                 </div>
+
                                 <div class="form-group">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <img id="img_upload" class="img img-responsive" src="" alt="">
+                                        <div class="col-md-6">
+                                            <img id="img_upload" class="img img-responsive" src="" alt="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img id="img_upload2" class="img img-responsive" src="" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label"></label>
+
+                                    <div class="col-md-9">
+                                        <div class="col-md-6">
+                                            <div style="text-align: center;">
+                                                <input type="file" class="fileinput btn-primary" name="image2" id="filename3" title="Chọn hình ảnh 3" />
+                                                @if($errors->has('image2'))
+                                                <div class="help-block">
+                                                    {!!$errors->first('image2')!!}
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div style="text-align: center;">
+
+                                                <input type="file" class="fileinput btn-primary" name="image3" id="filename4" title="Chọn hình ảnh 4" />
+                                                @if($errors->has('image3'))
+                                                <div class="help-block">
+                                                    {!!$errors->first('image3')!!}
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <div class="col-md-6">
+                                            <img id="img_upload3" class="img img-responsive" src="" alt="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img id="img_upload4" class="img img-responsive" src="" alt="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -134,8 +200,8 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="cpu"/>
-                                           
+                                            <input type="text" class="form-control" name="cpu" />
+
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">
@@ -149,7 +215,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="ram"/>
+                                            <input type="text" class="form-control" name="ram" />
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">
@@ -163,7 +229,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="screen"/>
+                                            <input type="text" class="form-control" name="screen" />
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">
@@ -177,7 +243,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="card"/>
+                                            <input type="text" class="form-control" name="card" />
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">
@@ -191,7 +257,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="harddrive"/>
+                                            <input type="text" class="form-control" name="harddrive" />
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">
@@ -205,7 +271,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="weight"/>
+                                            <input type="text" class="form-control" name="weight" />
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">
@@ -219,7 +285,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="camera"/>
+                                            <input type="text" class="form-control" name="camera" />
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">
@@ -233,7 +299,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="port"/>
+                                            <input type="text" class="form-control" name="port" />
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">
@@ -247,7 +313,7 @@
                                     <div class="col-md-9">
                                         <div class="input-group">
                                             <span class="input-group-addon"><span class="fa fa-info"></span></span>
-                                            <input type="text" class="form-control" name="pin"/>
+                                            <input type="text" class="form-control" name="pin" />
                                         </div>
                                         @if($errors->has('pro_detail'))
                                         <div class="help-block">

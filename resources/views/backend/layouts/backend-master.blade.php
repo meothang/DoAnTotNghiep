@@ -190,6 +190,45 @@
         readURL(this);
     });
 
+    function readURL2(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img_upload2').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#filename2").change(function () {
+        readURL2(this);
+    });
+
+    function readURL3(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img_upload3').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#filename3").change(function () {
+        readURL3(this);
+    });
+
+    function readURL4(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img_upload4').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#filename4").change(function () {
+        readURL4(this);
+    });
+
 </script>
 
 <script>
@@ -205,7 +244,6 @@
     }
 
 </script>
-
 
 </body>
 

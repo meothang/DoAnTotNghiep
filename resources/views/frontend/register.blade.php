@@ -61,7 +61,7 @@
 							</div>
 
 							<div class="col-md-12 form-group">
-								<input type="number" class="form-control" id="name" name="phone"  required="" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+								<input type="number" class="form-control" id="name" name="Số điện thoại"  required="" placeholder="Số điện thoại" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Số điện thoại'">
 								@if ($errors->has('phone'))
 								<span class="error-text">
 									{{ $errors->first('phone') }}
@@ -70,7 +70,7 @@
 							</div>
 
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="address"  required="" placeholder="address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+								<input type="text" class="form-control" id="name" name="Địa chỉ"  required="" placeholder="Địa chỉ" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Địa chỉ'">
 								@if ($errors->has('address'))
 								<span class="error-text">
 									{{ $errors->first('address') }}

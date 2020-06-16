@@ -11,6 +11,7 @@ class FrontendController extends Controller
 		$productNews = Product::orderBy('id', 'DESC')->limit(8)->get();
 		$productHots = Product::where('pro_hot', 1)->limit(8)->get();
 		return view('frontend.index', ['productNews' => $productNews, 'productHots' => $productHots]);
+		
 	}
     // tìm kiếm sản phảma
 	public function formSearch(Request $request){

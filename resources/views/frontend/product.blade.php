@@ -22,114 +22,97 @@
 			<div class="col-xl-3 col-lg-4 col-md-5">
 				<div class="sidebar-categories">
 					<div class="head">Danh mục</div>
-					<ul class="main-categories">				
-						<li class="main-nav-list"><a href="{{request()->fullUrlWithQuery(['type' => 'game'])}}">Laptop chơi game<span class="number"></span></a></li>
+					<ul class="main-categories">	
+						<?php $productType = DB::table('product_type')->get();
+						?>
+						@foreach($productType as $pro_type)			
+						<li class="filter-list">
+							<input class="pixel-radio filter_type"  type="checkbox" id="apple" value="{{$pro_type->id}}" name="filter_type">
+							<label for="apple">{{ucwords($pro_type -> name)}}</label>
+						</li>
+						@endforeach
 					</ul>
-					<ul class="main-categories">				
-						<li class="main-nav-list"><a href="{{request()->fullUrlWithQuery(['type' => 'design'])}}">Laptop đồ họa<span class="number"></span></a></li>
-					</ul>
-					<ul class="main-categories">				
-						<li class="main-nav-list"><a href="{{request()->fullUrlWithQuery(['type' => 'office'])}}">Laptop văn phòng<span class="number"></span></a></li>
-					</ul>
-					<ul class="main-categories">				
-						<li class="main-nav-list"><a href="{{request()->fullUrlWithQuery(['type' => 'fast'])}}">Laptop mỏng nhẹ<span class="number"></span></a></li>
-					</ul>
-					<ul class="main-categories">				
-						<li class="main-nav-list"><a href="{{request()->fullUrlWithQuery(['type' => 'business'])}}">Laptop doanh nhân<span class="number"></span></a></li>			</ul>
+				</div>
+				<div class="sidebar-filter mt-50">
+					<div class="top-filter-head">Hãng sản xuất</div>
+					<div class="common-filter">
+						<ul>
+							<?php $cats = DB::table('categories')->orderby('name', 'ASC')->get();?>
+							@foreach($cats as $cat)
+							<li class="filter-list"><input class="pixel-radio try" type="checkbox" id="brandId" value="{{$cat->id}}" ><label for="apple"> {{ucwords($cat->name)}}<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})</span></label></li>
+							@endforeach
+						</ul>
 					</div>
-					<div class="sidebar-filter mt-50">
-						<div class="top-filter-head">Hãng sản xuất</div>
-						<div class="common-filter">
-							<div class="head">Hãng</div>
-							<form action="#">
-								<ul>
-									@if ($category)
-									@foreach ($category as $cate)
-									<li class="ckeckbox"><label><input type="radio" class="common_selector ram" value="{{ $cate -> id}}" > {{ $cate -> name}}</label></li>
-									@endforeach
-
-									@endif
+					<div class="common-filter">
+						<div class="head">Khoảng giá</div>
+						<div class="list-group">
+							<div class="price-range-area">
 
 
-								</ul>
-							</form>
-						</div>
-						<div class="common-filter">
-							<div class="head">Cpu</div>
-							<form action="#">
-								<ul>
-									<li class="filter-list"><input class="pixel-radio" type="radio" id="corei3" name="color[]"><label for="corei3">Intel Core i3<span>(29)</span></label></li>
-									<li class="filter-list"><input class="pixel-radio" type="radio" id="corei5" name="color[]"><label for="corei5">Intel Core i5<span>(29)</span></label></li>
-									<li class="filter-list"><input class="pixel-radio" type="radio" id="corei7" name="color[]"><label for="corei7">Intel Core i7<span>(29)</span></label></li>
-									<li class="filter-list"><input class="pixel-radio" type="radio" id="corei9" name="color[]"><label for="corei9">Intel Core i9<span>(29)</span></label></li>
-									<li class="filter-list"><input class="pixel-radio" type="radio" id="intel-xeon" name="color[]"><label for="intel-xeon">Intel Xeon<span>(29)</span></label></li>
-									<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-3" name="color[]"><label for="ryzen-3">AMD Ryzen 3<span>(29)</span></label></li>
-									<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-5" name="color[]"><label for="ryzen-5">AMD Ryzen 5<span>(29)</span></label></li>
-									<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-7" name="color[]"><label for="ryzen-7">AMD Ryzen 7<span>(29)</span></label></li>
-								</ul>
-							</form>
-						</div>
-						<div class="common-filter">
-							<div class="head">Khoảng giá</div>
-							<div class="list-group">
-								<div class="price-range-area">
-									<div id="price-range"></div>
-									<div class="value-wrapper d-flex">
-										<div class="price">Price:</div>
-										<span>$</span>
-										<div id="lower-value"></div>
-										<div class="to">to</div>
-										<span>$</span>
-										<div id="upper-value"></div>
-									</div>
-								</div>
-							</div>    
+								<div id="slider-range"></div>
+								<br>
+								<b class="pull-left">$
+									<input size="2" type="text" id="amount_min" name="start_price"
+									value="15" style="border:0px; font-weight: bold; color:green; width: 80px;" readonly="readonly" />
+								</b>
 
-						</div>
+								<b class="pull-right">$
+									<input size="2" type="text"  id="amount_max" name="end_price" value="65"
+									style="border:0px; font-weight: bold; color:green; width: 80px" readonly="readonly"/>
+								</b>
+
+							</div>
+						</div>    
 					</div>
 				</div>
-				<div class="col-xl-9 col-lg-8 col-md-7">
-					<!-- Start Filter Bar -->
-					<form class="tree-most" id="form-order" method="get">
-						<div class="filter-bar d-flex flex-wrap align-items-center">
-							<div class="sorting">
-								<select name="orderby" class="orderby">
-									<option {{Request::get('orderby') == 'abc' ? 'selected' : ''}} value="abc">Sắp xếp theo tên</option>
-									<option {{Request::get('orderby') == 'new' ? 'selected' : ''}} value="new">Mới nhất</option>
-									<option {{Request::get('orderby') == 'asc' ? 'selected' : ''}} value="asc">Giá tăng dần</option>
-									<option  {{Request::get('orderby') == 'desc' ? 'selected' : ''}} value="desc">Giá giảm dần</option>
-								</select>
-							</div>
+			</div>
+			<div class="col-xl-9 col-lg-8 col-md-7">
+				<!-- Start Filter Bar -->
+				<form class="tree-most" id="form-order" method="get">
+					<div class="filter-bar d-flex flex-wrap align-items-center">
+						<div class="sorting">
+							<select name="orderby" class="filter-select">
+								<option  value="abc">Sắp xếp theo tên</option>
+								<option value="new">Mới nhất</option>
+								<option value="asc">Giá tăng dần</option>
+								<option  value="desc">Giá giảm dần</option>
+							</select>
 						</div>
-					</form>
-					<!-- End Filter Bar -->
-					<!-- Start Best Seller -->
-					<div  id="updateDiv">
-						
-						<section class="lattest-product-area pb-40 category-list">
-							<div class="row">
-								<!-- single product -->
-								@if ($product)
-								@foreach ($product as $key => $proAll)
-								<div class="col-lg-4 col-md-6">
-									<div class="single-product">
-										<img class="img-fluid" src="img/product/{{$proAll -> pro_image}}" alt="">
-										<div class="product-details">
-											<a href="">{{ $proAll -> pro_name}}</a>
-											<div class="price">
-												<h6>$ {{ number_format($proAll -> pro_price, 0,',','.')}}</h6>
-												<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
-											</div>
-											<div class="prd-bottom">
+					</div>
+				</form>
+				<!-- End Filter Bar -->
+				<!-- Start Best Seller -->
+				<div >
+					<section class="lattest-product-area pb-40 category-list">
+						<div class="row"  id="updateDiv">
 
-												<a href="" class="social-info">
-													<span class="ti-bag"></span>
-													<p class="hover-text">Thêm vào<br> giỏ hàng</p>
-												</a>
-												<a href="" class="social-info">
-													<span class="lnr lnr-heart"></span>
-													<p class="hover-text">Thêm vào<br>yêu thích</p>
-												</a>
+
+							<!-- single product -->
+							@if (count($product) == 0)
+							<div class="col-lg-4 col-md-6">
+								Sorry, Products Not Found!
+							</div>
+							@else
+							@foreach ($product as $key => $proAll)
+							<div class="col-lg-4 col-md-6">
+								<div class="single-product">
+									<img class="img-fluid" src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}" alt="">
+									<div class="product-details">
+										<a href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
+										<div class="price">
+											<h6>Giá: <span style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}} VNĐ</span></h6>
+											<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
+										</div>
+										<div class="prd-bottom">
+
+											<a href="{{ route('add.cart', $proAll -> id) }}" class="social-info">
+												<span class="ti-bag"></span>
+												<p class="hover-text">Thêm vào<br> giỏ hàng</p>
+											</a>
+											<a href="" class="social-info">
+												<span class="lnr lnr-heart"></span>
+												<p class="hover-text">Thêm vào<br>yêu thích</p>
+											</a>
 										{{-- <a href="" class="social-info">
 											<span class="lnr lnr-sync"></span>
 											<p class="hover-text">compare</p>
@@ -144,27 +127,36 @@
 						</div>
 						@endforeach
 						@endif
+
+						{{-- phân trang --}}
+						<!-- Start Filter Bar -->
+
+					{{-- 	<div class="clearfix "> </div>
+						<div class="filter-bar d-flex flex-wrap align-items-center">
+							<div class="sorting mr-auto">
+								<select>
+									<option value="1">Show 12</option>
+									<option value="1">Show 12</option>
+									<option value="1">Show 12</option>
+								</select>
+							</div> --}}
+							<div class="pagination">
+								{{$product->links()}}
+							</div>
+						{{-- </div> --}}
+						<!-- End Filter Bar -->
+
+
+
 					</div>
+
 				</section>
 
 				
 			</div>
 			
 			<!-- End Best Seller -->
-			<!-- Start Filter Bar -->
-			<div class="filter-bar d-flex flex-wrap align-items-center">
-				<div class="sorting mr-auto">
-					<select>
-						<option value="1">Show 12</option>
-						<option value="1">Show 12</option>
-						<option value="1">Show 12</option>
-					</select>
-				</div>
-				<div class="pagination">
-					{{$product ->appends($query)->links()}}
-				</div>
-			</div>
-			<!-- End Filter Bar -->
+			
 		</div>
 	</div>
 </div>
@@ -373,13 +365,4 @@
 		</div>
 	</div>
 </div>
-@stop
-@section('script')
-<script>
-	$(function(){
-		$(".orderby").change(function(){
-			$("#form-order").submit()
-		});
-	});
-</script>
 @stop

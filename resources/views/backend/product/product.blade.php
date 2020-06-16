@@ -26,8 +26,8 @@
                                         <div class="input-group" style="display: inline-flex;">
                                             <span class="input-group-addon"><span class="fa fa-search"></span></span>
                                             <input name="name" type="text" class="form-control"
-                                                placeholder="Nhập sản phẩm cần tìm kiếm"
-                                                value="{{ \Request::get('name') }}">
+                                            placeholder="Nhập sản phẩm cần tìm kiếm"
+                                            value="{{ \Request::get('name') }}">
                                             <div class="form-group" style="margin:0px">
                                                 <!-- <label for="inputState">Danh mục</label> -->
                                                 <select class="form-control select" name="cate" id="inputState">
@@ -51,8 +51,8 @@
                                 <div class="col-md-3">
                                     <a href="{{ route('admin.get.create.product')}}">
                                         <button class="btn btn-primary btn-rounded" style="width:100%"><span
-                                                class="fa fa-plus"></span> Thêm
-                                            sản phẩm</button>
+                                            class="fa fa-plus"></span> Thêm
+                                        sản phẩm</button>
                                     </a>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                     <th width="250" class="text-center">Tên sản phẩm</th>
                                     <th class="text-center">Mô tả</th>
                                     <th width="150" class="text-center">Hình ảnh</th>
-                                    <th width="150" class="text-center">Loại</th>
+                                    <th width="100" class="text-center">Loại</th>
                                     <th width="120" class="text-center">Giá</th>
                                     <th width="100" class="text-center">Danh mục</th>
                                     <th width="50" class="text-center">Trạng thái</th>
@@ -110,47 +110,81 @@
                                     <td class="text-center">{{ $product->id }}</td>
                                     <td><strong>{{ $product->pro_name}}</strong></td>
                                     <td style="display: -webkit-box; -webkit-line-clamp: 4; overflow:
-                                        hidden; -webkit-box-orient: vertical;border-width:1px 0 0 0">
-                                        {{$product->pro_content}}</td>
+                                    hidden; -webkit-box-orient: vertical;border-width:1px 0 0 0">
+                                    {{$product->pro_content}}</td>
                                     <td class="text-center"><img class="img-fluid" style="width:100px"
-                                            {{-- src="{{ asset("img/product/$product->pro_image")}}" alt=""></td> --}}
-                                    src="{{asset("public/img/product/$product->pro_image")}}" alt=""></td>
-                                    <td class="text-center">{{ $product->pro_type}}</td>
-                                    <td class="text-center">{{ number_format($product->pro_price) }} VNĐ</td>
-                                    <?php
+                                        {{-- src="{{ asset("img/product/$product->pro_image")}}" alt=""></td> --}}
+                                        src="{{asset("/img/product/".$product->categories -> name."/$product->pro_image")}}" alt=""></td>
+                                        <td class="text-center">{{ $product->product_type->name}}</td>
+                                        <td class="text-center">{{ number_format($product->pro_price) }} VNĐ</td>
+                                        <?php
                                         $category=DB::table('categories')->where('id',$product->id)->first();
-                                    ?>
-                                    <td class="text-center">
-                                        {{ $product->getCategory() }}
-                                    </td>
-                                    <td class="text-center"> <label class="switch switch-small">
-                                            <input type="checkbox" checked value="0" />
-                                            <span></span>
-                                        </label></td>
-                                    <td class="text-center">{{ date_format($product->created_at,'d/m/Y H:i:s') }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('admin.get.action.product',['delete',$product->id])}}">
-                                            <button class="btn btn-danger btn-rounded btn-condensed btn-sm">
-                                                <span class="fa fa-times"></span></button>
-                                        </a>
-                                        <a href="{{ route('admin.get.edit.product',$product->id) }}">
-                                            <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
-                                                <span class="fa fa-pencil"></span></button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                @endif
-                            </tbody>
-                        </table>
+                                        ?>
+                                        <td class="text-center">
+                                            {{ $product->getCategory() }}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.get.action.product',['status', $product -> id]) }}">
+                                                @if ($product -> status == 1)
+                                                <button type="button" class="btn btn-success">
+                                                    Hiển Thị
+                                                </button>
+                                                @else
+                                                <button type="button" class="btn btn-danger">
+                                                    Đã Ẩn
+                                                </button>
+                                                @endif
+
+                                            </a>
+                                        </td>
+                                        <td class="text-center">{{ date_format($product->created_at,'d/m/Y H:i:s') }}</td>
+                                        <td class="text-center">
+                                            <a>
+                                               <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete"><span
+                                                class="fa fa-times"></span></button>
+                                            </a>
+                                            <a href="{{ route('admin.get.edit.product',$product->id) }}">
+                                                <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
+                                                    <span class="fa fa-pencil"></span></button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+
+                                <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                                    <div class="mb-container">
+                                        <div class="mb-middle">
+                                            <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                                <strong>Xóa Sản Phẩm</strong> ?</div>
+                                                <div class="mb-content">
+                                                    <p>Nếu bạn muốn xóa sản phẩm này</p>
+                                                    <p>Hãy ấn XÓA</p>
+                                                </div>
+                                                <div class="mb-footer">
+                                                    <div class="pull-right">
+                                                        <button class="btn btn-warning btn-lg mb-control-yes">
+                                                            <a
+                                                           href="{{ route('admin.get.action.product',['delete',$product->id])}}">Xóa</a>
+                                                        </button>
+                                                        <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END MESSAGE BOX-->
+
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
-
                 </div>
+                <!-- END RESPONSIVE TABLES -->
+
             </div>
-
-        </div>
-    </div>
-    <!-- END RESPONSIVE TABLES -->
-
-</div>
-@stop
+            @stop
