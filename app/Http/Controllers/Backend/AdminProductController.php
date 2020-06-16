@@ -104,6 +104,8 @@ class AdminProductController extends Controllers
         ];
         return view('backend.product.editProduct',$viewData);
     }
+
+    
     public function update(EditProductRequest $req,$id)
     {
 
@@ -179,6 +181,8 @@ $product->pro_detail = implode(",", $pro_detail);
 $product->save();
 return redirect()->back()->with('success','Cập nhật sản phẩm thành công');
 }
+
+
 public function action($action,$id)
 {
     if(isset($action))
