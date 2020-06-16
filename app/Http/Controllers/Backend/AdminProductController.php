@@ -39,6 +39,7 @@ class AdminProductController extends Controllers
         $categories = Category::all();
         return view('backend.product.addProduct',compact('categories'));
     }
+    
     public function store(RequestProduct $req)
     {
         $product= new Product();
