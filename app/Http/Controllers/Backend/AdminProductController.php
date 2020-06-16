@@ -54,6 +54,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('pro_image');
             $filename = $file->getclientoriginalName();
+            $filename = date('d-m-yy').'_'.rand().'_'.$filename;
             $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
             $product->pro_image = $filename;
         }
@@ -62,6 +63,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image1');
             $filename = $file->getclientoriginalName();
+            $filename = date('d-m-yy').'_'.rand().'_'.$filename;
             $file->move('img/product/'.$pro_cate_path -> name .'/',$filename);
             $product->image1 = $filename;
         }
@@ -70,6 +72,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image2');
             $filename = $file->getclientoriginalName();
+            $filename = date('d-m-yy').'_'.rand().'_'.$filename;
             $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
             $product->image2 = $filename;
         }
@@ -78,6 +81,7 @@ class AdminProductController extends Controllers
         {
             $file = $req->file('image3');
             $filename = $file->getclientoriginalName();
+            $filename = date('d-m-yy').'_'.rand().'_'.$filename;
             $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
             $product->image3 = $filename;
         }
@@ -121,6 +125,7 @@ class AdminProductController extends Controllers
             }
             $file = $req->file('pro_image');
             $filename = $file->getclientoriginalName();
+            $filename = date('d-m-yy').'_'.rand().'_'.$filename;
             $file->move('img/product/'.$pro_cate_path -> name .'/',$filename);
             $product->pro_image = $filename;
         }
@@ -134,6 +139,7 @@ class AdminProductController extends Controllers
             }
             $file = $req->file('image1');
             $filename = $file->getclientoriginalName();
+            $filename = date('d-m-yy').'_'.rand().'_'.$filename;
             $file->move('img/product/'.$pro_cate_path -> name .'/',$filename);
             $product->image1 = $filename;
         }
@@ -148,6 +154,7 @@ class AdminProductController extends Controllers
         }
         $file = $req->file('image2');
         $filename = $file->getclientoriginalName();
+        $filename = date('d-m-yy').'_'.rand().'_'.$filename;
         $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
         $product->image2 = $filename;
     }
@@ -162,6 +169,7 @@ class AdminProductController extends Controllers
     }
     $file = $req->file('image3');
     $filename = $file->getclientoriginalName();
+    $filename = date('d-m-yy').'_'.rand().'_'.$filename;
     $file->move('img/product/'.$pro_cate_path -> name.'/' ,$filename);
     $product->image3 = $filename;
 }
