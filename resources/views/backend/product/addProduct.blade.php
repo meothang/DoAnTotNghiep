@@ -119,7 +119,7 @@
                                             <div class="col-md-6">
                                                 <div class="col-md-12">
                                                     <div style="text-align: center;">
-                                                        <input type="file" class="fileinput btn-primary" name="pro_image" id="filename" title="Chọn hình ảnh chính" />
+                                                        <input type="file" class="fileinput btn-primary" name="pro_image" id="filename" title="Chọn hình chính" />
                                                         @if($errors->has('pro_image'))
                                                         <div class="help-block">
                                                             {!!$errors->first('pro_image')!!}
