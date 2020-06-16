@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('main')
+<style type="text/css">
+	.error-text{
+		color: #ffba00 ;
+	}
+</style>
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
 	<div class="container">
@@ -43,14 +48,25 @@
 						</div>
 						@endif
 						<h3>Đăng nhập</h3>
-						<form action="" method="POST">
+						{{-- <form action="" method="POST"> --}}
+							<form class="row login_form" action="" method="POST" id="contactForm" novalidate="novalidate">
 							@csrf
 							
 							<div class="col-md-12 form-group">
-								<input type="email" class="form-control" required="" id="name" name="email" placeholder="Email tài khoản" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tên tài khoản'">
+								<input type="email" class="form-control" required="" id="name" name="email" placeholder="Email đăng nhập" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email đăng nhập'">
+								@if ($errors->has('name'))
+								<span class="error-text">
+									{{ $errors->first('name') }}
+								</span>
+								@endif
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="name" name="password" placeholder="Mật khẩu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mật khẩu'">
+								@if ($errors->has('password'))
+								<span class="error-text">
+									{{ $errors->first('password') }}
+								</span>
+								@endif
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">

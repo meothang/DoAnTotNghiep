@@ -33,12 +33,12 @@ class ProductController extends Controller
             $select = $request -> select; //brand
             switch ($select) {
                 case 'abc':
-                $product = Product::rderBy('pro_name', 'DESC')->paginate(6);
+                $product = Product::orderBy('pro_name', 'DESC')->paginate(6);
                  response()->json($product); //return to ajax
                  return view('frontend.products-filter', compact('product'));
                  break;
                  case 'new':
-                 $product = Product::rderBy('id', 'DESC')->paginate(6);
+                 $product = Product::orderBy('id', 'DESC')->paginate(6);
                  response()->json($product); //return to ajax
                  return view('frontend.products-filter', compact('product'));
                  break;

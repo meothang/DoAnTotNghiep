@@ -17,6 +17,14 @@ class UserController extends Controller
       return view('frontend.login');
     }
     public function postLogin(Request $request){
+      $this -> validate($request, [
+       'name' => 'required|min:6',
+       'password' => 'required|min:6|max:32',
+     ],
+     [
+       'password.required' => 'Vui lòng nhập mật khẩu',
+       'name.required' => 'Vui lòng nhập tên của bạn.'
+     ]);
      $data = $request -> only('email', 'password');
      if (Auth::attempt($data) ){
       return redirect()->route('admin.frontend')-> with(['flash_level' => 'success', 'flash_message' => 'Đăng nhập thành công.']);;
@@ -37,19 +45,24 @@ class UserController extends Controller
     'name' => 'required|min:6',
     'password' => 'required|min:6|max:32',
     'rePassword' => 'required|same:password',
-    'email' => 'required|unique:users,email'
+    'email' => 'required|unique:users,email',
+    'phone' => 'required',
+    'address' => 'required'
   ],
 
   [
 
-    'password.required' => 'Bạn chưa nhập Password',
+    'password.required' => 'Vui lòng nhập mật khẩu',
     'password.min' => 'Mật khẩu phải có từ 6-32 ký tự',
     'password.max' => 'Mật khẩu phải có từ 6-32 ký tự',
-    'rePassword.required' => 'Bạn nhập lại Mật Khẩu',
+    'rePassword.required' => 'Vui lòng nhập mật khẩu',
     'rePassword.same' => 'Mật khẩu không trùng nhau',
-    'email.unique' => 'Email đã tồn tại',
+    'email.unique' => 'Email này đã tồn tại',
+    'email.required'=> 'Vui lòng nhập email của bạn',
     'name.required' => 'Vui lòng nhập tên của bạn.',
-    'name.min' => 'Tên không được dưới 6 ký tự.'
+    'name.min' => 'Tên không được dưới 6 ký tự.',
+    'phone.required' => 'Vui lòng nhập số điện thoại của bạn.',
+    'address.required' => 'Vui lòng nhập địa chỉ của bạn.',
 
   ]);
    $user -> name = $request-> name;
