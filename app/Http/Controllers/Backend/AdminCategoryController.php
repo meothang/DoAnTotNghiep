@@ -30,9 +30,10 @@ class AdminCategoryController extends Controllers
     public function store(Request $req)
     {
         $this->validate($req,[
-            'name'=>'required'
+            'name'=>'required|unique:categories,name'
         ],[
             'name.required' => 'Vui lòng nhập tên danh mục',
+            'name.unique' => 'Tên đã tồn tại'
 
         ]);
         $categories = new Category();
@@ -70,15 +71,21 @@ class AdminCategoryController extends Controllers
     {
        if(isset($action))
        {   
-            $category   = Category::find($id);
-           switch($action)
-           {
-               case 'delete':
-                $category->delete();
-               break;
-           }
-       }
-       return redirect()->back();
+        $category   = Category::find($id);
+        switch($action)
+        {
+           case 'delete':
+           if (count($category -> products) === 0) {
+            $category -> delete();
+            return response()-> json(['success' => 'Xóa Thành Công']);
+        }else{
+            return response()-> json(['error' => 'Danh Mục Có Sản Phẩm Bạn Không Thế Xóa']);
+
+        }   
+        break;
     }
-    
+}
+return redirect()->back();
+}
+
 }

@@ -42,7 +42,7 @@
                             </thead>
                             <tbody id="data">
                                 {{-- đổ dữ liễu các role  --}}
-                                     @php
+                                @php
                                 $stt = 1;
                                 @endphp
                                 @if($groupUser)
@@ -73,9 +73,9 @@
                                             <button   class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
                                                 class="fa fa-pencil"></span></button>
                                             </a>
-                                            <a href="{{ route('destroy.role', $groupUser -> id) }}">
-                                                <button class="btn btn-danger btn-rounded btn-condensed btn-sm"
-                                                onClick="delete_row('trow_3');"><span class="fa fa-times"></span>
+                                            <a>
+                                               <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$groupUser -> id}}"><span
+                                                class="fa fa-times"></span></button>
                                             </button>
                                         </a>
                                     </td>
@@ -85,15 +85,65 @@
                                 @endif
                             </tbody>
                         </table>
+                        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                            <div class="mb-container">
+                                <div class="mb-middle">
+                                    <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                        <strong>xóa</strong> ?</div>
+                                        <div class="mb-content">
+                                            <p>Nếu bạn muốn xóa mục này</p>
+                                            <p>Hãy ấn XÓA</p>
+                                        </div>
+                                        <div class="mb-footer">
+                                            <div class="pull-right">
+                                                <button class="btn btn-warning btn-lg delRole">Xóa
+                                                </button>
+                                                <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END MESSAGE BOX-->
+                        </div>
+
                     </div>
-
                 </div>
+
             </div>
-
         </div>
-    </div>
-    <!-- END RESPONSIVE TABLES -->
+        <!-- END RESPONSIVE TABLES -->
 
-</div>
-<!-- PAGE CONTENT WRAPPER 
+    </div>
+<!-- PAGE CONTENT WRAPPER -->
 @stop
+  @section('script')
+        <script>
+            $(".notiDelete").click(function(){
+                $("#mb-remove-row").addClass("open");
+                let id = $(this).data('id');
+                $('.delRole').click(function(){
+                   $.ajax({
+                    url: 'backend/role/destroy/'+id,
+                    data:{
+                        id: id,
+
+                    },
+                    dataType: 'json',
+                    type:'get',
+                    success:function($result){ 
+                      if ($result.success) {
+                        toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                        location.reload();
+                    }else {
+                     toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                     // location.reload();
+                 }
+             }
+
+         });
+
+               });
+            });
+        </script>
+        @stop

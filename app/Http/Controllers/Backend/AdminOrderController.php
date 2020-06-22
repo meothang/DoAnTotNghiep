@@ -63,8 +63,9 @@ class AdminOrderController extends Controller
                     $bill -> delete();
                 }
                 $orders -> delete($id);
+                return response()-> json(['success' => 'Xóa Thành Công']);
+
             }
-            return redirect()->route('admin.get.list.order');
             break;
             
             case 'delete_not':
@@ -75,9 +76,8 @@ class AdminOrderController extends Controller
                     $bill -> delete();
                 }
                 $orders -> delete($id);
+                return response()-> json(['success' => 'Xóa Thành Công']);
             }
-            
-            return redirect()->route('admin.get.list.order.not');
             break;
         }
     }
@@ -145,14 +145,14 @@ public function update(Request $request){
 }
 public function add(Request $request)
 {
- \Cart::add([
+   \Cart::add([
     'id' => $request->id,
     'name' => $request->pro_name,
     'price' => $request->pro_price,
     'quantity' => $request->quantity,
     'attributes' => ['image' => $request->pro_image]
 ]);
- return redirect()->back();
+   return redirect()->back();
 }
 public function checkout()
 {
@@ -172,16 +172,16 @@ public function saveOrder(Request $request)
     $detail = [];
     foreach($cartCollection as $item)
     {
-     array_push($detail,$item->name);
-     array_push($detail,$item->quantity);
-     array_push($detail,$item->price);
- }
- $order->info_order = implode(",", $detail);
- $order->price_order = \Cart::getTotal();
- $order->status = 0;
- $order->save();
- \Cart::clear();
- return route('admin.get.list.order.not');
+       array_push($detail,$item->name);
+       array_push($detail,$item->quantity);
+       array_push($detail,$item->price);
+   }
+   $order->info_order = implode(",", $detail);
+   $order->price_order = \Cart::getTotal();
+   $order->status = 0;
+   $order->save();
+   \Cart::clear();
+   return route('admin.get.list.order.not');
 
 }
 // public function action($action,$id)

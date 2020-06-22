@@ -72,7 +72,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
  Route::post('/role/createRole','RoleController@store')->name('store.role');
  Route::get('/role/{id}/edit/','RoleController@edit')->middleware('CheckAcl:edit-role')->name('edit.role');
  Route::post('/role/{id}/edit','RoleController@update')->name('update.role');
- Route::get('/role/{id}/destroy/','RoleController@destroy')->middleware('CheckAcl:delete-role')->name('destroy.role');
+ Route::get('/role/destroy/{id}','RoleController@destroy')->middleware('CheckAcl:delete-role')->name('destroy.role');
 
 
 // thông tin User và quyền admin user 
@@ -83,7 +83,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
  Route::get('/user/{id}/edit','AdminUserController@editEmployeeUser')->middleware('CheckAcl:edit-user')->name('employee.user.edit');
  Route::post('/user/{id}/edit','AdminUserController@updateEmployeeUser');
 
- Route::get('/user/{id}/delete','AdminUserController@destroy')->middleware('CheckAcl:delete-user')->name('delete.user');
+ Route::get('/user/delete/{id}','AdminUserController@destroy')->middleware('CheckAcl:delete-user')->name('delete.user');
 
 });
 

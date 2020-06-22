@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 class RoleController extends Controller
 {
     // show các role
@@ -25,7 +26,7 @@ class RoleController extends Controller
 public function store(Request $request)
 {
  $this -> validate($request, [
-  'name' => 'required|unique:categories,name|min:6',
+  'name' => 'required|unique:roles,name|min:6',
   'permissionID' => 'required'
 ],
 
@@ -81,10 +82,17 @@ return redirect()->route('get.backend.list.employee');
 
 public function destroy($id)
 {
- $role = Role::find($id);
- \DB::table('role_permissions')->where('role_id',$id)->delete();
- $role->forceDelete();
- return redirect()->route('get.backend.list.employee');
+  $role = Role::find($id);
+  if(Auth::user()-> user_roles == $role -> user_id && $role -> users -> count() > 0){
+    return response()-> json(['error' => 'Thất bại! Bạn không có quyền hoặc đang có người dùng!']);
+  }
+  else {
+   \DB::table('role_permissions')->where('role_id',$id)->delete();
+   $role->forceDelete();
+   return response()-> json(['success' => 'Xóa thành công!']);
+ }
+
+
 
 }
 }

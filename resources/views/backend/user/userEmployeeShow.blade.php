@@ -52,9 +52,9 @@
                                 @foreach ($listUser[0]['users'] as $user)
                                 @if (!empty($user['id']))
                                 <tr id="trow_3">
-                                 <td class="text-center">{{$stt++}}</td>
-                                 <td class="text-center"><strong>{{$user['name']}}</strong></td>
-                                 <td class="text-center"><strong>
+                                   <td class="text-center">{{$stt++}}</td>
+                                   <td class="text-center"><strong>{{$user['name']}}</strong></td>
+                                   <td class="text-center"><strong>
                                     @if ($user['sex'] == 1)
                                     {{'Nam'}}
                                     @else
@@ -70,26 +70,76 @@
                                         <button
                                         class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
                                         class="fa fa-pencil"></span></button></a>
-                                        <a href="{{ route('delete.user', $user['id']) }}">
-                                            <button class="btn btn-danger btn-rounded btn-condensed btn-sm"
-                                            onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endif
-                                @endforeach
-                                @endif
-                            </tbody>
-                        </table>
+                                        <a>
+                                            <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$user['id']}}"><span
+                                                class="fa fa-times"></span></button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                            <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                                <div class="mb-container">
+                                    <div class="mb-middle">
+                                        <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                            <strong>xóa</strong> ?</div>
+                                            <div class="mb-content">
+                                                <p>Nếu bạn muốn xóa mục này</p>
+                                                <p>Hãy ấn XÓA</p>
+                                            </div>
+                                            <div class="mb-footer">
+                                                <div class="pull-right">
+                                                    <button class="btn btn-warning btn-lg delListUser">Xóa
+                                                    </button>
+                                                    <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END MESSAGE BOX-->
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
             </div>
+            <!-- END RESPONSIVE TABLES -->
 
         </div>
-    </div>
-    <!-- END RESPONSIVE TABLES -->
+        <!-- PAGE CONTENT WRAPPER -->
+        @stop
+        @section('script')
+        <script>
+            $(".notiDelete").click(function(){
+                $("#mb-remove-row").addClass("open");
+                let id = $(this).data('id');
+                $('.delListUser').click(function(){
+                   $.ajax({
+                    url: 'backend/user/delete/'+id,
+                    data:{
+                        id: id,
 
-</div>
-<!-- PAGE CONTENT WRAPPER 
-@stop
+                    },
+                    dataType: 'json',
+                    type:'get',
+                    success:function($result){ 
+                      if ($result.success) {
+                        toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                        location.reload();
+                    }else {
+                     toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                     // location.reload();
+                 }
+             }
+
+         });
+
+               });
+            });
+        </script>
+        @stop

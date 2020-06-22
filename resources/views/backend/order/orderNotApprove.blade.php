@@ -54,9 +54,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                             @if (isset($orders))
-                             @foreach ($orders as $order)
-                             <tr id="trow_2">
+                               @if (isset($orders))
+                               @foreach ($orders as $order)
+                               <tr id="trow_2">
                                 <td class="text-center">1</td>
                                 <td><strong>{{ $order -> user -> name}}</strong></td>
                                     {{-- <td><span class="label label-success">New</span></td>
@@ -69,26 +69,26 @@
                                     <td class="text-center">
                                         @if ($order -> status == 0)
                                         <a href="{{ route('admin.get.active.order', ['status', $order -> id]) }}">
-                                         <button type="button" class="btn btn-warning">
+                                           <button type="button" class="btn btn-warning">
                                             Chưa Duyệt
                                         </button>
                                     </a>
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                   @php
+                                 @php
                     // hiển thị tiếng việt
-                                   \Carbon\Carbon::setLocale('vi'); 
-                                   echo \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
-                                   @endphp
-                               </td>
-                               <td class="text-center">
+                                 \Carbon\Carbon::setLocale('vi'); 
+                                 echo \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
+                                 @endphp
+                             </td>
+                             <td class="text-center">
                                 <a href="{{ route('order.detail', $order -> id) }}"><button
                                     class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
                                     class="fa fa-info"></span></button></a>
 
                                     <a>  
-                                        <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete"><span
+                                        <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$order -> id}}"><span
                                             class="fa fa-times"></span></button>
                                         </a>
                                     </td>
@@ -110,10 +110,8 @@
                                         </div>
                                         <div class="mb-footer">
                                             <div class="pull-right">
-                                                <button class="btn btn-warning btn-lg mb-control-yes">
-                                                    <a
-                                                    href="{{ route('admin.get.active.order', ['delete_not', $order -> id])}}">Xóa</a>
-                                                </button>
+                                                 <button class="btn btn-warning btn-lg delOrder">Xóa
+                                                        </button>
                                                 <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
                                             </div>
                                         </div>
@@ -144,5 +142,35 @@
         <!-- END RESPONSIVE TABLES -->
 
     </div>
-<!-- PAGE CONTENT WRAPPER 
-@stop
+    <!-- PAGE CONTENT WRAPPER -->
+    @stop
+    @section('script')
+    <script>
+        $(".notiDelete").click(function(){
+            $("#mb-remove-row").addClass("open");
+            let id = $(this).data('id');
+            $('.delOrder').click(function(){
+               $.ajax({
+                url: 'backend/order/delete_not/'+id,
+                data:{
+                    id: id,
+
+                },
+                dataType: 'json',
+                type:'get',
+                success:function($result){ 
+                  if ($result.success) {
+                    toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                    location.reload();
+                }else {
+                 toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                     // location.reload();
+                 }
+             }
+
+         });
+
+           });
+        });
+    </script>
+    @stop

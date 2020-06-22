@@ -17,6 +17,7 @@
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="admin/css/theme-default.css" />
     <!-- EOF CSS INCLUDE -->
+    <link href="admin/css/toastr.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -116,8 +117,9 @@
 
 <script src="admin/js/plugins.js"></script>
 <script src="admin/js/actions.js"></script>
-
+<script src="admin/js/toastr.min.js"></script>
 <script src="admin/js/demo_dashboard.js"></script>
+@yield('script')
 <!-- END TEMPLATE -->
 <script>
     $(function(){
@@ -129,7 +131,7 @@
             //Datepicker
             $('#dp-2').datepicker();
             $('#dp-3').datepicker({startView: 2});
-            $('#dp-4').datepicker({startView: 1});                
+            $('#dp-4').datepicker({startView: 1});           
             //End Datepicker
         });
     </script>        
@@ -229,12 +231,6 @@
         readURL4(this);
     });
 
-</script>
-
-<script>
-    $(".notiDelete").click(function(){
-        $("#mb-remove-row").addClass("open");
-    });
 </script>
 <script>
     var data = document.getElementById("noti").value;

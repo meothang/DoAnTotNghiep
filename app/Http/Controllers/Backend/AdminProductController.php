@@ -149,10 +149,10 @@ class AdminProductController extends Controllers
 
         if($req->hasFile('image2'))
         {
-         $path_img_old2 ="img/product/".$pro_cate_path -> name.'/'.$product->image2;
+           $path_img_old2 ="img/product/".$pro_cate_path -> name.'/'.$product->image2;
             // dd($path_img_old);
-         if(file_exists($path_img_old2))
-         {
+           if(file_exists($path_img_old2))
+           {
             @unlink($path_img_old2);
         }
         $file = $req->file('image2');
@@ -164,10 +164,10 @@ class AdminProductController extends Controllers
 
     if($req->hasFile('image3'))
     {
-     $path_img_old3 ="img/product/".$pro_cate_path -> name.'/'.$product->image3;
+       $path_img_old3 ="img/product/".$pro_cate_path -> name.'/'.$product->image3;
             // dd($path_img_old);
-     if(file_exists($path_img_old3))
-     {
+       if(file_exists($path_img_old3))
+       {
         @unlink($path_img_old3);
     }
     $file = $req->file('image3');
@@ -188,11 +188,12 @@ public function action($action,$id)
 {
     if(isset($action))
     {   
-     $product   = Product::find($id);
-     switch($action)
-     {
+       $product   = Product::find($id);
+       switch($action)
+       {
         case 'delete':
         $product->delete();
+        return response()-> json(['success' => 'Xóa Thành Công']);
         break;
         case 'status':
         $product -> status = $product-> status ? 0 : 1;
