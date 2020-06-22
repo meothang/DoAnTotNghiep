@@ -52,9 +52,9 @@
                                 @foreach ($listUser[0]['users'] as $user)
                                 @if (!empty($user['id']))
                                 <tr id="trow_3">
-                                   <td class="text-center">{{$stt++}}</td>
-                                   <td class="text-center"><strong>{{$user['name']}}</strong></td>
-                                   <td class="text-center"><strong>
+                                 <td class="text-center">{{$stt++}}</td>
+                                 <td class="text-center"><strong>{{$user['name']}}</strong></td>
+                                 <td class="text-center"><strong>
                                     @if ($user['sex'] == 1)
                                     {{'Nam'}}
                                     @else
@@ -119,7 +119,7 @@
                 $("#mb-remove-row").addClass("open");
                 let id = $(this).data('id');
                 $('.delListUser').click(function(){
-                   $.ajax({
+                 $.ajax({
                     url: 'backend/user/delete/'+id,
                     data:{
                         id: id,
@@ -130,16 +130,29 @@
                     success:function($result){ 
                       if ($result.success) {
                         toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                        location.reload();
-                    }else {
-                     toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                        $("#mb-remove-row").addClass("hide");
+                        var time = new Date().getTime();
+                        $(document.body).bind("mousemove keypress", function(e) {
+                         time = new Date().getTime();
+                     });
+
+                        function refresh() {
+                            if(new Date().getTime() - time >= 400) 
+                             window.location.reload(true);
+                         else 
+                             setTimeout(refresh, 400);
+                     }
+
+                     setTimeout(refresh, 400);
+                 }else {
+                   toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-               });
+             });
             });
         </script>
         @stop

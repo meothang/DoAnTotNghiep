@@ -74,7 +74,7 @@
                                                 class="fa fa-pencil"></span></button>
                                             </a>
                                             <a>
-                                               <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$groupUser -> id}}"><span
+                                             <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$groupUser -> id}}"><span
                                                 class="fa fa-times"></span></button>
                                             </button>
                                         </a>
@@ -115,35 +115,48 @@
         <!-- END RESPONSIVE TABLES -->
 
     </div>
-<!-- PAGE CONTENT WRAPPER -->
-@stop
-  @section('script')
-        <script>
-            $(".notiDelete").click(function(){
-                $("#mb-remove-row").addClass("open");
-                let id = $(this).data('id');
-                $('.delRole').click(function(){
-                   $.ajax({
-                    url: 'backend/role/destroy/'+id,
-                    data:{
-                        id: id,
+    <!-- PAGE CONTENT WRAPPER -->
+    @stop
+    @section('script')
+    <script>
+        $(".notiDelete").click(function(){
+            $("#mb-remove-row").addClass("open");
+            let id = $(this).data('id');
+            $('.delRole').click(function(){
+             $.ajax({
+                url: 'backend/role/destroy/'+id,
+                data:{
+                    id: id,
 
-                    },
-                    dataType: 'json',
-                    type:'get',
-                    success:function($result){ 
-                      if ($result.success) {
-                        toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                        location.reload();
-                    }else {
-                     toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                },
+                dataType: 'json',
+                type:'get',
+                success:function($result){ 
+                  if ($result.success) {
+                    toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                    $("#mb-remove-row").addClass("hide");
+                    var time = new Date().getTime();
+                    $(document.body).bind("mousemove keypress", function(e) {
+                     time = new Date().getTime();
+                 });
+
+                    function refresh() {
+                        if(new Date().getTime() - time >= 400) 
+                         window.location.reload(true);
+                     else 
+                         setTimeout(refresh, 400);
+                 }
+
+                 setTimeout(refresh, 400);
+             }else {
+               toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-               });
-            });
-        </script>
-        @stop
+         });
+        });
+    </script>
+    @stop

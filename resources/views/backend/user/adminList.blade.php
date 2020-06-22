@@ -51,24 +51,24 @@
                                     <td class="text-center">{{ $user -> userid}}</td>
                                     <td class="text-center"><strong>{{$user -> username}}</strong></td>
                                     <td class="text-center">
-                                     @if ($user -> sex == 1)
-                                     {{'Nam'}}
-                                     @else
-                                     {{'Nữ'}}
-                                     @endif
-                                 </td>
-                                 <td class="text-center">{{$user -> email}}</td>
-                                 <td class="text-center">{{$user -> phone}}</td>
-                                 <td class="text-center">{{$user -> address}}</td>
-                                 <td class="text-center">{{$user -> name}}</td>
-                                 <td class="text-center">
-                                     <a href="{{ route('employee.user.edit', $user ->userid) }}">
+                                       @if ($user -> sex == 1)
+                                       {{'Nam'}}
+                                       @else
+                                       {{'Nữ'}}
+                                       @endif
+                                   </td>
+                                   <td class="text-center">{{$user -> email}}</td>
+                                   <td class="text-center">{{$user -> phone}}</td>
+                                   <td class="text-center">{{$user -> address}}</td>
+                                   <td class="text-center">{{$user -> name}}</td>
+                                   <td class="text-center">
+                                       <a href="{{ route('employee.user.edit', $user ->userid) }}">
                                         <button
                                         class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
                                         class="fa fa-pencil"></span></button></a>
                                         <a>
-                                             <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$user -> userid}}"><span
-                                                class="fa fa-times"></span></button>
+                                           <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$user -> userid}}"><span
+                                            class="fa fa-times"></span></button>
                                         </a>
                                     </td>
                                 </tr>
@@ -83,59 +83,72 @@
                                                 </div>
                                                 <div class="mb-footer">
                                                     <div class="pull-right">
-                                                         <button class="btn btn-warning btn-lg delAdminUser">Xóa
-                                                        </button>
-                                                        <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END MESSAGE BOX-->
-                                    @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                            
-                        </div>
+                                                       <button class="btn btn-warning btn-lg delAdminUser">Xóa
+                                                       </button>
+                                                       <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <!-- END MESSAGE BOX-->
+                                   @endforeach
+                                   @endif
+                               </tbody>
+                           </table>
+                           
+                       </div>
 
-                    </div>
-                </div>
+                   </div>
+               </div>
 
-            </div>
-        </div>
-        <!-- END RESPONSIVE TABLES -->
+           </div>
+       </div>
+       <!-- END RESPONSIVE TABLES -->
 
-    </div>
-<!-- PAGE CONTENT WRAPPER -->
-@stop
- @section('script')
-    <script>
-        $(".notiDelete").click(function(){
-            $("#mb-remove-row").addClass("open");
-            let id = $(this).data('id');
-            $('.delAdminUser').click(function(){
-               $.ajax({
-                url: 'backend/user/delete/'+id,
-                data:{
-                    id: id,
+   </div>
+   <!-- PAGE CONTENT WRAPPER -->
+   @stop
+   @section('script')
+   <script>
+    $(".notiDelete").click(function(){
+        $("#mb-remove-row").addClass("open");
+        let id = $(this).data('id');
+        $('.delAdminUser').click(function(){
+         $.ajax({
+            url: 'backend/user/delete/'+id,
+            data:{
+                id: id,
 
-                },
-                dataType: 'json',
-                type:'get',
-                success:function($result){ 
-                  if ($result.success) {
-                    toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                    location.reload();
-                }else {
-                 toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+            },
+            dataType: 'json',
+            type:'get',
+            success:function($result){ 
+              if ($result.success) {
+                toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                $("#mb-remove-row").addClass("hide");
+                var time = new Date().getTime();
+                $(document.body).bind("mousemove keypress", function(e) {
+                 time = new Date().getTime();
+             });
+
+                function refresh() {
+                    if(new Date().getTime() - time >= 400) 
+                     window.location.reload(true);
+                 else 
+                     setTimeout(refresh, 400);
+             }
+
+             setTimeout(refresh, 400);
+         }else {
+           toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-           });
-        });
-    </script>
-    @stop
+     });
+    });
+</script>
+@stop
