@@ -3,7 +3,7 @@
 @section('main')
 <style type="text/css">
 	.error-text{
-		color: red;
+		color: #ffba00 ;
 	}
 </style>
 <!-- Start Banner Area -->
@@ -40,7 +40,8 @@
 				<div class="login_form_inner">
 					<div>
 						<h3>Thông tin đăng ký</h3>
-						<form action="" method="POST">
+						{{-- <form action="" method="POST"> --}}
+							<form class="row login_form" action="" method="POST" id="contactForm" novalidate="novalidate">
 							@csrf
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="name" name="name" placeholder="Tên tài khoản" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tên tài khoản'">
@@ -79,7 +80,7 @@
 							</div>
 
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="name" name="password" required="" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mật khẩu'">
+								<input type="password" class="form-control" id="name" name="password" required="" placeholder="Mật khẩu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mật khẩu'">
 								@if ($errors->has('password'))
 								<span class="error-text">
 									{{ $errors->first('password') }}

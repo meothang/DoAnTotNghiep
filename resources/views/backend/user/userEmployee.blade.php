@@ -16,7 +16,7 @@
 
                 <div class="panel-heading">
                     <div class="page-head-text">
-                        <h1 class="panel-title"><strong>Quản lý</strong> nhân viên</h1>
+                        <h1 class="panel-title"><strong>Quản lý</strong> quản trị viên</h1>
                         <div class="form-group pull-right">
                             <a href="{{ route('create.role')}}">
                                 <button class="btn btn-primary btn-rounded"><span class="fa fa-plus"></span> Thêm mới Nhóm Quyền</button>
@@ -56,7 +56,7 @@
                                 @if(!empty($groupUser->name))
 
                                 <td>{{$groupUser->name}}
-                                    (<span style="color: red">
+                                    (<span style="color: #fea223">
                                         {{!empty($groupUser->users)?$groupUser->users->count():'0'}}
                                     </span> )
                                 </td>
