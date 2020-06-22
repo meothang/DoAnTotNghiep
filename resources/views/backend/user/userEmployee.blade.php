@@ -74,7 +74,7 @@
                                                 class="fa fa-pencil"></span></button>
                                             </a>
                                             <a>
-                                             <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$groupUser -> id}}"><span
+                                               <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$groupUser -> id}}"><span
                                                 class="fa fa-times"></span></button>
                                             </button>
                                         </a>
@@ -123,7 +123,7 @@
             $("#mb-remove-row").addClass("open");
             let id = $(this).data('id');
             $('.delRole').click(function(){
-             $.ajax({
+               $.ajax({
                 url: 'backend/role/destroy/'+id,
                 data:{
                     id: id,
@@ -135,28 +135,22 @@
                   if ($result.success) {
                     toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
                     $("#mb-remove-row").addClass("hide");
-                    var time = new Date().getTime();
-                    $(document.body).bind("mousemove keypress", function(e) {
-                     time = new Date().getTime();
-                 });
+                    init_reload();
+                    function init_reload(){
+                        setInterval( function() {
+                           window.location.reload();
 
-                    function refresh() {
-                        if(new Date().getTime() - time >= 400) 
-                         window.location.reload(true);
-                     else 
-                         setTimeout(refresh, 400);
-                 }
-
-                 setTimeout(refresh, 400);
-             }else {
-               toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                       },1000);
+                    }
+                }else {
+                 toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-         });
+           });
         });
     </script>
     @stop

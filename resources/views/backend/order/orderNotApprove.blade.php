@@ -54,9 +54,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               @if (isset($orders))
-                               @foreach ($orders as $order)
-                               <tr id="trow_2">
+                             @if (isset($orders))
+                             @foreach ($orders as $order)
+                             <tr id="trow_2">
                                 <td class="text-center">1</td>
                                 <td><strong>{{ $order -> user -> name}}</strong></td>
                                     {{-- <td><span class="label label-success">New</span></td>
@@ -69,20 +69,20 @@
                                     <td class="text-center">
                                         @if ($order -> status == 0)
                                         <a href="{{ route('admin.get.active.order', ['status', $order -> id]) }}">
-                                           <button type="button" class="btn btn-warning">
+                                         <button type="button" class="btn btn-warning">
                                             Chưa Duyệt
                                         </button>
                                     </a>
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                 @php
+                                   @php
                     // hiển thị tiếng việt
-                                 \Carbon\Carbon::setLocale('vi'); 
-                                 echo \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
-                                 @endphp
-                             </td>
-                             <td class="text-center">
+                                   \Carbon\Carbon::setLocale('vi'); 
+                                   echo \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
+                                   @endphp
+                               </td>
+                               <td class="text-center">
                                 <a href="{{ route('order.detail', $order -> id) }}"><button
                                     class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
                                     class="fa fa-info"></span></button></a>
@@ -110,80 +110,74 @@
                                         </div>
                                         <div class="mb-footer">
                                             <div class="pull-right">
-                                                 <button class="btn btn-warning btn-lg delOrder">Xóa
-                                                        </button>
-                                                <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
-                                            </div>
-                                        </div>
+                                               <button class="btn btn-warning btn-lg delOrder">Xóa
+                                               </button>
+                                               <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <!-- END MESSAGE BOX-->
+                           <!-- shop toolbar start -->
+                           <div class="shop-content-bottom">
+                            <div class="shop-toolbar btn-tlbr">
+                                <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                                    <div class="pages">
+                                        {{$orders->links()}}
                                     </div>
                                 </div>
                             </div>
-                            <!-- END MESSAGE BOX-->
-                            <!-- shop toolbar start -->
-                            <div class="shop-content-bottom">
-                                <div class="shop-toolbar btn-tlbr">
-                                    <div class="col-md-4 col-sm-4 col-xs-12 text-center">
-                                        <div class="pages">
-                                            {{$orders->links()}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- shop toolbar end -->
-
-
                         </div>
+                        <!-- shop toolbar end -->
+
 
                     </div>
+
                 </div>
-
             </div>
+
         </div>
-        <!-- END RESPONSIVE TABLES -->
-
     </div>
-    <!-- PAGE CONTENT WRAPPER -->
-    @stop
-    @section('script')
-    <script>
-        $(".notiDelete").click(function(){
-            $("#mb-remove-row").addClass("open");
-            let id = $(this).data('id');
-            $('.delOrder').click(function(){
-               $.ajax({
-                url: 'backend/order/delete_not/'+id,
-                data:{
-                    id: id,
+    <!-- END RESPONSIVE TABLES -->
 
-                },
-                dataType: 'json',
-                type:'get',
-                success:function($result){ 
-                  if ($result.success) {
-                    toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                    $("#mb-remove-row").addClass("hide");
-                var time = new Date().getTime();
-                $(document.body).bind("mousemove keypress", function(e) {
-                   time = new Date().getTime();
-               });
+</div>
+<!-- PAGE CONTENT WRAPPER -->
+@stop
+@section('script')
+<script>
+    $(".notiDelete").click(function(){
+        $("#mb-remove-row").addClass("open");
+        let id = $(this).data('id');
+        $('.delOrder').click(function(){
+         $.ajax({
+            url: 'backend/order/delete_not/'+id,
+            data:{
+                id: id,
 
-                function refresh() {
-                    if(new Date().getTime() - time >= 400) 
-                       window.location.reload(true);
-                   else 
-                       setTimeout(refresh, 400);
-               }
+            },
+            dataType: 'json',
+            type:'get',
+            success:function($result){ 
+              if ($result.success) {
+                toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                $("#mb-remove-row").addClass("hide");
+                init_reload();
+                function init_reload(){
+                    setInterval( function() {
+                       window.location.reload();
 
-               setTimeout(refresh, 400);
-                }else {
-                 toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                   },1000);
+                }
+            }else {
+               toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-           });
-        });
-    </script>
-    @stop
+     });
+    });
+</script>
+@stop

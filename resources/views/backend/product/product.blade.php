@@ -141,58 +141,58 @@
                                         <td class="text-center">
                                             <a>
                                                 <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$product -> id}}"><span
-                                                class="fa fa-times"></span></button>
-                                            </a>
-                                            <a href="{{ route('admin.get.edit.product',$product->id) }}">
-                                                <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
-                                                    <span class="fa fa-pencil"></span></button>
+                                                    class="fa fa-times"></span></button>
                                                 </a>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
+                                                <a href="{{ route('admin.get.edit.product',$product->id) }}">
+                                                    <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
+                                                        <span class="fa fa-pencil"></span></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
 
-                                <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
-                                    <div class="mb-container">
-                                        <div class="mb-middle">
-                                            <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
-                                                <strong>Xóa Sản Phẩm</strong> ?</div>
-                                                <div class="mb-content">
-                                                    <p>Nếu bạn muốn xóa sản phẩm này</p>
-                                                    <p>Hãy ấn XÓA</p>
-                                                </div>
-                                                <div class="mb-footer">
-                                                    <div class="pull-right">
-                                                         <button class="btn btn-warning btn-lg delPro">Xóa
-                                                        </button>
-                                                        <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                    <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                                        <div class="mb-container">
+                                            <div class="mb-middle">
+                                                <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                                    <strong>Xóa Sản Phẩm</strong> ?</div>
+                                                    <div class="mb-content">
+                                                        <p>Nếu bạn muốn xóa sản phẩm này</p>
+                                                        <p>Hãy ấn XÓA</p>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END MESSAGE BOX-->
+                                                    <div class="mb-footer">
+                                                        <div class="pull-right">
+                                                           <button class="btn btn-warning btn-lg delPro">Xóa
+                                                           </button>
+                                                           <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <!-- END MESSAGE BOX-->
 
-                                </div>
+                                   </div>
 
-                            </div>
-                        </div>
+                               </div>
+                           </div>
 
-                    </div>
-                </div>
-                <!-- END RESPONSIVE TABLES -->
+                       </div>
+                   </div>
+                   <!-- END RESPONSIVE TABLES -->
 
-            </div>
-            @stop
-            @section('script')
-            <script>
+               </div>
+               @stop
+               @section('script')
+               <script>
                 $(".notiDelete").click(function(){
                     $("#mb-remove-row").addClass("open");
                     let id = $(this).data('id');
                     $('.delPro').click(function(){
-                     $.ajax({
+                       $.ajax({
                         url: 'backend/product/delete/'+id,
                         data:{
                             id: id,
@@ -203,29 +203,23 @@
                         success:function($result){ 
                           if ($result.success) {
                             toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                             $("#mb-remove-row").addClass("hide");
-                var time = new Date().getTime();
-                $(document.body).bind("mousemove keypress", function(e) {
-                   time = new Date().getTime();
-               });
+                            $("#mb-remove-row").addClass("hide");
+                            init_reload();
+                            function init_reload(){
+                                setInterval( function() {
+                                   window.location.reload();
 
-                function refresh() {
-                    if(new Date().getTime() - time >= 400) 
-                       window.location.reload(true);
-                   else 
-                       setTimeout(refresh, 400);
-               }
-
-               setTimeout(refresh, 400);
+                               },1000);
+                            }
                         }else {
-                           toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                         toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-                 });
+                   });
                 });
             </script>
             @stop
