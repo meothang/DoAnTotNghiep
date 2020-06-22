@@ -26,53 +26,49 @@
 						<?php $productType = DB::table('product_type')->get();
 						?>
 						@foreach($productType as $pro_type)
-						{{-- <li class="filter-list">
-							<input class="pixel-radio filter_type"  type="checkbox" id="apple" value="{{$pro_type->id}}" name="filter_type">
-						<label for="apple">{{ucwords($pro_type -> name)}}</label>
-					</li> --}}
-					<li class="filter-list main-nav-list">
-						<li class="filter-list">
-							<input class="pixel-radio filter_type"  type="checkbox" id="apple" value="{{$pro_type->id}}" name="filter_type">
-							<label for="apple">{{ucwords($pro_type -> name)}}
-								<span>({{App\Models\Product::where('pro_type',$pro_type->id)->count()}})
-								</span>
-							</label>
+						<li class="filter-list main-nav-list">
+							<li class="filter-list">
+								<input class="pixel-radio filter_type"  type="checkbox" id="apple" value="{{$pro_type->id}}" name="filter_type">
+								<label for="apple">{{ucwords($pro_type -> name)}}
+									<span>({{App\Models\Product::where('pro_type',$pro_type->id)->count()}})
+									</span>
+								</label>
+							</li>
 						</li>
-					</li>
-					@endforeach
-				</ul>
-			</div>
-			<div class="sidebar-filter mt-50">
-				<div class="top-filter-head">
-					<a style="text-decoration:none;color:#fff" href="{{route('get.list.product')}}">Hãng sản
-					xuất</a>
-				</div>
-				<div class="common-filter">
-					<div class="head">Chọn hãng sản xuất</div>
-					<ul>
-						<?php $cats = DB::table('categories')->orderby('name', 'ASC')->get();?>
-						@foreach($cats as $cat)
-						<li class="filter-list"><input class="pixel-radio try" type="checkbox" id="brandId" value="{{$cat->id}}" ><label for="apple"> {{ucwords($cat->name)}}<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})</span></label></li>
 						@endforeach
 					</ul>
 				</div>
-				<div class="common-filter">
-					<div class="head">Khoảng giá</div>
-					<div class="list-group">
-						<div class="price-range-area">
-							<div id="slider-range"></div>
-							<div class="value-wrapper d-flex">
-								<div class="price">Giá:</div>
-								<span><input size="2" type="text" id="amount_min" name="start_price" value="15"
-									style="border:0px; font-weight: bold; color:#15161D; width: 80px;"
-									readonly="readonly" /> VNĐ</span>
-									<div id="lower-value"></div>
-									<div class="to">đến</div>
-									<span><input size="2" type="text" id="amount_max" name="end_price" value="65"
-										style="border:0px; font-weight: bold; color:#15161D; width: 80px"
+				<div class="sidebar-filter mt-50">
+					<div class="top-filter-head">
+						<a style="text-decoration:none;color:#fff">Hãng sản
+						xuất</a>
+					</div>
+					<div class="common-filter">
+						<div class="head">Chọn hãng sản xuất</div>
+						<ul>
+							<?php $cats = DB::table('categories')->orderby('name', 'ASC')->get();?>
+							@foreach($cats as $cat)
+							<li class="filter-list"><input class="pixel-radio try" type="checkbox" id="brandId" value="{{$cat->id}}" ><label for="apple"> {{ucwords($cat->name)}}<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})</span></label></li>
+							@endforeach
+						</ul>
+					</div>
+					<div class="common-filter">
+						<div class="head">Khoảng giá</div>
+						<div class="list-group">
+							<div class="price-range-area">
+								<div id="slider-range"></div>
+								<div class="value-wrapper d-flex">
+									<div class="price">Giá:</div>
+									<span><input size="2" type="text" id="amount_min" name="start_price" value="15"
+										style="border:0px; font-weight: bold; color:#15161D; width: 80px;"
 										readonly="readonly" /> VNĐ</span>
-										<div id="upper-value"></div>
-									</div>
+										<div id="lower-value"></div>
+										<div class="to">đến</div>
+										<span><input size="2" type="text" id="amount_max" name="end_price" value="65"
+											style="border:0px; font-weight: bold; color:#15161D; width: 80px"
+											readonly="readonly" /> VNĐ</span>
+											<div id="upper-value"></div>
+										</div>
 								{{-- <p class="pull-left">
 									<input size="2" type="text" id="amount_min" name="start_price"
 									value="15" style="border:0px; font-weight: bold; color:green; width: 80px;" readonly="readonly" />
