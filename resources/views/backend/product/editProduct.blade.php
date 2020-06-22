@@ -114,11 +114,11 @@
                                                 @endif
                                                 </div>
                                             </div>
+                                            <img id="img_upload" class="img img-responsive" src=" {{ isset($product->pro_image) ? asset('img/product/'.$product -> categories -> name.'/'.$product->pro_image) : ''}}" alt="">
                                         </div>
                                         <div class="col-md-6">
                                             <div class="col-md-12">
                                             <div style="text-align: center;">
-
                                                 <input type="file" class="fileinput btn-primary" name="image1" id="filename2" title="Chọn hình ảnh 1" />
                                                 @if($errors->has('image1'))
                                                 <div class="help-block">
@@ -127,11 +127,6 @@
                                                 @endif
                                             </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <img id="img_upload" class="img img-responsive" src=" {{ isset($product->pro_image) ? asset('img/product/'.$product -> categories -> name.'/'.$product->pro_image) : ''}}" alt="">
-                                        </div>
-                                        <div class="col-md-6">
                                             <img id="img_upload2" class="img img-responsive" src=" {{ isset($product->image1) ? asset('img/product/'.$product -> categories -> name.'/'.$product->image1) : ''}}" alt="">
                                         </div>
                                     </div>

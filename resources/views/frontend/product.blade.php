@@ -53,6 +53,7 @@
 							<?php $cats = DB::table('categories')->orderby('name', 'ASC')->get();?>
 							@foreach($cats as $cat)
 							<li class="filter-list">
+							<!-- <input type="checkbox" class="icheckbox try" id="brandId" value="{{$cat->id}}"/> -->
 								<input class="pixel-radio try" type="radio" id="brandId" value="{{$cat->id}}">
 								<label for="apple"> {{ucwords($cat->name)}}
 									<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})
