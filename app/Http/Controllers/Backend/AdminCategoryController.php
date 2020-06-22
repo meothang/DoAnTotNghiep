@@ -79,7 +79,7 @@ class AdminCategoryController extends Controllers
             $category -> delete();
             return response()-> json(['success' => 'Xóa Thành Công']);
         }else{
-            return response()-> json(['error' => 'Danh Mục Có Sản Phẩm Bạn Không Thế Xóa']);
+            return response()-> json(['error' => 'Danh mục đang có sản phẩm không thể xóa']);
 
         }   
         break;

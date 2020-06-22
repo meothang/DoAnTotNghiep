@@ -127,6 +127,7 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <img id="img_upload" class="img img-responsive" src="" alt="">
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="col-md-12">
@@ -139,22 +140,12 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <img id="img_upload2" class="img img-responsive" src="" alt="">
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <div class="col-md-6">
-                                            <img id="img_upload" class="img img-responsive" src="" alt="">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <img id="img_upload2" class="img img-responsive" src="" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     <label class="col-md-3 control-label"></label>
 
@@ -168,6 +159,8 @@
                                                 </div>
                                                 @endif
                                             </div>
+                                            <img id="img_upload3" class="img img-responsive" src="" alt="">
+
                                         </div>
                                         <div class="col-md-6">
                                             <div style="text-align: center;">
@@ -179,17 +172,8 @@
                                                 </div>
                                                 @endif
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <div class="col-md-6">
-                                            <img id="img_upload3" class="img img-responsive" src="" alt="">
-                                        </div>
-                                        <div class="col-md-6">
                                             <img id="img_upload4" class="img img-responsive" src="" alt="">
+
                                         </div>
                                     </div>
                                 </div>
