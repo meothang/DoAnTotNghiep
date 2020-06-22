@@ -47,7 +47,7 @@
                                 @foreach ($users as $key =>  $user)
 
                                 <tr id="trow_3">
-                                    <td class="text-center">1</td>
+                                    <td class="text-center">{{$user -> id}}</td>
                                     <td class="text-center"><strong>{{$user -> name}}</strong></td>
                                     <td class="text-center">
                                        @if ($user -> sex == 1)
@@ -61,8 +61,8 @@
                                    <td class="text-center">{{$user -> address}}</td>
                                    <td class="text-center">
                                     <a>
-                                        <button class="btn btn-danger btn-rounded btn-condensed btn-sm"
-                                        onClick="delete_row('trow_3');"><span class="fa fa-times"></span></button>
+                                       <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$user -> id}}"><span
+                                                class="fa fa-times"></span></button>
                                     </a>
                                 </td>
                             </tr>
@@ -82,10 +82,8 @@
                                     </div>
                                     <div class="mb-footer">
                                         <div class="pull-right">
-                                            <button class="btn btn-warning btn-lg mb-control-yes">
-                                                <a
-                                                href="{{ route('delete.user', $user -> id) }}">Xóa</a>
-                                            </button>
+                                            <button class="btn btn-warning btn-lg delUser">Xóa
+                                                        </button>
                                             <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
                                         </div>
                                     </div>
@@ -104,5 +102,35 @@
 <!-- END RESPONSIVE TABLES -->
 
 </div>
-<!-- PAGE CONTENT WRAPPER 
+<!-- PAGE CONTENT WRAPPER -->
 @stop
+ @section('script')
+    <script>
+        $(".notiDelete").click(function(){
+            $("#mb-remove-row").addClass("open");
+            let id = $(this).data('id');
+            $('.delUser').click(function(){
+               $.ajax({
+                url: 'backend/user/delete/'+id,
+                data:{
+                    id: id,
+
+                },
+                dataType: 'json',
+                type:'get',
+                success:function($result){ 
+                  if ($result.success) {
+                    toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                    location.reload();
+                }else {
+                 toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                     // location.reload();
+                 }
+             }
+
+         });
+
+           });
+        });
+    </script>
+    @stop

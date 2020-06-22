@@ -9,6 +9,7 @@ use App\Models\Role;
 use DB;
 use App\Models\UserRole;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 class AdminUserController extends Controller
 {
 
@@ -121,10 +122,15 @@ return redirect()->back()->with('thongbao','Đã chỉnh sửa thông tin thành
 // xóa admin user
 public function destroy($id)
 {
-  $user = user::find($id);
-  UserRole::where('user_id',$id)->delete();
-  $user->delete();
-  return redirect()->back()->with('sussecc','Xóa thành công');
+ $user = user::find($id);
+ if (Auth::user()-> id == $user -> id) {
+   return response()-> json(['error' => 'Thất Bại! Bạn không thể xóa chính mình']);
+ }
+ 
+ UserRole::where('user_id',$id)->delete();
+ $user->delete();
+ return response()-> json(['success' => 'Xóa Thành Công']);
+
 }
 
 }

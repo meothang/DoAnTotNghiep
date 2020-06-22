@@ -140,7 +140,7 @@
                                         <td class="text-center">{{ date_format($product->created_at,'d/m/Y H:i:s') }}</td>
                                         <td class="text-center">
                                             <a>
-                                               <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete"><span
+                                                <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$product -> id}}"><span
                                                 class="fa fa-times"></span></button>
                                             </a>
                                             <a href="{{ route('admin.get.edit.product',$product->id) }}">
@@ -165,9 +165,7 @@
                                                 </div>
                                                 <div class="mb-footer">
                                                     <div class="pull-right">
-                                                        <button class="btn btn-warning btn-lg mb-control-yes">
-                                                            <a
-                                                           href="{{ route('admin.get.action.product',['delete',$product->id])}}">Xóa</a>
+                                                         <button class="btn btn-warning btn-lg delPro">Xóa
                                                         </button>
                                                         <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
                                                     </div>
@@ -187,4 +185,34 @@
                 <!-- END RESPONSIVE TABLES -->
 
             </div>
+            @stop
+            @section('script')
+            <script>
+                $(".notiDelete").click(function(){
+                    $("#mb-remove-row").addClass("open");
+                    let id = $(this).data('id');
+                    $('.delPro').click(function(){
+                     $.ajax({
+                        url: 'backend/product/delete/'+id,
+                        data:{
+                            id: id,
+
+                        },
+                        dataType: 'json',
+                        type:'get',
+                        success:function($result){ 
+                          if ($result.success) {
+                            toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                            location.reload();
+                        }else {
+                           toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                     // location.reload();
+                 }
+             }
+
+         });
+
+                 });
+                });
+            </script>
             @stop

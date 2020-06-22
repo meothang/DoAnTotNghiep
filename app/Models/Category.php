@@ -11,7 +11,7 @@ class Category extends Model
     protected $guarded =[''];
     public function products()
     {
-        return $this->hasMany('App\Models\Product');
+        return $this->hasMany('App\Models\Product','pro_cate_id', 'id');
     }
     public function delProduct()
     {
