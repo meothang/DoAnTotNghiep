@@ -82,7 +82,7 @@
                                 @foreach ($bills as $bill)
                                 <tr>
                                     <td>
-                                        <strong>{{ $bill -> product -> pro_name}}</strong>
+                                        <strong>{{ $bill -> products -> pro_name}}</strong>
                                         {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sagittis sed mi sit amet porta.</p> --}}
                                     </td>
                                     <td class="text-right">
