@@ -26,6 +26,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Sản phẩm</th>
+                            <th scope="col">Hình Ảnh</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Sổ lượng</th>
                             <th scope="col" width="200">Tổng</th>
@@ -38,15 +39,17 @@
                         @endphp
                         @foreach ($content as $cart_item)
                         <tr>
+                           
                             <td>
                                 <div class="media">
-                                    <div class="d-flex">
-                                        <img src="{{asset("/img/product/".$product->categories -> name."/$product->pro_image")}}"  alt="">
-                                    </div>
                                     <div class="media-body" style="font-weight:bold ">
                                         <p>{{$cart_item -> name}}</p>
                                     </div>
                                 </div>
+                            </td>
+                             <td>
+                                <img src="{{asset("/img/product/".$cart_item->options-> pro_cate."/".$cart_item ->options -> avatar)}}"  width="70" height="70" alt="">
+                                <p>{{$cart_item -> avatar}}</p>
                             </td>
                             <td>
                                 <h5>{{ number_format($cart_item -> price, 0, ',', '.')}} VNĐ</h5>

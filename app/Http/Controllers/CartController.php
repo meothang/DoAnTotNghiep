@@ -19,7 +19,7 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addProduct(Request $request, $id){
-      $product = Product::select('id', 'pro_name', 'pro_image', 'pro_price', 'pro_sale', 'pro_amount')->find($id);
+      $product = Product::with('categories')->find($id);
       if(!$product) return redirect('/');
 
       if ($product -> pro_sale > 0) {
@@ -37,7 +37,7 @@ class CartController extends Controller
         'name' => $product-> pro_name,
         'qty' => 1,
         'price' => $price,
-        'options' => ['avatar' => $product -> pro_image, 'sale' => $product ->pro_sale, 'price_old' => $product ->pro_price]
+        'options' => ['avatar' => $product -> pro_image, 'pro_cate' => $product -> categories -> name ,'sale' => $product ->pro_sale, 'price_old' => $product ->pro_price]
       ]   );
       $content = Cart::content();
       return redirect()->back()-> with(['flash_level' => 'success', 'flash_message' => 'Thêm Giỏ Hàng Thành Công! Click Vô Đây Để Đến ->  <a href="list-cart" title="">Giỏ Hàng</a> ']);;
