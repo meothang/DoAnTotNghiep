@@ -32,6 +32,14 @@
                         </a> -->
 
                     </div>
+                    <ul class="panel-controls panel-controls-title">
+                    <li>
+                        <div id="reportrange" class="dtrange">
+                            <span>May 25, 2020 - June 23, 2020</span><b class="caret"></b>
+                        </div>
+                    </li>
+                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
+                </ul>
                 </div>
 
                 <div class="panel-body panel-body-table">
