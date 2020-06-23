@@ -8,7 +8,7 @@ class Bill extends Model
 {
  protected $table = 'bills';
     protected $guarded =[''];
-    public function product(){
+    public function products(){
 		return $this->belongsTo('App\Models\Product','product_id', 'id');
 	}
 	public function order(){
