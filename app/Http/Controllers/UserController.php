@@ -18,12 +18,12 @@ class UserController extends Controller
     }
     public function postLogin(Request $request){
       $this -> validate($request, [
-       'name' => 'required|min:6',
+       'email' => 'required|min:6',
        'password' => 'required|min:6|max:32',
      ],
      [
        'password.required' => 'Vui lòng nhập mật khẩu',
-       'name.required' => 'Vui lòng nhập tên của bạn.'
+       'email.required' => 'Vui lòng nhập tên của bạn.'
      ]);
      $data = $request -> only('email', 'password');
      if (Auth::attempt($data) ){
