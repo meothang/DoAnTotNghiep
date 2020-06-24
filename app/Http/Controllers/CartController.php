@@ -104,7 +104,7 @@ class CartController extends Controller
       $data =[
         'route' => $url
       ];
-      // gởi mail xác nhận giao hàng
+      // gửi mail xác nhận giao hàng
       Mail::send('mail.shopping',array('data' => $data['route'], 'name' => $request -> name), function ($message) use ($email, $data) {
         $message->to($email, 'User')->subject('Xác Nhận Giao Hàng');
       });

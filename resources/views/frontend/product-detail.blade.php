@@ -415,7 +415,7 @@
 										<textarea name="rating" id="ra_content" class="form-control" rows="5" placeholder="Vui lòng nhập đánh giá của bạn!"></textarea>
 									</div>
 									<div style=" margin-top: 15px; ">
-										<a href="{{ route('post.rating.product', $productDetail-> id) }}" class="js_rating_product" style=" width: 200px;background: #288ad6; padding: 6px; color: white; border-radius: 8px;">Gởi Đánh Giá</a>
+										<a href="{{ route('post.rating.product', $productDetail-> id) }}" class="js_rating_product" style=" width: 200px;background: #288ad6; padding: 6px; color: white; border-radius: 8px;">Gửi Đánh Giá</a>
 									</div>
 								</div>
 							</div>
@@ -617,7 +617,7 @@
 					},
 					success: function(result){
 						if (result.code == 1) {
-							alert("Gởi Comment thành công! Cảm Ơn Bạn");
+							alert("Gửi Comment thành công! Cảm Ơn Bạn");
 							location.reload();
 						}
 					}
@@ -678,7 +678,7 @@
 					}
 				}).done(function(result) {
 					if (result.code == 1) {
-						alert("Gởi đánh giá thành công!");
+						alert("Gửi đánh giá thành công!");
 						location.reload();
 					}
 				});
