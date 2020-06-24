@@ -359,8 +359,9 @@
 											<li id="rating_form">
 												<a href="#">{{$key}} Sao 
 													@for ($i = 1; $i <= 5 ; $i++)
-													<a href="#"><i class="fa fa-star {{$i <= $ar_item['total'] ? 'active' : ''}}"></i></a>
+													<a href="#"><i class="fa fa-star {{$i <= $key ? 'active' : ''}}"></i></a>
 													@endfor
+													
 													{{$ar_item['total']}} đánh giá
 												</a>
 											</li>
