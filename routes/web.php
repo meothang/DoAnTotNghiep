@@ -44,14 +44,16 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
    Route::get('/{action}/{id}','AdminOrderController@actionOrder')->middleware('CheckAcl:action-order')-> name('admin.get.active.order');
  });
 
-    //product
+    //report
     Route::group(['prefix'=>'report'],function(){
       Route::get('/bao-cao-theo-thang','AdminReportController@getReportMonth')->name('admin.get.list.month-report');
+      Route::get('/bao-cao-theo-thang/search','AdminReportController@getReportMonthSearch')->name('admin.get.list.month-report-search');
       Route::get('/bao-cao-theo-ngay','AdminReportController@getReportDay')->name('admin.get.list.day-report');
+      Route::get('/bao-cao-theo-ngay/search','AdminReportController@getReportDaySearch')->name('admin.get.list.day-report-search');
          //    Route::get('/order','AdminProductController@index1')->name('admin.get.list.order');
     });
     
-// Phần này bỏ qua
+// 
    // Route::get('/','AdminOrderController@getCart')->name('admin.get.cart');
    // Route::get('/cart', 'AdminOrderController@cart')->name('cart.index');
    // Route::get('/checkout', 'AdminOrderController@checkout')->name('check.get');
@@ -141,7 +143,6 @@ Route::group(['prefix' => 'giohang', 'middleware' =>'CheckLogin'], function() {
   Route::get('/thanh-toan', 'CartController@getFormPay')->name('get.checkout');
   Route::post('/thanh-toan', 'CartController@saveInfoCart');
 });
-//report
 
 Route::get('/search', 'FrontendController@formSearch')->name('get.form.search');
 Route::post('/comment-user/{id}', 'CommentController@saveComment')->name('get.user.comment');

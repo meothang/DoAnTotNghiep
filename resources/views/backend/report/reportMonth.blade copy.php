@@ -30,9 +30,8 @@
                             ?>
                     <div class="panel-heading">
                         <div class="page-head-text">
-                            <h1 class="panel-title"><strong>Báo cáo</strong> theo tháng:
-                                <b>
-                                {{ $value}}/<?php echo date("Y"); ?></b><br>
+                            <h1 class="panel-title"><strong>Báo cáo</strong> theo tháng
+                                {{ $value}}/<?php echo date("Y"); ?><br>
                                 <span style="font-size: 18px;">Tổng tiền: <b>{{number_format($orders->sum('total'))  }}
                                         VNĐ
                                     </b></span>
@@ -62,7 +61,7 @@
                         
                                                             }
                                                         ?>
-
+        
                                                 </select>
                                                 <div class="input-group-btn button-search-day">
                                                     <button class="btn btn-primary" type="submit">
@@ -79,10 +78,43 @@
                                     </div>
                                 </div>
                             </form>
+                            {{-- <div class="row d-flex align-items-end">
+                                <div class="col-md-4">
+                                    <div class="wrapper-datepicker custom-datepicker ">
+                                        <label for="datepicker">Chọn tháng:</label><br />
+                                        <select name="month" id="" class="form-control select-width" required>
+                                            <option value="">Chọn tháng</option>
+                                            <?php
+                                                    for($i = 1; $i < 13; $i++) {
+                                                        if($value == $i) {
+                                                              echo "<option value='$i' selected>Tháng $i</option>";
+                                                        }
+                                                      
+                                                        else {
+                                                             echo "<option value='$i'>Tháng $i</option>";
+                                                        }
+                
+                                                    }
+                                                ?>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 button-search-day">
+                                    <button type="submit" class="btn btn-info height-35"><i class="fa fa-search"
+                                            aria-hidden="true"></i>
+                                        Tìm kiếm</button>
+                                </div>
+                            </div> --}}
                         </form>
                         @if (isset($orders))
                         @if (count($orders))
-
+                        {{-- <div class="d-flex justify-content-end">
+                            <button class="btn btn-success height-35" id="saveAsExcel">
+                                <i class="fa fa-print" aria-hidden="true"></i> Xuất excel báo cáo
+                            </button>
+                        </div> <br /> --}}
                         <div class="panel-body panel-body-table">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-actions" id="list-order-month">
@@ -94,10 +126,11 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="text-center">
+                                        <tr></tr>
+                                        <tr>
                                             <td colspan="7" class="border-0">
                                                 <div class="d-none">
-                                                    <h3  style="padding: 0px;margin: 0;">Danh sách đơn hàng:</h3>
+                                                    Danh sách đơn hàng:
                                                 </div>
                                             </td>
                                         </tr>
@@ -130,19 +163,21 @@
                                                 \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
                                                 @endphp
                                             </td>
-                                            @endforeach
-                                        <tr id="trow_2">
-                                            <td colspan="7" align="right">
-                                                <h3 style="padding: 0px;margin: 0;">Tổng đơn hàng: <b>{{count($orders) }} đơn</b></h3>
+                                        </tr>
+                                        @endforeach
+                                        <tr>
+                                            <td colspan="7" align="right" class="border-0">
+                                                <div class="d-none">
+                                                    Tổng đơn hàng: {{count($orders) }} đơn
+                                                </div>
                                             </td>
                                         </tr>
-                                        <tr id="trow_2">
-                                            <td colspan="7" align="right">
-                                                <h3 style="padding: 0px;margin: 0;">Tổng tiền:
-                                                    <b>{{number_format($orders->sum('total'))  }} VNĐ</b>
-                                                </h3>
+                                        <tr>
+                                            <td colspan="7" align="right" class="border-0">
+                                                <div class="d-none">
+                                                    Tổng tiền: {{number_format($orders->sum('total'),0,'','.')  }} vnđ
+                                                </div>
                                             </td>
-                                        </tr>
                                         </tr>
                                         @else
                                         Không có đơn hàng nào !

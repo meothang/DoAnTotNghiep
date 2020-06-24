@@ -27,13 +27,19 @@
 						?>
 						@foreach($productType as $pro_type)
 						<li class="filter-list main-nav-list">
-							<li class="filter-list">
+							{{-- <li class="filter-list">
 								<input class="pixel-radio filter_type"  type="checkbox" id="apple" value="{{$pro_type->id}}" name="filter_type">
 								<label for="apple">{{ucwords($pro_type -> name)}}
 									<span>({{App\Models\Product::where('pro_type',$pro_type->id)->count()}})
 									</span>
 								</label>
-							</li>
+							</li> --}}
+							<a class="filter_type" name="filter_type"
+								href="{{route('get.list.product.type',['id'=>$pro_type->id])}}">{{ucwords($pro_type -> name)}}
+								<span class="number">({{App\Models\Product::where('pro_type',$pro_type->id)->count( )}})
+								</span>
+							</a>
+							
 						</li>
 						@endforeach
 					</ul>

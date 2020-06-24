@@ -57,11 +57,11 @@
         <li><a href="{{ route('admin.get.list.order')}}"><span class="fa fa-check"></span> Đơn hàng đã duyệt</a></li>
       </ul>
     </li>
-    <li class="xn-openable  {{\Request::route()->getName() == 'admin.get.list.order.not' || \Request::route()->getName() == 'admin.get.list.order' ? 'active' : ''}}">
-      <a href="#"><span class="fa fa-shopping-cart"></span> <span class="xn-text">Báo cáo</span></a>
+    <li class="xn-openable  {{\Request::route()->getName() == 'admin.get.list.day-report' || \Request::route()->getName() == 'admin.get.list.month-report' ? 'active' : ''}}">
+      <a href="#"><span class="fa fa-table"></span> <span class="xn-text">Báo cáo</span></a>
       <ul>                            
-        <li><a href="{{ route('admin.get.list.day-report')}}"><span class="fa fa-times"></span> Báo cáo theo ngày</a></li>
-        <li><a href="{{ route('admin.get.list.month-report')}}"><span class="fa fa-check"></span> Báo cáo theo tháng</a></li>
+        <li><a href="{{ route('admin.get.list.day-report')}}"><span class="fa fa-calendar"></span> Báo cáo theo ngày</a></li>
+        <li><a href="{{ route('admin.get.list.month-report')}}"><span class="fa fa-calendar-o"></span> Báo cáo theo tháng</a></li>
       </ul>
     </li>
     <li class="xn-openable  {{\Request::route()->getName() == 'get.backend.list.user' || \Request::route()->getName() == 'get.backend.list.employee' ? 'active' : ''}}">
