@@ -50,19 +50,19 @@
                                     <td class="text-center">{{$user -> id}}</td>
                                     <td class="text-center"><strong>{{$user -> name}}</strong></td>
                                     <td class="text-center">
-                                       @if ($user -> sex == 1)
-                                       {{'Nam'}}
-                                       @else
-                                       {{'Nữ'}}
-                                       @endif
-                                   </td>
-                                   <td class="text-center">{{$user -> email}}</td>
-                                   <td class="text-center">{{$user -> phone}}</td>
-                                   <td class="text-center">{{$user -> address}}</td>
-                                   <td class="text-center">
+                                     @if ($user -> sex == 1)
+                                     {{'Nam'}}
+                                     @else
+                                     {{'Nữ'}}
+                                     @endif
+                                 </td>
+                                 <td class="text-center">{{$user -> email}}</td>
+                                 <td class="text-center">{{$user -> phone}}</td>
+                                 <td class="text-center">{{$user -> address}}</td>
+                                 <td class="text-center">
                                     <a>
-                                       <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$user -> id}}"><span
-                                                class="fa fa-times"></span></button>
+                                     <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$user -> id}}"><span
+                                        class="fa fa-times"></span></button>
                                     </a>
                                 </td>
                             </tr>
@@ -83,7 +83,7 @@
                                     <div class="mb-footer">
                                         <div class="pull-right">
                                             <button class="btn btn-warning btn-lg delUser">Xóa
-                                                        </button>
+                                            </button>
                                             <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
                                         </div>
                                     </div>
@@ -104,33 +104,40 @@
 </div>
 <!-- PAGE CONTENT WRAPPER -->
 @stop
- @section('script')
-    <script>
-        $(".notiDelete").click(function(){
-            $("#mb-remove-row").addClass("open");
-            let id = $(this).data('id');
-            $('.delUser').click(function(){
-               $.ajax({
-                url: 'backend/user/delete/'+id,
-                data:{
-                    id: id,
+@section('script')
+<script>
+    $(".notiDelete").click(function(){
+        $("#mb-remove-row").addClass("open");
+        let id = $(this).data('id');
+        $('.delUser').click(function(){
+         $.ajax({
+            url: 'backend/user/delete/'+id,
+            data:{
+                id: id,
 
-                },
-                dataType: 'json',
-                type:'get',
-                success:function($result){ 
-                  if ($result.success) {
-                    toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                    location.reload();
-                }else {
-                 toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+            },
+            dataType: 'json',
+            type:'get',
+            success:function($result){ 
+              if ($result.success) {
+                toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+               $("#mb-remove-row").addClass("hide");
+                 init_reload();
+                        function init_reload(){
+                            setInterval( function() {
+                             window.location.reload();
+
+                         },1000);
+                        }
+           }else {
+               toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-           });
-        });
-    </script>
-    @stop
+     });
+    });
+</script>
+@stop

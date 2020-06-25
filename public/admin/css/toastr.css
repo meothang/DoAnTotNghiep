@@ -5,10 +5,12 @@
  * */
 .toast-title {
   font-weight: bold;
+
 }
 .toast-message {
   -ms-word-wrap: break-word;
   word-wrap: break-word;
+  font-size: 16px;
 }
 .toast-message a,
 .toast-message label {
@@ -28,7 +30,7 @@
   color: #FFFFFF;
   -webkit-text-shadow: 0 1px 0 #ffffff;
   text-shadow: 0 1px 0 #ffffff;
-  opacity: 0.8;
+  opacity: 1;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
   line-height: 1;
@@ -38,7 +40,7 @@
   color: #000000;
   text-decoration: none;
   cursor: pointer;
-  opacity: 0.4;
+  opacity: 1;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
 }
@@ -120,7 +122,7 @@ button.toast-close-button {
   -webkit-box-shadow: 0 0 12px #999999;
   box-shadow: 0 0 12px #999999;
   color: #FFFFFF;
-  opacity: 0.8;
+  opacity: 1;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
 }
@@ -183,7 +185,7 @@ button.toast-close-button {
   bottom: 0;
   height: 4px;
   background-color: #000000;
-  opacity: 0.4;
+  opacity: 1;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
 }

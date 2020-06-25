@@ -15,153 +15,179 @@
 
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
-
     <!-- START RESPONSIVE TABLES -->
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-
-                <div class="panel-heading">
-                    <div class="page-head-text">
-                        <h1 class="panel-title"><strong>Báo cáo</strong> theo ngày <?php echo date("d/m/Y"); ?><br>
-                        <span style="font-size: 18px;">Tổng tiền: <b>{{number_format($orders->sum('total'))  }} VNĐ </b></span>
-                        </h1>
-
-                        <!-- <a href="">
-                            <button class="btn btn-primary btn-rounded pull-right"><span class="fa fa-check"></span> Đơn hàng đã duyệt</button>
-                        </a> -->
+            <form class="form-horizontal">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="page-head-text">
+                            <h1 class="panel-title"><strong>Báo cáo</strong> theo ngày:
+                                <b>
+                                    @if(!$date)
+                                    <?php 
+                                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                                echo date("d/m/Y") ?>
+                                    @else
+                                    {{date('d/m/Y ', strtotime($date))}}
+                                    @endif
+                                </b>
+                                <br>
+                                <span style="font-size: 18px;">Tổng tiền: <b>{{number_format($orders->sum('total'))  }}
+                                        VNĐ </b></span>
+                            </h1>
+                        </div>
 
                     </div>
-                    <ul class="panel-controls panel-controls-title">
-                    <li>
-                        <div id="reportrange" class="dtrange">
-                            <span>May 25, 2020 - June 23, 2020</span><b class="caret"></b>
-                        </div>
-                    </li>
-                    <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
-                </ul>
-                </div>
-
-                <div class="panel-body panel-body-table">
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-actions">
-                            <thead>
-                                <tr>
-                                    <th width="50" class="text-center">ID</th>
-                                    <th width="200">Tên khách hàng</th>
-                                    {{-- <th width="100">status</th>
-                                    <th width="100">amount</th> --}}
-                                    <th width="200" class="text-center">Email</th>
-                                    <th width="120" class="text-center">Số điện thoại</th>
-                                    <th width="200" class="text-center">Địa chỉ</th>
-                                    <th width="200" class="text-center">Tổng Tiền Trả</th>
-                                    <!-- <th class="text-center">Chú thích</th>
-                                    <th width="120" class="text-center">Trạng thái</th>
-                                    <th width="120" class="text-center">Đã Nhận</th> -->
-                                    <th width="120" class="text-center">Ngày mua</th>
-                                    <!--<th width="120" class="text-center">Hành động</th>-->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (isset($orders))
-                                @foreach ($orders as $order)
-                                <tr id="trow_2">
-                                    <td class="text-center">1</td>
-                                    <td><strong>{{ $order -> user -> name}}</strong></td>
-                                    {{-- <td><span class="label label-success">New</span></td>
-                                    <td>$430.20</td> --}}
-                                    <td class="text-center">{{$order -> emailguest}}</td>
-                                    <td class="text-center">{{$order -> phone}}</td>
-                                    <td class="text-center">{{$order -> address}}</td>
-                                    <td class="text-center">{{number_format($order -> total,0,',','.')}} VND</td>
-                                    <!-- <td class="text-center">{{$order -> note}}</td>
-                                    <td class="text-center">
-                                        @if ($order -> status == 1)
-                                        <a href="javascipt:void(0)">
-                                            <button type="button" class="btn btn-warning">
-                                                Đã Duyệt
-                                            </button>
-                                        </a>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        @if ($order -> receive == 1)
-                                        <a href="javascipt:void(0)">
-                                            <button type="button" class="btn btn-info">
-                                                Đã Nhận
-                                            </button>
-                                        </a>
-                                        @else
-                                        <a href="javascipt:void(0)">
-                                            <button type="button" class="btn btn-warning">
-                                                Chưa Nhận
-                                            </button>
-                                        </a>
-                                        @endif
-                                    </td>-->
-                                    <td class="text-center">
-                                        @php
-                                        // hiển thị tiếng việt
-                                        \Carbon\Carbon::setLocale('vi');
-                                        echo \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
-                                        @endphp
-                                    </td>
-                                    <!--<td class="text-center">
-                                        <a href="{{ route('order.detail', $order -> id) }}"><button class="btn btn-primary btn-rounded btn-condensed btn-sm"><span class="fa fa-info"></span></button></a>
-
-                                        <a>
-                                            <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$order -> id}}"><span class="fa fa-times"></span></button>
-                                        </a>
-                                    </td> -->
-                                </tr>
-                                @endforeach
-                                @endif
-
-
-                            </tbody>
-                        </table>
-                        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
-                            <div class="mb-container">
-                                <div class="mb-middle">
-                                    <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
-                                        <strong>Xóa Đơn Hàng</strong> ?</div>
-                                    <div class="mb-content">
-                                        <p>Nếu bạn muốn xóa đơn hàng này</p>
-                                        <p>Hãy ấn XÓA</p>
+                    <div class="panel-body">
+                        <form action="{{ route('admin.get.list.day-report-search')}}" method="GET" role="form">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-8">
+                                        <div class="wrapper-datepicker custom-datepicker">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <span class="fa fa-calendar"></span>
+                                                </div>
+                                                <input type="text" class="form-control datepicker"
+                                                    placeholder="Chọn ngày cần tìm kiếm" value="" name="day" />
+                                                <div class="input-group-btn button-search-day">
+                                                    <button class="btn btn-primary" type="submit">
+                                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                                        Tìm kiếm
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-footer">
-                                        <div class="pull-right">
-                                            <button class="btn btn-warning btn-lg delOrderApp">Xóa
-                                            </button>
-                                            <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success btn-block" id="saveAsExcel"><span
+                                                class="fa fa-plus"></span> Xuất excel báo cáo</button>
+                                    </div>
+                                </div>
+                            </form>
+                            {{-- <div class="col-md-6">
+                                <div class="wrapper-datepicker custom-datepicker ">
+                                    <label for="datepicker">Chọn ngày:</label><br />
+                                    <div class="input-group">
+                                        <span class="input-group-addon add-on">
+                                            <span class="fa fa-calendar"></span></span>
+                                        <input type="text" class="form-control datepicker" value="" name="day">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="datepicker">Chọn ngày:</label>
+                                    <div class="col-md-9">
+                                        <div class=" custom-datepicker wrapper-datepicker">
+                                            <div class="input-group">
+                                                <span class="input-group-addon add-on">
+                                                    <span class="fa fa-calendar"></span></span>
+                                                <input type="text" class="form-control datepicker" value="" name="day">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- END MESSAGE BOX-->
-                        <!-- shop toolbar start -->
-                        <div class="shop-content-bottom">
-                            <div class="shop-toolbar btn-tlbr">
-                                <div class="col-md-4 col-sm-4 col-xs-12 text-center">
-                                    <div class="pages">
-                                        {{$orders->links()}}
+                            <div class="col-md-6 button-search-day">
+                                   <button type="submit" class="btn btn-primary height-35"><i class="fa fa-search" aria-hidden="true"></i> Tìm
+                                        kiếm</button>
+                                    <button class="btn btn-success height-35" id="saveAsExcel">
+                                        <i class="fa fa-print" aria-hidden="true"></i> Xuất excel báo cáo
+                                    </button>
+                                </div> --}}
+                    </div>
+            </form>
+
+            @if (isset($orders))
+            @if (count($orders))
+            {{-- <div class="d-flex justify-content-end">
+                <button class="btn btn-success height-35" id="saveAsExcel">
+                    <i class="fa fa-print" aria-hidden="true"></i> Xuất excel báo cáo
+                </button>
+            </div> <br /> --}}
+
+            <div class="panel-body panel-body-table">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-actions" id="list-order-month">
+                        <thead>
+                            <tr>
+                                <th width="50" class="text-center">ID</th>
+                                <th width="200">Tên khách hàng</th>
+                                <th width="200" class="text-center">Email</th>
+                                <th width="120" class="text-center">Số điện thoại</th>
+                                <th width="200" class="text-center">Địa chỉ</th>
+                                <th width="200" class="text-center">Tổng Tiền Trả</th>
+                                <th width="120" class="text-center">Ngày mua</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($orders as $order)
+                            <tr id="trow_2">
+                                <td class="text-center">1</td>
+                                <td><strong>{{ $order -> user -> name}}</strong></td>
+                                <td class="text-center">{{$order -> emailguest}}</td>
+                                <td class="text-center">{{$order -> phone}}</td>
+                                <td class="text-center">{{$order -> address}}</td>
+                                <td class="text-center">{{number_format($order -> total,0,',','.')}} VND</td>
+                                <td class="text-center">
+                                    @php
+                                    // hiển thị tiếng việt
+                                    \Carbon\Carbon::setLocale('vi');
+                                    echo
+                                    \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
+                                    @endphp
+                                </td>
+                            </tr>
+                            @endforeach
+                            @else
+                            <h4 style="text-align:center;margin-top:20px">Không có đơn hàng nào !</h4>
+                            @endif()
+                            @endif
+                        </tbody>
+                    </table>
+                    <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                        <div class="mb-container">
+                            <div class="mb-middle">
+                                <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                    <strong>Xóa Đơn Hàng</strong> ?</div>
+                                <div class="mb-content">
+                                    <p>Nếu bạn muốn xóa đơn hàng này</p>
+                                    <p>Hãy ấn XÓA</p>
+                                </div>
+                                <div class="mb-footer">
+                                    <div class="pull-right">
+                                        <button class="btn btn-warning btn-lg delOrderApp">Xóa
+                                        </button>
+                                        <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- shop toolbar end -->
-
-
                     </div>
+                    <!-- END MESSAGE BOX-->
+                    <!-- shop toolbar start -->
+                    <div class="shop-content-bottom">
+                        <div class="shop-toolbar btn-tlbr">
+                            <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                                <div class="pages">
+                                    {{$orders->links()}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- shop toolbar end -->
+
 
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
-    <!-- END RESPONSIVE TABLES -->
+    </form>
+</div>
+</div>
+<!-- END RESPONSIVE TABLES -->
 
 </div>
 <!-- PAGE CONTENT WRAPPER-->
