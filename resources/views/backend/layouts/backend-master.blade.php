@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" id="theme" href="admin/css/theme-default.css" />
     <!-- EOF CSS INCLUDE -->
     <link href="admin/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdn.rawgit.com/SheetJS/js-xlsx/master/dist/xlsx.full.min.js"></script>
 </head>
 
 <body>
@@ -122,6 +123,35 @@
 @yield('script')
 <!-- END TEMPLATE -->
 <script>
+
+    $( function() {
+    $( "#datepicker" ).datepicker({
+        dateFormat: "dd-mm-yy"
+        , duration: "fast"
+    });
+    } );
+
+
+    $("#saveAsExcel").click(function() {
+
+        let workbook = XLSX.utils.book_new();
+
+        let worksheet_data  = document.getElementById("list-order-month");
+
+        let worksheet = XLSX.utils.table_to_sheet(worksheet_data);
+
+        workbook.SheetNames.push("BaoCao");
+        workbook.Sheets["BaoCao"] = worksheet;
+
+        exportExcelFile(workbook);
+
+
+    });
+
+    function exportExcelFile(workbook) {
+        return XLSX.writeFile(workbook, "BaoCaoBanHang.xlsx");
+    }
+
     $(function(){
             //Spinner
             $(".spinner_default").spinner()
@@ -230,14 +260,19 @@
     $("#filename4").change(function () {
         readURL4(this);
     });
-
 </script>
+
 <script>
+
     var data = document.getElementById("noti").value;
     if(!data)
     {
         $("#notifi").addClass("open");
     }
+
+
+
+  
 
 </script>
 

@@ -5,7 +5,7 @@
 <div class="page-content-wrap">
     <?php
     $product = DB::table('products')->count('*');
-    // $order = DB::table('order')->where('status',null)->count('*');       
+    $order = DB::table('orders')->where('status',1)->count('*');       
     $users = DB::table('users')->count('*');
     $cat = DB::table('categories')->count('*');
     ?>
@@ -109,12 +109,13 @@
             </a>
         </div>
         <div class="col-md-4">
+            <a href="{{ route('admin.get.list.order')}}" style="text-decoration:none;color:white">
             <div class="widget widget-info widget-item-icon">
                 <div class="widget-item-left">
                     <span class="fa fa-shopping-cart"></span>
                 </div>
                 <div class="widget-data">
-                    <div class="widget-int num-count">599</div>
+                <div class="widget-int num-count">{{$order}}</div>
                     <div class="widget-title">Đơn hàng</div>
                     <div class="widget-subtitle">Trên website</div>
                 </div>
@@ -122,6 +123,7 @@
                     <a href="#" class="widget-control-right"><span class="fa fa-times"></span></a>
                 </div>
             </div>
+            </a>
         </div>
     </div>
 </div>

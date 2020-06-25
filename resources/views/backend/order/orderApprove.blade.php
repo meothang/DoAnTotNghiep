@@ -177,7 +177,14 @@
                 success:function($result){ 
                   if ($result.success) {
                     toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                    location.reload();
+                    $("#mb-remove-row").addClass("hide");
+              init_reload();
+                        function init_reload(){
+                            setInterval( function() {
+                             window.location.reload();
+
+                         },1000);
+                        }
                 }else {
                  toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();

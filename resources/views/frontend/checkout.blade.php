@@ -53,7 +53,7 @@
               <span class="placeholder" data-placeholder="Ghi chú"></span>
             </div>
             <div class="col-md-12 form-group p_star">
-              <span style="color:red">Quá trình mất 1 ít thời gian để gửi Mail. Hãy đợi trong giây lát!</span>
+              <span style="color:red">Quá trình mất 1 ít thời gian để gửi Mail. Vui lòng đợi trong giây lát!</span>
             </div>
 
             <div class="col-md-offset-3 col-md-6  form-group p_star">

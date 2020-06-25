@@ -26,44 +26,37 @@
 						<?php $productType = DB::table('product_type')->get();
 						?>
 						@foreach($productType as $pro_type)
-						{{-- <li class="filter-list">
-							<input class="pixel-radio filter_type"  type="checkbox" id="apple" value="{{$pro_type->id}}" name="filter_type">
-						<label for="apple">{{ucwords($pro_type -> name)}}</label>
-						</li> --}}
 						<li class="filter-list main-nav-list">
+							{{-- <li class="filter-list">
+								<input class="pixel-radio filter_type"  type="checkbox" id="apple" value="{{$pro_type->id}}" name="filter_type">
+								<label for="apple">{{ucwords($pro_type -> name)}}
+									<span>({{App\Models\Product::where('pro_type',$pro_type->id)->count()}})
+									</span>
+								</label>
+							</li> --}}
 							<a class="filter_type" name="filter_type"
 								href="{{route('get.list.product.type',['id'=>$pro_type->id])}}">{{ucwords($pro_type -> name)}}
 								<span class="number">({{App\Models\Product::where('pro_type',$pro_type->id)->count( )}})
 								</span>
 							</a>
+							
 						</li>
 						@endforeach
 					</ul>
 				</div>
 				<div class="sidebar-filter mt-50">
 					<div class="top-filter-head">
-						<a style="text-decoration:none;color:#fff" href="{{route('get.list.product')}}">Hãng sản
-							xuất</a>
+						<a style="text-decoration:none;color:#fff">Hãng sản
+						xuất</a>
 					</div>
 					<div class="common-filter">
 						<div class="head">Chọn hãng sản xuất</div>
-
-						<form>
 						<ul>
 							<?php $cats = DB::table('categories')->orderby('name', 'ASC')->get();?>
 							@foreach($cats as $cat)
-							<li class="filter-list">
-							<!-- <input type="checkbox" class="icheckbox try" id="brandId" value="{{$cat->id}}"/> -->
-								<input class="pixel-radio try" type="radio" id="brandId" value="{{$cat->id}}">
-								<label for="apple"> {{ucwords($cat->name)}}
-									<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})
-									</span>
-								</label>
-							</li>
-							
+							<li class="filter-list"><input class="pixel-radio try" type="checkbox" id="brandId" value="{{$cat->id}}" ><label for="apple"> {{ucwords($cat->name)}}<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})</span></label></li>
 							@endforeach
 						</ul>
-					</form>
 					</div>
 					<div class="common-filter">
 						<div class="head">Khoảng giá</div>
@@ -73,15 +66,15 @@
 								<div class="value-wrapper d-flex">
 									<div class="price">Giá:</div>
 									<span><input size="2" type="text" id="amount_min" name="start_price" value="15"
-											style="border:0px; font-weight: bold; color:#15161D; width: 80px;"
-											readonly="readonly" /> VNĐ</span>
-									<div id="lower-value"></div>
-									<div class="to">đến</div>
-									<span><input size="2" type="text" id="amount_max" name="end_price" value="65"
+										style="border:0px; font-weight: bold; color:#15161D; width: 80px;"
+										readonly="readonly" /> VNĐ</span>
+										<div id="lower-value"></div>
+										<div class="to">đến</div>
+										<span><input size="2" type="text" id="amount_max" name="end_price" value="65"
 											style="border:0px; font-weight: bold; color:#15161D; width: 80px"
 											readonly="readonly" /> VNĐ</span>
-									<div id="upper-value"></div>
-								</div>
+											<div id="upper-value"></div>
+										</div>
 								{{-- <p class="pull-left">
 									<input size="2" type="text" id="amount_min" name="start_price"
 									value="15" style="border:0px; font-weight: bold; color:green; width: 80px;" readonly="readonly" />
@@ -128,15 +121,15 @@
 							<div class="col-lg-4 col-md-6">
 								<div class="single-product">
 									<img class="img-fluid"
-										src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}"
-										alt="">
+									src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}"
+									alt="">
 									<div class="product-details">
 										<a
-											href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
+										href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
 										<div class="price">
 											<h6>Giá: <span
-													style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}}
-													VNĐ</span></h6>
+												style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}}
+											VNĐ</span></h6>
 											<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
 										</div>
 										<div class="prd-bottom">
@@ -157,15 +150,15 @@
 											<span class="lnr lnr-move"></span>
 											<p class="hover-text">view more</p>
 										</a> --}}
-										</div>
 									</div>
 								</div>
 							</div>
-							@endforeach
-							@endif
+						</div>
+						@endforeach
+						@endif
 
-							{{-- phân trang --}}
-							<!-- Start Filter Bar -->
+						{{-- phân trang --}}
+						<!-- Start Filter Bar -->
 
 							{{-- 	<div class="clearfix "> </div>
 						<div class="filter-bar d-flex flex-wrap align-items-center">
@@ -179,25 +172,25 @@
 							<div class="pagination">
 								{{$product->links()}}
 							</div>
-							{{-- </div> --}}
-							<!-- End Filter Bar -->
+						{{-- </div> --}}
+						<!-- End Filter Bar -->
 
 
 
-						</div>
+					</div>
 
-					</section>
+				</section>
 
-
-				</div>
-
-				<!-- End Best Seller -->
 
 			</div>
+
+			<!-- End Best Seller -->
+
 		</div>
 	</div>
+</div>
 
-	<!-- Start related-product Area -->
+<!-- Start related-product Area -->
 	{{-- <section class="related-product-area section_gap">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -361,50 +354,50 @@
 							<div class="top">
 								<h3 class="head">Mill Oil 1000W Heater, White</h3>
 								<div class="price d-flex align-items-center"><span class="lnr lnr-tag"></span> <span
-										class="ml-10">$149.99</span></div>
-								<div class="category">Category: <span>Household</span></div>
-								<div class="available">Availibility: <span>In Stock</span></div>
-							</div>
-							<div class="middle">
-								<p class="content">Mill Oil is an innovative oil filled radiator with the most modern
-									technology. If you are
-									looking for something that can make your interior look awesome, and at the same time
-									give you the pleasant
+									class="ml-10">$149.99</span></div>
+									<div class="category">Category: <span>Household</span></div>
+									<div class="available">Availibility: <span>In Stock</span></div>
+								</div>
+								<div class="middle">
+									<p class="content">Mill Oil is an innovative oil filled radiator with the most modern
+										technology. If you are
+										looking for something that can make your interior look awesome, and at the same time
+										give you the pleasant
 									warm feeling during the winter.</p>
-								<a href="#" class="view-full">View full Details <span
+									<a href="#" class="view-full">View full Details <span
 										class="lnr lnr-arrow-right"></span></a>
-							</div>
-							<div class="bottom">
-								<div class="color-picker d-flex align-items-center">Color:
-									<span class="single-pick"></span>
-									<span class="single-pick"></span>
-									<span class="single-pick"></span>
-									<span class="single-pick"></span>
-									<span class="single-pick"></span>
-								</div>
-								<div class="quantity-container d-flex align-items-center mt-15">
-									Quantity:
-									<input type="text" class="quantity-amount ml-15" value="1" />
-									<div class="arrow-btn d-inline-flex flex-column">
-										<button class="increase arrow" type="button" title="Increase Quantity"><span
-												class="lnr lnr-chevron-up"></span></button>
-										<button class="decrease arrow" type="button" title="Decrease Quantity"><span
-												class="lnr lnr-chevron-down"></span></button>
 									</div>
+									<div class="bottom">
+										<div class="color-picker d-flex align-items-center">Color:
+											<span class="single-pick"></span>
+											<span class="single-pick"></span>
+											<span class="single-pick"></span>
+											<span class="single-pick"></span>
+											<span class="single-pick"></span>
+										</div>
+										<div class="quantity-container d-flex align-items-center mt-15">
+											Quantity:
+											<input type="text" class="quantity-amount ml-15" value="1" />
+											<div class="arrow-btn d-inline-flex flex-column">
+												<button class="increase arrow" type="button" title="Increase Quantity"><span
+													class="lnr lnr-chevron-up"></span></button>
+													<button class="decrease arrow" type="button" title="Decrease Quantity"><span
+														class="lnr lnr-chevron-down"></span></button>
+													</div>
 
-								</div>
-								<div class="d-flex mt-20">
-									<a href="#" class="view-btn color-2"><span>Add to Cart</span></a>
-									<a href="#" class="like-btn"><span class="lnr lnr-layers"></span></a>
-									<a href="#" class="like-btn"><span class="lnr lnr-heart"></span></a>
+												</div>
+												<div class="d-flex mt-20">
+													<a href="#" class="view-btn color-2"><span>Add to Cart</span></a>
+													<a href="#" class="like-btn"><span class="lnr lnr-layers"></span></a>
+													<a href="#" class="like-btn"><span class="lnr lnr-heart"></span></a>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-</div>
-@stop
+			@stop

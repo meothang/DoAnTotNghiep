@@ -115,35 +115,42 @@
         <!-- END RESPONSIVE TABLES -->
 
     </div>
-<!-- PAGE CONTENT WRAPPER -->
-@stop
-  @section('script')
-        <script>
-            $(".notiDelete").click(function(){
-                $("#mb-remove-row").addClass("open");
-                let id = $(this).data('id');
-                $('.delRole').click(function(){
-                   $.ajax({
-                    url: 'backend/role/destroy/'+id,
-                    data:{
-                        id: id,
+    <!-- PAGE CONTENT WRAPPER -->
+    @stop
+    @section('script')
+    <script>
+        $(".notiDelete").click(function(){
+            $("#mb-remove-row").addClass("open");
+            let id = $(this).data('id');
+            $('.delRole').click(function(){
+               $.ajax({
+                url: 'backend/role/destroy/'+id,
+                data:{
+                    id: id,
 
-                    },
-                    dataType: 'json',
-                    type:'get',
-                    success:function($result){ 
-                      if ($result.success) {
-                        toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                        location.reload();
-                    }else {
-                     toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                },
+                dataType: 'json',
+                type:'get',
+                success:function($result){ 
+                  if ($result.success) {
+                    toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
+                    $("#mb-remove-row").addClass("hide");
+                    init_reload();
+                    function init_reload(){
+                        setInterval( function() {
+                           window.location.reload();
+
+                       },1000);
+                    }
+                }else {
+                 toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-               });
-            });
-        </script>
-        @stop
+           });
+        });
+    </script>
+    @stop

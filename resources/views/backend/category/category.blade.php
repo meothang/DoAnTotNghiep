@@ -94,7 +94,7 @@
                 $("#mb-remove-row").addClass("open");
                 let id = $(this).data('id');
                 $('.delCate').click(function(){
-                 $.ajax({
+                   $.ajax({
                     url: 'backend/category/delete/'+id,
                     data:{
                         id: id,
@@ -105,16 +105,23 @@
                     success:function($result){ 
                       if ($result.success) {
                         toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
-                        location.reload();
+                        $("#mb-remove-row").addClass("hide");
+                        init_reload();
+                        function init_reload(){
+                            setInterval( function() {
+                             window.location.reload();
+
+                         },1000);
+                        }
                     }else {
-                       toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                     toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-             });
+               });
             });
         </script>
         @stop
