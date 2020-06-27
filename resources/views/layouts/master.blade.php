@@ -22,6 +22,7 @@
 	<!--
 		CSS
 		============================================= -->
+		<link rel="stylesheet" href="css/theme-default.css"/>
 		<link rel="stylesheet" href="css/linearicons.css"/>
 		<link rel="stylesheet" href="css/font-awesome.min.css"/>
 		<link rel="stylesheet" href="css/themify-icons.css"/>

@@ -19,38 +19,34 @@
     <!-- START RESPONSIVE TABLES -->
     <div class="row">
         <div class="col-md-12">
-            <form class="form-horizontal">
-                <div class="panel panel-default">
-                    <?php 
+            <div class="panel panel-default">
+                <?php 
                                 $value = '';
                                 if(!$month)
                                     $value = date("m");
                                 else 
                                     $value = $month;
                             ?>
-                    <div class="panel-heading">
-                        <div class="page-head-text">
-                            <h1 class="panel-title"><strong>Báo cáo</strong> theo tháng:
-                                <b>
+                <div class="panel-heading">
+                    <div class="page-head-text">
+                        <h1 class="panel-title"><strong>Báo cáo</strong> theo tháng:
+                            <b>
                                 {{ $value}}/<?php echo date("Y"); ?></b><br>
-                                <span style="font-size: 18px;">Tổng tiền: <b>{{number_format($orders->sum('total'))  }}
-                                        VNĐ
-                                    </b></span>
-                            </h1>
-                        </div>
-
+                            <span style="font-size: 18px;">Tổng tiền: <b>{{number_format($orders->sum('total'))  }}
+                                    VNĐ
+                                </b></span>
+                        </h1>
                     </div>
-                    <div class="panel-body">
-
-                        <form action="{{ route('admin.get.list.month-report-search')}}" method="GET" role="form">
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-8">
-                                        <div class="wrapper-datepicker custom-datepicker">
-                                            <div class="input-group">
-                                                <select name="month" id="" class="form-control select-width" required>
-                                                    <option value="">Chọn tháng</option>
-                                                    <?php
+                </div>
+                <div class="panel-body">
+                    <form action="{{ route('admin.get.list.month-report-search')}}" method="GET" role="form">
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <div class="wrapper-datepicker custom-datepicker">
+                                    <div class="input-group">
+                                        <select name="month" id="" class="form-control select-width" required>
+                                            <option value="">Chọn tháng</option>
+                                            <?php
                                                             for($i = 1; $i < 13; $i++) {
                                                                 if($value == $i) {
                                                                       echo "<option value='$i' selected>Tháng $i</option>";
@@ -63,132 +59,130 @@
                                                             }
                                                         ?>
 
-                                                </select>
-                                                <div class="input-group-btn button-search-day">
-                                                    <button class="btn btn-primary" type="submit">
-                                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                                        Tìm kiếm
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-success btn-block" id="saveAsExcel"><span
-                                                class="fa fa-plus"></span> Xuất excel báo cáo</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </form>
-                        @if (isset($orders))
-                        @if (count($orders))
-
-                        <div class="panel-body panel-body-table">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-actions" id="list-order-month">
-                                    <thead>
-                                        <tr>
-                                            <td colspan="7" align="center" class="border-0">
-                                                <div class="d-none" style="display:none">
-                                                    BÁO CÁO BÁN HÀNG THÁNG {{$value}}/<?php  echo date("Y") ?> :
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <td colspan="7" class="border-0">
-                                                <div class="d-none">
-                                                    <h3  style="padding: 0px;margin: 0;">Danh sách đơn hàng:</h3>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th width="50" class="text-center">ID</th>
-                                            <th width="200">Tên khách hàng</th>
-                                            <th width="200" class="text-center">Email</th>
-                                            <th width="120" class="text-center">Số điện thoại</th>
-                                            <th width="200" class="text-center">Địa chỉ</th>
-                                            <th width="200" class="text-center">Tổng Tiền Trả</th>
-                                            <th width="120" class="text-center">Ngày mua</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach ($orders as $order)
-                                        <tr id="trow_2">
-                                            <td class="text-center">1</td>
-                                            <td><strong>{{ $order -> user -> name}}</strong></td>
-                                            <td class="text-center">{{$order -> emailguest}}</td>
-                                            <td class="text-center">{{$order -> phone}}</td>
-                                            <td class="text-center">{{$order -> address}}</td>
-                                            <td class="text-center">{{number_format($order -> total,0,',','.')}} VND
-                                            </td>
-                                            <td class="text-center">
-                                                @php
-                                                // hiển thị tiếng việt
-                                                \Carbon\Carbon::setLocale('vi');
-                                                echo
-                                                \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
-                                                @endphp
-                                            </td>
-                                            @endforeach
-                                        <tr id="trow_2">
-                                            <td colspan="7" align="right">
-                                                <h3 style="padding: 0px;margin: 0;">Tổng đơn hàng: <b>{{count($orders) }} đơn</b></h3>
-                                            </td>
-                                        </tr>
-                                        <tr id="trow_2">
-                                            <td colspan="7" align="right">
-                                                <h3 style="padding: 0px;margin: 0;">Tổng tiền:
-                                                    <b>{{number_format($orders->sum('total'))  }} VNĐ</b>
-                                                </h3>
-                                            </td>
-                                        </tr>
-                                        </tr>
-                                        @else
-                                        Không có đơn hàng nào !
-                                        @endif()
-                                        @endif
-                                    </tbody>
-                                </table>
-                                <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
-                                    <div class="mb-container">
-                                        <div class="mb-middle">
-                                            <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
-                                                <strong>Xóa Đơn Hàng</strong> ?</div>
-                                            <div class="mb-content">
-                                                <p>Nếu bạn muốn xóa đơn hàng này</p>
-                                                <p>Hãy ấn XÓA</p>
-                                            </div>
-                                            <div class="mb-footer">
-                                                <div class="pull-right">
-                                                    <button class="btn btn-warning btn-lg delOrderApp">Xóa
-                                                    </button>
-                                                    <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
-                                                </div>
-                                            </div>
+                                        </select>
+                                        <div class="input-group-btn button-search-day">
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                                Tìm kiếm
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- END MESSAGE BOX-->
-                                <!-- shop toolbar start -->
-                                <div class="shop-content-bottom">
-                                    <div class="shop-toolbar btn-tlbr">
-                                        <div class="col-md-4 col-sm-4 col-xs-12 text-center">
-                                            <div class="pages">
-                                                {{$orders->links()}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- shop toolbar end -->
-
-
                             </div>
-
+                            <div class="col-md-4">
+                                <button class="btn btn-success btn-block" id="saveAsExcel"><span
+                                        class="fa fa-plus"></span> Xuất excel báo cáo</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+                @if (isset($orders))
+                @if (count($orders))
+                <div class="panel-body panel-body-table">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-actions" id="list-order-month">
+                            <thead>
+                                <tr>
+                                    <td colspan="7" align="center" class="border-0">
+                                        <div class="d-none" style="display:none">
+                                            BÁO CÁO BÁN HÀNG THÁNG {{$value}}/<?php  echo date("Y") ?> :
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td colspan="7" class="border-0">
+                                        <div class="d-none">
+                                            <h3 style="padding: 0px;margin: 0;">Danh sách đơn hàng:</h3>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th width="50" class="text-center">ID</th>
+                                    <th width="200">Tên khách hàng</th>
+                                    <th width="200" class="text-center">Email</th>
+                                    <th width="120" class="text-center">Số điện thoại</th>
+                                    <th width="200" class="text-center">Địa chỉ</th>
+                                    <th width="200" class="text-center">Tổng Tiền Trả</th>
+                                    <th width="120" class="text-center">Ngày mua</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($orders as $order)
+                                <tr id="trow_2">
+                                    <td class="text-center">1</td>
+                                    <td><strong>{{ $order -> user -> name}}</strong></td>
+                                    <td class="text-center">{{$order -> emailguest}}</td>
+                                    <td class="text-center">{{$order -> phone}}</td>
+                                    <td class="text-center">{{$order -> address}}</td>
+                                    <td class="text-center">{{number_format($order -> total,0,',','.')}} VND
+                                    </td>
+                                    <td class="text-center">
+                                        @php
+                                        // hiển thị tiếng việt
+                                        \Carbon\Carbon::setLocale('vi');
+                                        echo
+                                        \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
+                                        @endphp
+                                    </td>
+                                    @endforeach
+                                <tr id="trow_2">
+                                    <td colspan="7" align="right">
+                                        <h3 style="padding: 0px;margin: 0;">Tổng đơn hàng: <b>{{count($orders) }}
+                                                đơn</b></h3>
+                                    </td>
+                                </tr>
+                                <tr id="trow_2">
+                                    <td colspan="7" align="right">
+                                        <h3 style="padding: 0px;margin: 0;">Tổng tiền:
+                                            <b>{{number_format($orders->sum('total'))  }} VNĐ</b>
+                                        </h3>
+                                    </td>
+                                </tr>
+                                </tr>
+                                @else
+                                <h4 style="text-align:center;margin-top:40px">Không có đơn hàng nào !</h4>
+                                @endif()
+                                @endif
+                            </tbody>
+                        </table>
+                        <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">
+                            <div class="mb-container">
+                                <div class="mb-middle">
+                                    <div class="mb-title"><span class="fa fa-times"></span> Xác nhận
+                                        <strong>Xóa Đơn Hàng</strong> ?</div>
+                                    <div class="mb-content">
+                                        <p>Nếu bạn muốn xóa đơn hàng này</p>
+                                        <p>Hãy ấn XÓA</p>
+                                    </div>
+                                    <div class="mb-footer">
+                                        <div class="pull-right">
+                                            <button class="btn btn-warning btn-lg delOrderApp">Xóa
+                                            </button>
+                                            <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END MESSAGE BOX-->
+                        <!-- shop toolbar start -->
+                        <div class="shop-content-bottom">
+                            <div class="shop-toolbar btn-tlbr">
+                                <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                                    <div class="pages">
+                                        {{$orders->links()}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- shop toolbar end -->
+
+
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
     <!-- END RESPONSIVE TABLES -->
