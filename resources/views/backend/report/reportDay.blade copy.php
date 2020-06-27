@@ -39,40 +39,33 @@
                 </div>
                 <div class="panel-body">
                     <form action="{{ route('admin.get.list.day-report-search')}}" method="GET" role="form">
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <div class="col-md-8">
-                                    <div class="wrapper-datepicker custom-datepicker">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <span class="fa fa-calendar"></span>
-                                            </div>
-                                            <input type="text" class="form-control datepicker"
-                                                placeholder="Chọn ngày cần tìm kiếm" value="" name="day" />
-                                            <div class="input-group-btn button-search-day">
-                                                <button class="btn btn-primary" type="submit">
-                                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                                    Tìm kiếm
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-success btn-block" id="saveAsExcel"><span
-                                            class="fa fa-plus"></span> Xuất excel báo cáo</button>
+                        <div class="col-md-6">
+                            <div class="wrapper-datepicker custom-datepicker ">
+                                <label for="datepicker">Chọn ngày:</label><br />
+                                <div class="input-group">
+                                    <span class="input-group-addon add-on">
+                                        <span class="fa fa-calendar"></span></span>
+                                    <input type="text" class="form-control datepicker" value="" name="day">
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="col-md-6 button-search-day">
+                            <button type="submit" class="btn btn-primary height-35">
+                                <i class="fa fa-search"aria-hidden="true"></i> Tìm kiếm
+                            </button>
+                        </div>
                     </form>
+                    
                 </div>
+
                 @if (isset($orders))
                 @if (count($orders))
-                {{-- <div class="d-flex justify-content-end">
-                        <button class="btn btn-success height-35" id="saveAsExcel">
-                            <i class="fa fa-print" aria-hidden="true"></i> Xuất excel báo cáo
-                        </button>
-                    </div> <br /> --}}
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success height-35" id="saveAsExcel">
+                        <i class="fa fa-print" aria-hidden="true"></i> Xuất excel báo cáo
+                    </button>
+                </div> <br />
+
                 <div class="panel-body panel-body-table">
 
                     <div class="table-responsive">
@@ -108,7 +101,7 @@
                                 </tr>
                                 @endforeach
                                 @else
-                                <h4 style="text-align:center">Không có đơn hàng nào !</h4>
+                                <h4 style="text-align:center;margin-top:20px">Không có đơn hàng nào !</h4>
                                 @endif()
                                 @endif
                             </tbody>
@@ -151,6 +144,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
 <!-- END RESPONSIVE TABLES -->
