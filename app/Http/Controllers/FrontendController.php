@@ -22,4 +22,8 @@ class FrontendController extends Controller
 			return response()-> json(['data' => $html] );
 		}
 	}
+	public function lien_he()
+    {
+        return view('frontend.contact');
+    }
 }

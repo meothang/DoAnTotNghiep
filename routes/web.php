@@ -3,6 +3,7 @@
 Auth::routes();
 Route::get('/', 'FrontendController@index')->name('admin.frontend');
 Route::get('/home', 'FrontendController@index')->name('admin.frontend');
+Route::get('/lien-he', 'FrontendController@lien_he')->name('get.contact');
 
 
 
