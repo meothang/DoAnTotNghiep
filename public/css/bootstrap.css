@@ -4940,10 +4940,19 @@ input[type=submit].btn-block {
 }
 
 .page-item.active .page-link {
+    text-align: center;
     z-index: 1;
+    align-items: center;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    background-color: #33414e;
+    border-color: #33414e;
+    /* z-index: 1;
     color: #fff;
     background-color: #007bff;
-    border-color: #007bff
+    border-color: #007bff */
 }
 
 .page-item.disabled .page-link {
@@ -4973,7 +4982,13 @@ input[type=submit].btn-block {
 .pagination-sm .page-link {
     padding: .25rem .5rem;
     font-size: .875rem;
-    line-height: 1.5
+    line-height: 1.5;
+    text-align: center;
+    z-index: 1;
+    align-items: center;
+    display: grid;
+    width: 40px;
+    height: 40px;
 }
 
 .pagination-sm .page-item:first-child .page-link {

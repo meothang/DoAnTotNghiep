@@ -52,12 +52,95 @@
 						<ul>
 							<?php $cats = DB::table('categories')->orderby('name', 'ASC')->get();?>
 							@foreach($cats as $cat)
-							<li class="filter-list"><input class="pixel-radio try" type="radio" id="brandId" value="{{$cat->id}}">
+							<li class="filter-list"><input class="pixel-radio try" type="radio" id="brandId"
+									value="{{$cat->id}}">
 								{{ucwords($cat->name)}}<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})</span>
 							</li>
 							@endforeach
 						</ul>
-						
+
+					</div>
+					<div class="common-filter  mt-50">
+						<div class="head">Cpu</div>
+						<form action="#">
+							<ul>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei3"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei3">
+										Intel Core i3<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei5"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei5">
+										Intel Core i5<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei7"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei7">
+										Intel Core i7<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei9"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei9">
+										Intel Core i9<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="intel-xeon"
+										name="color"><label style="font-weight:normal;margin-left: 5px;"
+										for="intel-xeon"> Intel Xeon<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-3"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-3">
+										AMD Ryzen 3<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-5"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-5">
+										AMD Ryzen 5<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-7"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-7">
+										AMD Ryzen 7<span>(29)</span></label></li>
+							</ul>
+						</form>
+					</div>
+					<div class="common-filter  mt-50">
+						<div class="head">Ram</div>
+						<form action="#">
+							<ul>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ram4g"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram4g">
+										Intel Core i3<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ram8g"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram8g">
+										Intel Core i5<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ram16gb"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram16gb">
+										Intel Core i7<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ram32gb"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram32gb">
+										Intel Core i9<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id=">ram32gb"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for=">ram32gb">
+										Intel Xeon<span>(29)</span></label></li>
+						</form>
+					</div>
+					<div class="common-filter  mt-50">
+						<div class="head">Ổ cứng</div>
+						<form action="#">
+							<ul>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ssd"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ssd"> Chỉ
+										có SSD<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="hdd"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="hdd"> Chỉ
+										có HDD<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="ssdhdd"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ssdhdd">
+										SSD + HDD<span>(29)</span></label></li>
+						</form>
+					</div>
+					<div class="common-filter  mt-50">
+						<div class="head">VGA - Card màn hình</div>
+						<form action="#">
+							<ul>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="vganvidia"
+										name="color"><label style="font-weight:normal;margin-left: 5px;"
+										for="vganvidia"> VGA NVIDIA<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="vgaamd"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="vgaamd">
+										VGA AMD<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="vgaonboard"
+										name="color"><label style="font-weight:normal;margin-left: 5px;"
+										for="vgaonboard"> VGA Onboard<span>(29)</span></label></li>
+						</form>
 					</div>
 					<div class="common-filter">
 						<div class="head">Khoảng giá</div>
@@ -119,7 +202,8 @@
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
 								<img class="img-fluid"
-									src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}" alt="">
+									src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}"
+									alt="">
 								<div class="product-details">
 									<a style="overflow: hidden;
 													text-overflow: ellipsis;
@@ -130,12 +214,13 @@
 													-webkit-box-orient: vertical;"
 										href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
 									<div class="price">
-										<h6>Giá: <span style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}}
+										<h6>Giá: <span
+												style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}}
 												VNĐ</span></h6>
 										<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
 									</div>
 									<div class="prd-bottom">
-			
+
 										<a href="{{ route('add.cart', $proAll -> id) }}" class="social-info">
 											<span class="ti-bag"></span>
 											<p class="hover-text">Thêm vào<br> giỏ hàng</p>
@@ -153,17 +238,17 @@
 						{{-- phân trang --}}
 						<!-- Start Filter Bar -->
 						{{-- <div class="filter-bar d-flex flex-wrap align-items-center"> --}}
-							{{-- <div class="sorting mr-auto">
+						{{-- <div class="sorting mr-auto">
 								<select>
 									<option value="1">Show 12</option>
 									<option value="1">Show 12</option>
 									<option value="1">Show 12</option>
 								</select>
 							</div> --}}
-							{{-- <div class="pagination">
+						{{-- <div class="pagination">
 								{{$product->links()}}
-							</div> --}}
-							{{-- <div class="pagination">
+					</div> --}}
+					{{-- <div class="pagination">
 								<a href="">
 									<i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
 								<a href="#" class="active">1</a>
@@ -173,33 +258,33 @@
 								<a href="#">6</a>
 								<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 							</div> --}}
-						{{-- </div> --}}
-					</div>
-				</section>
-				<!-- End Filter Bar -->
+					{{-- </div> --}}
 			</div>
+			</section>
+			<!-- End Filter Bar -->
 		</div>
-		<div class="page-content-wrap">
-			<div class="row">
-				<div class="col-md-12">
-					<ul class="pagination pagination-sm pull-right push-down-10 push-up-10">
-						<li>{{$product->links()}}</li>
-					</ul>
-					<ul class="pagination pagination-sm pull-right push-down-20">
-						<li class="disabled"><a href="#">«</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>                                    
-						<li><a href="#">»</a></li>
-					</ul>
-				</div>
+	</div>
+	<div class="page-content-wrap">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="pagination pagination-sm pull-right push-down-10 push-up-10">
+					<li>{{$product->links()}}</li>
+				</ul>
+				{{-- <ul class="pagination pagination-sm pull-right push-down-20">
+					<li class="disabled"><a href="#">«</a></li>
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">»</a></li>
+				</ul> --}}
 			</div>
 		</div>
 	</div>
-		<!-- End Best Seller -->
+</div>
+<!-- End Best Seller -->
 
-	</div>
+</div>
 </div>
 </div>
 
