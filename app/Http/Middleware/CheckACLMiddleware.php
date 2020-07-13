@@ -44,7 +44,7 @@ class CheckACLMiddleware
             // dd($listRoleOfUser);
             return $next($request);
         }
-        return redirect()->back()->with(['flash_level' => 'danger', 'flash_message' => 'Bạn không có quyền vào trang này! Cảm Ơn']);;;
+        return redirect()->back()->with(['flash_level' => 'danger', 'flash_message' => 'Bạn không có quyền vào trang này!']);;;
 
         
     }
