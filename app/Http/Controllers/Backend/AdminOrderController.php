@@ -14,7 +14,7 @@ class AdminOrderController extends Controller
     // danh sách sản phẩm
     public function getOrderApprove()
     {
-        $orders = Order::where('status',1)->nate(4);
+        $orders = Order::where('status',1)->paginate(4);
         return view('backend.order.orderApprove',compact('orders'));
         // return view('backend.order.orderApprove');
     }

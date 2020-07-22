@@ -167,6 +167,76 @@
 				}); 
 
 
+				$('.ram').click(function(){
+					// event.preventDefault();
+					var ram = [];
+
+					$('.ram').each(function(){
+						if($(this).is(":checked")){
+
+							ram.push($(this).val());
+						}
+					});
+					Finalram  = ram.toString();
+					$.ajax({
+						type: 'get',
+						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
+						url: 'san-pham-type',
+						data: "ram=" + Finalram,
+						success: function (response) {
+							console.log(response);
+							$('#updateDiv').html("").append(response.data);
+						}
+					});
+				}); 
+
+
+				$('.hard').click(function(){
+					// event.preventDefault();
+					var hard = [];
+
+					$('.hard').each(function(){
+						if($(this).is(":checked")){
+
+							hard.push($(this).val());
+						}
+					});
+					Finalhard  = hard.toString();
+					$.ajax({
+						type: 'get',
+						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
+						url: 'san-pham-type',
+						data: "hard=" + Finalhard,
+						success: function (response) {
+							console.log(response);
+							$('#updateDiv').html("").append(response.data);
+						}
+					});
+				}); 
+
+				$('.card').click(function(){
+					// event.preventDefault();
+					var card = [];
+
+					$('.card').each(function(){
+						if($(this).is(":checked")){
+
+							card.push($(this).val());
+						}
+					});
+					Finalcard  = card.toString();
+					$.ajax({
+						type: 'get',
+						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
+						url: 'san-pham-type',
+						data: "card=" + Finalcard,
+						success: function (response) {
+							console.log(response);
+							$('#updateDiv').html("").append(response.data);
+						}
+					});
+				}); 
+
 				$('.filter_type').click(function(){
 					var type = [];
 					$('.filter_type').each(function(){
@@ -205,18 +275,18 @@
 				})
 
 			});
-			function addCommas(nStr){
-				nStr += '';
-				x = nStr.split('.');
-				x1 = x[0];
-				x2 = x.length > 1 ? '.' + x[1] : '';
-				var rgx = /(\d+)(\d{3})/;
-				while (rgx.test(x1)) {
-					x1 = x1.replace(rgx, '$1' + ',' + '$2');
-				}
-				return x1 + x2;
-			}
-		</script>
-	</body>
+function addCommas(nStr){
+	nStr += '';
+	x = nStr.split('.');
+	x1 = x[0];
+	x2 = x.length > 1 ? '.' + x[1] : '';
+	var rgx = /(\d+)(\d{3})/;
+	while (rgx.test(x1)) {
+		x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	}
+	return x1 + x2;
+}
+</script>
+</body>
 
-	</html>
+</html>

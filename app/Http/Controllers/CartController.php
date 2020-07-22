@@ -49,9 +49,9 @@ class CartController extends Controller
       // kiểm tra số lượng sản phẩm
         if ($number -> pro_amount > 0) {
           \Cart::update($id, $request -> qty);
-         return response()-> json(['result' => 'Đã Sửa Thành Công '.$number -> name]);
+          return response()-> json(['result' => 'Đã Sửa Thành Công '.$number -> name]);
         }
-       return response()-> json(['error' => 'Sửa không thành công. Tạm hết hàng']);
+        return response()-> json(['error' => 'Sửa không thành công. Tạm hết hàng']);
         
       } 
       return response()-> json(['error' => 'Sửa không thành công. Tạm hết hàng']);
@@ -117,15 +117,20 @@ class CartController extends Controller
         $user_id = $request -> user_id;
         $orderId = $request -> order_id;
         $checkUser = Order::where(['user_id' => $user_id, 'id' => $orderId])-> first();
-
-        if (!$checkUser) {
-          return redirect()->route('admin.frontend')->with(['flash_level' => 'danger', 'flash_message' => 'Xác Nhận Giao Hàng Không Thành Công. Cảm Ơn Bạn.']);
-        }
+        if ($checkUser -> status == 0) {
+         return redirect()->route('admin.frontend')->with(['flash_level' => 'danger', 'flash_message' => 'Đơn Hàng Của Bạn Đang Được Duyệt. Vui Lòng Đợi Rồi Xác Nhận Lại.']);
+       }
+       elseif (!$checkUser) {
+        return redirect()->route('admin.frontend')->with(['flash_level' => 'danger', 'flash_message' => 'Xác Nhận Giao Hàng Không Thành Công. Cảm Ơn Bạn.']);
+      }
+      else {
         $checkUser -> receive = 1;
         $checkUser ->save();
         return redirect()->route('admin.frontend')->with(['flash_level' => 'success', 'flash_message' => 'Bạn Đã Xác Nhận Giao Hàng Thành Công. Cảm Ơn Bạn.']);
       }
+      
     }
-
-
   }
+
+
+}

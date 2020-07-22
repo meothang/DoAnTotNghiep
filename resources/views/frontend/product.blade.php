@@ -53,14 +53,14 @@
 							<?php $cats = DB::table('categories')->orderby('name', 'ASC')->get();?>
 							@foreach($cats as $cat)
 							<li class="filter-list"><input class="pixel-radio try" type="radio" id="brandId"
-									value="{{$cat->id}}">
+									value="{{$cat->id}}" name="color">
 								{{ucwords($cat->name)}}<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})</span>
 							</li>
 							@endforeach
 						</ul>
 
 					</div>
-					<div class="common-filter  mt-50">
+				{{-- 	<div class="common-filter  mt-50">
 						<div class="head">Cpu</div>
 						<form action="#">
 							<ul>
@@ -90,56 +90,56 @@
 										AMD Ryzen 7<span>(29)</span></label></li>
 							</ul>
 						</form>
-					</div>
+					</div> --}}
 					<div class="common-filter  mt-50">
 						<div class="head">Ram</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ram4g"
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i3" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram4g">
-										Intel Core i3<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ram8g"
+										Intel Core i3</label></li>
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i5" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram8g">
-										Intel Core i5<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ram16gb"
+										Intel Core i5</label></li>
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i7" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram16gb">
-										Intel Core i7<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ram32gb"
+										Intel Core i7</label></li>
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i9" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram32gb">
-										Intel Core i9<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id=">ram32gb"
+										Intel Core i9</label></li>
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="xeon" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for=">ram32gb">
-										Intel Xeon<span>(29)</span></label></li>
-						</form>
+										Intel Xeon</label></li>
+						</form> 
 					</div>
 					<div class="common-filter  mt-50">
 						<div class="head">Ổ cứng</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ssd"
+								<li class="filter-list"><input class="pixel-radio hard" type="radio" value="ssd" id="hard"
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ssd"> Chỉ
-										có SSD<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="hdd"
+										có SSD</label></li>
+								<li class="filter-list"><input class="pixel-radio hard" type="radio" value="hdd" id="hard"
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="hdd"> Chỉ
-										có HDD<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ssdhdd"
+										có HDD</label></li>
+								<li class="filter-list"><input class="pixel-radio hard" type="radio" value="ssdhdd" id="hard"
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ssdhdd">
-										SSD + HDD<span>(29)</span></label></li>
+										SSD + HDD</label></li>
 						</form>
 					</div>
 					<div class="common-filter  mt-50">
 						<div class="head">VGA - Card màn hình</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="vganvidia"
+								<li class="filter-list"><input class="pixel-radio card" type="radio" value="nvidia" id="nvidia"
 										name="color"><label style="font-weight:normal;margin-left: 5px;"
-										for="vganvidia"> VGA NVIDIA<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="vgaamd"
+										for="vganvidia"> VGA NVIDIA</label></li>
+								<li class="filter-list"><input class="pixel-radio card" type="radio" value="amd" id="amd"
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="vgaamd">
-										VGA AMD<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="vgaonboard"
+										VGA AMD</label></li>
+								<li class="filter-list"><input class="pixel-radio card" type="radio" value="onboard" id="onboard"
 										name="color"><label style="font-weight:normal;margin-left: 5px;"
-										for="vgaonboard"> VGA Onboard<span>(29)</span></label></li>
+										for="vgaonboard"> VGA Onboard</label></li>
 						</form>
 					</div>
 					<div class="common-filter">
