@@ -45,7 +45,7 @@ class AdminProductController extends Controllers
         $product= new Product();
         $product->pro_name = $req->pro_name;
         $product->pro_type = $req->pro_type;
-
+        $product->pro_sale = $req->pro_sale;
         $product->pro_slug =Str::slug($req->pro_name,'-');
         $product->pro_content= $req->pro_content;
         $product->pro_price  = $req->pro_price;
@@ -113,6 +113,7 @@ class AdminProductController extends Controllers
         $product= Product::find($id);
         $product->pro_name = $req->pro_name;
         $product->pro_type = $req->pro_type;
+        $product->pro_sale = $req->pro_sale;
         $product->pro_slug =Str::slug($req->pro_name,'-');
         $product->pro_content= $req->pro_content;
         $product->pro_price  = $req->pro_price;

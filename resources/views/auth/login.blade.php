@@ -59,13 +59,13 @@
                             <label for="email" class=" col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
                     </div> --}}
                     <div class="col-md-12">
-                        <input id="email" placeholder="Tên đăng nhập" type="email"
-                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
-                            value="{{ old('email') }}" required autofocus>
+                        <input placeholder="Tên đăng nhập" type="name"
+                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
+                            value="{{ old('name') }}" required>
 
-                        @if ($errors->has('email'))
+                        @if ($errors->has('name'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $errors->first('name') }}</strong>
                         </span>
                         @endif
                     </div>
