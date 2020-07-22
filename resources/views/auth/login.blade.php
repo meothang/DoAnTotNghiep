@@ -49,61 +49,68 @@
         <div class="login-box animated fadeInDown">
             <div class="login-logo"></div>
             <div class="login-body">
-                <div class="login-title" style="text-align:center"><strong>Xin chào</strong>, mời đăng nhập</div>
-                <form method="POST" class="form-horizontal" action="{{ route('login') }}"
-                    aria-label="{{ __('Login') }}">
+                <div class="login-title" style="text-align:center"><strong>Xin chào</strong>, Mời Đăng Nhập</div>
+                {{-- hiện thị lỗi sửa --}}
+                @if (session('thongbao'))
+                <div class="alert alert-danger">
+                    <ul>
+                        <li>{!!session('thongbao')!!}</li>
+                    </ul>
+                </div>
+                @endif
+                <form method="POST" class="form-horizontal" action="">
                     @csrf
                     <div class="form-group">
                         {{-- <div class="form-group row">
                             <div class="col-md-4">
                             <label for="email" class=" col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                    </div> --}}
-                    <div class="col-md-12">
-                        <input placeholder="Tên đăng nhập" type="name"
+                        </div> --}}
+                        <div class="col-md-12">
+                            <input placeholder="Tên đăng nhập" type="name"
                             class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
                             value="{{ old('name') }}" required>
 
-                        @if ($errors->has('name'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                        @endif
+                            @if ($errors->has('name'))
+                            <span class="error-text">
+                                {{ $errors->first('name') }}
+                            </span>
+                            @endif
+                        </div>
                     </div>
-            </div>
-            <div class="form-group">
+                    <div class="form-group">
                 {{-- <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                --}}
+                            --}}
 
-                <div class="col-md-12">
-                    <input id="password" type="password" placeholder="Mật khẩu"
-                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
-                        required>
+                            <div class="col-md-12">
+                                <input id="password" type="password" placeholder="Mật khẩu"
+                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
+                                required>
 
-                    @if ($errors->has('password'))
-                    <span class="invalid-feedback" style="color:#ec971f" role="alert">
-                        <strong>{{ $errors->first('password') }}</strong>
-                    </span>
-                    @endif
+                                @if ($errors->has('password'))
+                                <span class="invalid-feedback" style="color:#ec971f" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <a class="btn btn-link" style="text-align:right" href="{{ route('password.request') }}">
+                                    {{ __('Quên mật khẩu?') }}
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn btn-warning btn-block">
+                                    {{ __('Đăng nhập') }}
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
-            </div>
-
-
-            <div class="form-group">
-                <div class="col-md-6">
-                    <a class="btn btn-link" style="text-align:right" href="{{ route('password.request') }}">
-                        {{ __('Quên mật khẩu?') }}
-                    </a>
-                </div>
-                <div class="col-md-6">
-                    <button type="submit" class="btn btn btn-warning btn-block">
-                        {{ __('Đăng nhập') }}
-                    </button>
-                </div>
-            </div>
-
-            </form>
-        </div>
         {{-- <div class="login-footer">
                     <div class="pull-left">
                         &copy; 2015 AppName
@@ -114,25 +121,25 @@
                         <a href="#">Contact Us</a>
                     </div>
                 </div> --}}
-    </div>
+            </div>
 
-    </div>
+        </div>
 
-    <!-- COUNTERS // NOT INCLUDED IN TEMPLATE -->
-    <!-- GOOGLE -->
-    <script type="text/javascript">
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        <!-- COUNTERS // NOT INCLUDED IN TEMPLATE -->
+        <!-- GOOGLE -->
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
               (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
           })(window,document,'script','../../../../www.google-analytics.com/analytics.js','ga');
 
           ga('create', 'UA-36783416-1', 'aqvatarius.com');
           ga('send', 'pageview');
-    </script>
-    <!-- END GOOGLE -->
+      </script>
+      <!-- END GOOGLE -->
 
-    <!-- YANDEX -->
-    <script type="text/javascript">
+      <!-- YANDEX -->
+      <script type="text/javascript">
         (function (d, w, c) {
             (w[c] = w[c] || []).push(function() {
                 try {

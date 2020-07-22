@@ -237,6 +237,30 @@
 					});
 				}); 
 
+				$('.cpu').click(function(){
+					// event.preventDefault();
+					var cpu = [];
+
+					$('.cpu').each(function(){
+						if($(this).is(":checked")){
+
+							cpu.push($(this).val());
+						}
+					});
+					Finalcpu  = cpu.toString();
+					$.ajax({
+						type: 'get',
+						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
+						url: 'san-pham-type',
+						data: "cpu=" + Finalcpu,
+						success: function (response) {
+							console.log(response);
+							$('#updateDiv').html("").append(response.data);
+						}
+					});
+				}); 
+
+
 				$('.filter_type').click(function(){
 					var type = [];
 					$('.filter_type').each(function(){

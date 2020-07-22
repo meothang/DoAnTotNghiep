@@ -64,28 +64,28 @@
 				<div class="head">Cpu</div>
 				<form action="#">
 					<ul>
-						<li class="filter-list"><input class="pixel-radio" type="radio" id="i3"
+						<li class="filter-list"><input class="pixel-radio cpu" type="radio" id="i3" value="i3" 
 							name="color"><label style="font-weight:normal;margin-left: 5px;" for="i3">
 								Intel Core i3<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="i5"
+								<li class="filter-list"><input class="pixel-radio cpu" type="radio" id="i5" value="i5" 
 									name="color"><label style="font-weight:normal;margin-left: 5px;" for="i5">
 										Intel Core i5<span>(29)</span></label></li>
-										<li class="filter-list"><input class="pixel-radio" type="radio" id="i7"
+										<li class="filter-list"><input class="pixel-radio cpu" type="radio" id="i7" value="i7" 
 											name="color"><label style="font-weight:normal;margin-left: 5px;" for="i7">
 												Intel Core i7<span>(29)</span></label></li>
-												<li class="filter-list"><input class="pixel-radio" type="radio" id="i9"
+												<li class="filter-list"><input class="pixel-radio cpu" type="radio" id="i9" value="i9" 
 													name="color"><label style="font-weight:normal;margin-left: 5px;" for="i9">
 														Intel Core i9<span>(29)</span></label></li>
-														<li class="filter-list"><input class="pixel-radio" type="radio" id="xeon"
+														<li class="filter-list"><input class="pixel-radio cpu" type="radio" id="xeon" value="xeon" 
 															name="color"><label style="font-weight:normal;margin-left: 5px;"
 															for="xeon"> Intel Xeon<span>(29)</span></label></li>
-															<li class="filter-list"><input class="pixel-radio" type="radio" id="r3"
+															<li class="filter-list"><input class="pixel-radio cpu" type="radio" id="r3" value="r3" 
 																name="color"><label style="font-weight:normal;margin-left: 5px;" for="r3">
 																	AMD Ryzen 3<span>(29)</span></label></li>
-																	<li class="filter-list"><input class="pixel-radio" type="radio" id="r5"
+																	<li class="filter-list"><input class="pixel-radio cpu" type="radio" id="r5" value="r5" 
 																		name="color"><label style="font-weight:normal;margin-left: 5px;" for="r5">
 																			AMD Ryzen 5<span>(29)</span></label></li>
-																			<li class="filter-list"><input class="pixel-radio" type="radio" id="r7"
+																			<li class="filter-list"><input class="pixel-radio cpu" type="radio" id="r7" value="r7" 
 																				name="color"><label style="font-weight:normal;margin-left: 5px;" for="r7">
 																					AMD Ryzen 7<span>(29)</span></label></li>
 																				</ul>
@@ -194,56 +194,59 @@
 					<div class="row" id="updateDiv">
 						<!-- single product -->
 						@if (count($product) == 0)
-						<div class="col-lg-4 col-md-6">
-							Sorry, Products Not Found!
-						</div>
-						@else
-						@foreach ($product as $key => $proAll)
-						<div class="col-lg-4 col-md-6">
-							<div class="single-product">
-								@if ($proAll -> pro_amount == 0)
-								<span style="position: absolute; background: #e91e63; color: white; border-radius: 4px; font-size: 10px; padding: 5px 10px;z-index: 100">Tạm Hết Hàng</span>
-								@endif
-								@if  ( $proAll -> pro_sale > 0 && $proAll -> pro_amount > 0)
-								<span class="sale_item" style="position: absolute; font-size: 11px; background-image: linear-gradient(-250deg,#ec1f1f 0%,#ff9c00 100%); border-radius: 10px; padding: 5px 10px; color: white; z-index: 100">Giảm: {{$proAll -> pro_sale}}%</span>
-								@endif
-								<img class="img-fluid"
-								src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}"
-								alt="">
-								<div class="product-details">
-									<a style="overflow: hidden;
-									text-overflow: ellipsis;
-									line-height: 25px;
-									-webkit-line-clamp: 2;
-									height: 40px;
-									display: -webkit-box;
-									-webkit-box-orient: vertical;"
-									href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
-									<div class="price">
-										<h6>Giá: <span
-											style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}}
-										VNĐ</span></h6>
-										<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
-									</div>
-									<div class="prd-bottom">
+						<div style="    color: #000000;
+						margin-left: 185px;
+						margin-top: 20px;
+						font-size: 22px;">
+						Xin Lỗi. Không Tìm Thấy Bất Kỳ Sản Phẩm Nào. 
+					</div>
+					@else
+					@foreach ($product as $key => $proAll)
+					<div class="col-lg-4 col-md-6">
+						<div class="single-product">
+							@if ($proAll -> pro_amount == 0)
+							<span style="position: absolute; background: #e91e63; color: white; border-radius: 4px; font-size: 10px; padding: 5px 10px;z-index: 100">Tạm Hết Hàng</span>
+							@endif
+							@if  ( $proAll -> pro_sale > 0 && $proAll -> pro_amount > 0)
+							<span class="sale_item" style="position: absolute; font-size: 11px; background-image: linear-gradient(-250deg,#ec1f1f 0%,#ff9c00 100%); border-radius: 10px; padding: 5px 10px; color: white; z-index: 100">Giảm: {{$proAll -> pro_sale}}%</span>
+							@endif
+							<img class="img-fluid"
+							src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}"
+							alt="">
+							<div class="product-details">
+								<a style="overflow: hidden;
+								text-overflow: ellipsis;
+								line-height: 25px;
+								-webkit-line-clamp: 2;
+								height: 40px;
+								display: -webkit-box;
+								-webkit-box-orient: vertical;"
+								href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
+								<div class="price">
+									<h6>Giá: <span
+										style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}}
+									VNĐ</span></h6>
+									<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
+								</div>
+								<div class="prd-bottom">
 
-										<a href="{{ route('add.cart', $proAll -> id) }}" class="social-info">
-											<span class="ti-bag"></span>
-											<p class="hover-text">Thêm vào<br> giỏ hàng</p>
-										</a>
-										<a href="" class="social-info">
-											<span class="lnr lnr-heart"></span>
-											<p class="hover-text">Thêm vào<br>yêu thích</p>
-										</a>
-									</div>
+									<a href="{{ route('add.cart', $proAll -> id) }}" class="social-info">
+										<span class="ti-bag"></span>
+										<p class="hover-text">Thêm vào<br> giỏ hàng</p>
+									</a>
+									<a href="" class="social-info">
+										<span class="lnr lnr-heart"></span>
+										<p class="hover-text">Thêm vào<br>yêu thích</p>
+									</a>
 								</div>
 							</div>
 						</div>
-						@endforeach
-						@endif
-						{{-- phân trang --}}
-						<!-- Start Filter Bar -->
-						{{-- <div class="filter-bar d-flex flex-wrap align-items-center"> --}}
+					</div>
+					@endforeach
+					@endif
+					{{-- phân trang --}}
+					<!-- Start Filter Bar -->
+					{{-- <div class="filter-bar d-flex flex-wrap align-items-center"> --}}
 						{{-- <div class="sorting mr-auto">
 								<select>
 									<option value="1">Show 12</option>

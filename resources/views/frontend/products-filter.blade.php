@@ -1,6 +1,11 @@
 
-@if (empty($product))
-sorry, products not found
+@if (count($product) == 0)
+<div style=" color: #000000;
+    margin-left: 185px;
+    margin-top: 20px;
+    font-size: 22px;">
+	Xin Lỗi. Không Tìm Thấy Bất Kỳ Sản Phẩm Nào. 
+</div>
 @else
 @foreach ($product as $key => $proAll)
 <div class="col-lg-4 col-md-6">

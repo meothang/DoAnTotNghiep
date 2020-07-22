@@ -86,6 +86,13 @@ class ProductController extends Controller
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()->json(['data' => $html]); //return to ajax
         }
+         if ($request->ajax() && isset($request->cpu)) {
+            $cpu = $request->cpu; //filter_type
+            $product = Product::where('pro_detail', 'like', '%' . $request->cpu . '%')->paginate(9);
+            $html = view('frontend.products-filter', compact('product'))->render();
+            return response()->json(['data' => $html]); //return to ajax
+        }
+
 
         if ($request->ajax() && isset($request->filter_type)) {
             $filter_type = $request->filter_type; //filter_type

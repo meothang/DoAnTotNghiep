@@ -72,6 +72,9 @@
         <li><a href="{{ route('get.backend.list.employee') }}"><span class="fa fa-user"></span>Quản lý quản trị viên</a></li>
       </ul>
     </li>
+    <li class=" {{\Request::route()->getName() == 'admin.frontend' ? 'active' : ''}}">
+      <a href="{{route('admin.frontend')}}"><span class="fa fa-home"></span> <span class="xn-text">Trở Về WebSite</span></a>                        
+    </li> 
   </ul>
   <!-- END X-NAVIGATION -->
 </div>
