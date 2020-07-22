@@ -60,110 +60,109 @@
 				</ul>
 
 			</div>
-				{{-- 	<div class="common-filter  mt-50">
-						<div class="head">Cpu</div>
-						<form action="#">
-							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei3"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei3">
-										Intel Core i3<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei5"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei5">
+			<div class="common-filter  mt-50">
+				<div class="head">Cpu</div>
+				<form action="#">
+					<ul>
+						<li class="filter-list"><input class="pixel-radio" type="radio" id="i3"
+							name="color"><label style="font-weight:normal;margin-left: 5px;" for="i3">
+								Intel Core i3<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="i5"
+									name="color"><label style="font-weight:normal;margin-left: 5px;" for="i5">
 										Intel Core i5<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei7"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei7">
-										Intel Core i7<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei9"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei9">
-										Intel Core i9<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="intel-xeon"
-										name="color"><label style="font-weight:normal;margin-left: 5px;"
-										for="intel-xeon"> Intel Xeon<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-3"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-3">
-										AMD Ryzen 3<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-5"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-5">
-										AMD Ryzen 5<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-7"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-7">
-										AMD Ryzen 7<span>(29)</span></label></li>
-							</ul>
-						</form>
-					</div> --}}
-					<div class="common-filter  mt-50">
-						<div class="head">Ram</div>
-						<form action="#">
-							<ul>
-								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i3" 
-									name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram4g">
-									Intel Core i3</label></li>
-									<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i5" 
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram8g">
-										Intel Core i5</label></li>
-										<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i7" 
-											name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram16gb">
-											Intel Core i7</label></li>
-											<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i9" 
-												name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram32gb">
-												Intel Core i9</label></li>
-												<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="xeon" 
-													name="color"><label style="font-weight:normal;margin-left: 5px;" for=">ram32gb">
-													Intel Xeon</label></li>
-												</form> 
-											</div>
-											<div class="common-filter  mt-50">
-												<div class="head">Ổ cứng</div>
-												<form action="#">
-													<ul>
-														<li class="filter-list"><input class="pixel-radio hard" type="radio" value="ssd" id="hard"
-															name="color"><label style="font-weight:normal;margin-left: 5px;" for="ssd"> Chỉ
-															có SSD</label></li>
-															<li class="filter-list"><input class="pixel-radio hard" type="radio" value="hdd" id="hard"
-																name="color"><label style="font-weight:normal;margin-left: 5px;" for="hdd"> Chỉ
-																có HDD</label></li>
-																<li class="filter-list"><input class="pixel-radio hard" type="radio" value="ssdhdd" id="hard"
-																	name="color"><label style="font-weight:normal;margin-left: 5px;" for="ssdhdd">
-																	SSD + HDD</label></li>
-																</form>
-															</div>
-															<div class="common-filter  mt-50">
-																<div class="head">VGA - Card màn hình</div>
-																<form action="#">
-																	<ul>
-																		<li class="filter-list"><input class="pixel-radio card" type="radio" value="nvidia" id="nvidia"
-																			name="color"><label style="font-weight:normal;margin-left: 5px;"
-																			for="vganvidia"> VGA NVIDIA</label></li>
-																			<li class="filter-list"><input class="pixel-radio card" type="radio" value="amd" id="amd"
-																				name="color"><label style="font-weight:normal;margin-left: 5px;" for="vgaamd">
-																				VGA AMD</label></li>
-																				<li class="filter-list"><input class="pixel-radio card" type="radio" value="onboard" id="onboard"
-																					name="color"><label style="font-weight:normal;margin-left: 5px;"
-																					for="vgaonboard"> VGA Onboard</label></li>
-																				</form>
-																			</div>
-																			<div class="common-filter">
-																				<div class="head">Khoảng giá</div>
-																				<div class="list-group">
-																					<div class="price-range-area">
-																						<div id="slider-range"></div>
-																						<div class="value-wrapper d-flex">
-																							<div class="price">Giá:</div>
-																							<span><input size="2" type="text" id="amount_min" name="start_price" value="15"
-																								style="border:0px; font-weight: bold; color:#15161D; width: 80px;"
-																								readonly="readonly" /> VNĐ</span>
-																								<div id="lower-value"></div>
-																								<div class="to">đến</div>
-																								<span><input size="2" type="text" id="amount_max" name="end_price" value="65"
-																									style="border:0px; font-weight: bold; color:#15161D; width: 80px"
-																									readonly="readonly" /> VNĐ</span>
-																									<div id="upper-value"></div>
-																								</div>
+										<li class="filter-list"><input class="pixel-radio" type="radio" id="i7"
+											name="color"><label style="font-weight:normal;margin-left: 5px;" for="i7">
+												Intel Core i7<span>(29)</span></label></li>
+												<li class="filter-list"><input class="pixel-radio" type="radio" id="i9"
+													name="color"><label style="font-weight:normal;margin-left: 5px;" for="i9">
+														Intel Core i9<span>(29)</span></label></li>
+														<li class="filter-list"><input class="pixel-radio" type="radio" id="xeon"
+															name="color"><label style="font-weight:normal;margin-left: 5px;"
+															for="xeon"> Intel Xeon<span>(29)</span></label></li>
+															<li class="filter-list"><input class="pixel-radio" type="radio" id="r3"
+																name="color"><label style="font-weight:normal;margin-left: 5px;" for="r3">
+																	AMD Ryzen 3<span>(29)</span></label></li>
+																	<li class="filter-list"><input class="pixel-radio" type="radio" id="r5"
+																		name="color"><label style="font-weight:normal;margin-left: 5px;" for="r5">
+																			AMD Ryzen 5<span>(29)</span></label></li>
+																			<li class="filter-list"><input class="pixel-radio" type="radio" id="r7"
+																				name="color"><label style="font-weight:normal;margin-left: 5px;" for="r7">
+																					AMD Ryzen 7<span>(29)</span></label></li>
+																				</ul>
+																			</form>
+																		</div>
+																		<div class="common-filter  mt-50">
+																			<div class="head">Ram</div>
+																			<form action="#">
+																				<ul>
+																					<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="4gb" 
+																						name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram4g">
+																						4GB</label></li>
+																						<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="8gb" 
+																							name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram8g">
+																							8GB</label></li>
+																							<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="16gb" 
+																								name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram16gb">
+																								16GB</label></li>
+																								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="32gb" 
+																									name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram32gb">
+																									32GB</label></li>
+																									<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="m32gb" 
+																										name="color"><label style="font-weight:normal;margin-left: 5px;" for="mram32gb">
+																											>32GB</label></li>
+																										</form> 
+																									</div>
+																									<div class="common-filter  mt-50">
+																										<div class="head">Ổ cứng</div>
+																										<form action="#">
+																											<ul>
+																												<li class="filter-list"><input class="pixel-radio hard" type="radio" value="ssd" id="hard"
+																													name="color"><label style="font-weight:normal;margin-left: 5px;" for="ssd"> Chỉ
+																													có SSD</label></li>
+																													<li class="filter-list"><input class="pixel-radio hard" type="radio" value="hdd" id="hard"
+																														name="color"><label style="font-weight:normal;margin-left: 5px;" for="hdd"> Chỉ
+																														có HDD</label></li>
+																														<li class="filter-list"><input class="pixel-radio hard" type="radio" value="ssdhdd" id="hard"
+																															name="color"><label style="font-weight:normal;margin-left: 5px;" for="ssdhdd">
+																															SSD + HDD</label></li>
+																														</form>
+																													</div>
+																													<div class="common-filter  mt-50">
+																														<div class="head">VGA - Card màn hình</div>
+																														<form action="#">
+																															<ul>
+																																<li class="filter-list"><input class="pixel-radio card" type="radio" value="nvidia" id="nvidia"
+																																	name="color"><label style="font-weight:normal;margin-left: 5px;"
+																																	for="vganvidia"> VGA NVIDIA</label></li>
+																																	<li class="filter-list"><input class="pixel-radio card" type="radio" value="amd" id="amd"
+																																		name="color"><label style="font-weight:normal;margin-left: 5px;" for="vgaamd">
+																																		VGA AMD</label></li>
+																																		<li class="filter-list"><input class="pixel-radio card" type="radio" value="onboard" id="onboard"
+																																			name="color"><label style="font-weight:normal;margin-left: 5px;"
+																																			for="vgaonboard"> VGA Onboard</label></li>
+																																		</form>
+																																	</div>
+																																	<div class="common-filter">
+																																		<div class="head">Khoảng giá</div>
+																																		<div class="list-group">
+																																			<div class="price-range-area">
+																																				<div id="slider-range"></div>
+																																				<div class="value-wrapper d-flex">
+																																					<div class="price">Giá:</div>
+																																					<span><input size="2" type="text" id="amount_min" name="start_price" value="15"
+																																						style="border:0px; font-weight: bold; color:#15161D; width: 80px;"
+																																						readonly="readonly" /> VNĐ</span>
+																																						<div id="lower-value"></div>
+																																						<div class="to">đến</div>
+																																						<span><input size="2" type="text" id="amount_max" name="end_price" value="65"
+																																							style="border:0px; font-weight: bold; color:#15161D; width: 80px"
+																																							readonly="readonly" /> VNĐ</span>
+																																							<div id="upper-value"></div>
+																																						</div>
 								{{-- <p class="pull-left">
 									<input size="2" type="text" id="amount_min" name="start_price"
 									value="15" style="border:0px; font-weight: bold; color:green; width: 80px;" readonly="readonly" />
 								</p>
-
 								<b class="pull-right">
 									<input size="2" type="text"  id="amount_max" name="end_price" value="65"
 									style="border:0px; font-weight: bold; color:green; width: 80px" readonly="readonly"/>
@@ -200,13 +199,13 @@
 						@else
 						@foreach ($product as $key => $proAll)
 						<div class="col-lg-4 col-md-6">
-							@if ($proAll -> pro_amount == 0)
-							<span style="position: absolute; background: #e91e63; color: white; border-radius: 4px; font-size: 10px; padding: 5px 10px;z-index: 100">Tạm Hết Hàng</span>
-							@endif
-							@if  ( $proAll -> pro_sale > 0 && $proAll -> pro_amount > 0)
-							<span class="sale_item" style="position: absolute; font-size: 11px; background-image: linear-gradient(-250deg,#ec1f1f 0%,#ff9c00 100%); border-radius: 10px; padding: 5px 10px; color: white; z-index: 100">Giảm: {{$proAll -> pro_sale}}%</span>
-							@endif
 							<div class="single-product">
+								@if ($proAll -> pro_amount == 0)
+								<span style="position: absolute; background: #e91e63; color: white; border-radius: 4px; font-size: 10px; padding: 5px 10px;z-index: 100">Tạm Hết Hàng</span>
+								@endif
+								@if  ( $proAll -> pro_sale > 0 && $proAll -> pro_amount > 0)
+								<span class="sale_item" style="position: absolute; font-size: 11px; background-image: linear-gradient(-250deg,#ec1f1f 0%,#ff9c00 100%); border-radius: 10px; padding: 5px 10px; color: white; z-index: 100">Giảm: {{$proAll -> pro_sale}}%</span>
+								@endif
 								<img class="img-fluid"
 								src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}"
 								alt="">
@@ -363,4 +362,3 @@
 					</div>
 				</div>
 			</div>
-			@stop
