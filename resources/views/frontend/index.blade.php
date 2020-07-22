@@ -184,6 +184,12 @@
 				@foreach ($productNews as $element => $proNews)
 				<div class="col-lg-3 col-md-6">
 					<div class="single-product">
+						@if ($proNews -> pro_amount == 0)
+						<span style="position: absolute; background: #e91e63; color: white; border-radius: 4px; font-size: 10px; padding: 5px 10px;z-index: 100">Tạm Hết Hàng</span>
+						@endif
+						@if  ( $proNews -> pro_sale > 0 && $proNews -> pro_amount > 0)
+						<span class="sale_item" style="position: absolute; font-size: 11px; background-image: linear-gradient(-250deg,#ec1f1f 0%,#ff9c00 100%); border-radius: 10px; padding: 5px 10px; color: white; z-index: 100">Giảm: {{$proNews -> pro_sale}}%</span>
+						@endif
 						<div class="product-image">
 							<img class="img-fluid-product"src="{{asset("/img/product/".$proNews->categories -> name."/$proNews->pro_image")}}"  alt="">
 						</div>
@@ -240,6 +246,12 @@
 						@foreach ($productHots as $element => $proHot)
 						<div class="col-lg-3 col-md-6">
 							<div class="single-product">
+								@if ($proHot -> pro_amount == 0)
+								<span style="position: absolute; background: #e91e63; color: white; border-radius: 4px; font-size: 10px; padding: 5px 10px;z-index: 100">Tạm Hết Hàng</span>
+								@endif
+								@if  ( $proHot -> pro_sale > 0 && $proHot -> pro_amount > 0)
+								<span class="sale_item" style="position: absolute; font-size: 11px; background-image: linear-gradient(-250deg,#ec1f1f 0%,#ff9c00 100%); border-radius: 10px; padding: 5px 10px; color: white; z-index: 100">Giảm: {{$proHot -> pro_sale}}%</span>
+								@endif
 								<div class="product-image">
 									<img class="img-fluid-product" src="{{asset("/img/product/".$proHot->categories -> name."/$proHot->pro_image")}}"  alt="">
 								</div>

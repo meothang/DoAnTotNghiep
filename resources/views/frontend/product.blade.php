@@ -163,6 +163,7 @@
 									<input size="2" type="text" id="amount_min" name="start_price"
 									value="15" style="border:0px; font-weight: bold; color:green; width: 80px;" readonly="readonly" />
 								</p>
+
 								<b class="pull-right">
 									<input size="2" type="text"  id="amount_max" name="end_price" value="65"
 									style="border:0px; font-weight: bold; color:green; width: 80px" readonly="readonly"/>
@@ -362,3 +363,4 @@
 					</div>
 				</div>
 			</div>
+			@stop
