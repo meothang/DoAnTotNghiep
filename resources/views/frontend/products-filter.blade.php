@@ -5,6 +5,12 @@ sorry, products not found
 @foreach ($product as $key => $proAll)
 <div class="col-lg-4 col-md-6">
 	<div class="single-product">
+		@if ($proAll -> pro_amount == 0)
+		<span style="position: absolute; background: #e91e63; color: white; border-radius: 4px; font-size: 10px; padding: 5px 10px;z-index: 100">Tạm Hết Hàng</span>
+		@endif
+		@if  ( $proAll -> pro_sale > 0 && $proAll -> pro_amount > 0)
+		<span class="sale_item" style="position: absolute; font-size: 11px; background-image: linear-gradient(-250deg,#ec1f1f 0%,#ff9c00 100%); border-radius: 10px; padding: 5px 10px; color: white; z-index: 100">Giảm: {{$proAll -> pro_sale}}%</span>
+		@endif
 		<img class="img-fluid" src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}" alt="">
 		<div class="product-details">
 			<a href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
@@ -45,5 +51,5 @@ sorry, products not found
 		</div>
 {{-- 	</div>
 </div>
- --}}
+--}}
 			<!-- End Filter Bar
