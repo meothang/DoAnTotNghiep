@@ -60,56 +60,56 @@
 						</ul>
 
 					</div>
-				{{-- 	<div class="common-filter  mt-50">
+					<div class="common-filter  mt-50">
 						<div class="head">Cpu</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei3"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei3">
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="i3"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="i3">
 										Intel Core i3<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei5"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei5">
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="i5"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="i5">
 										Intel Core i5<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei7"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei7">
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="i7"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="i7">
 										Intel Core i7<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="corei9"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="corei9">
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="i9"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="i9">
 										Intel Core i9<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="intel-xeon"
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="xeon"
 										name="color"><label style="font-weight:normal;margin-left: 5px;"
-										for="intel-xeon"> Intel Xeon<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-3"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-3">
+										for="xeon"> Intel Xeon<span>(29)</span></label></li>
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="r3"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="r3">
 										AMD Ryzen 3<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-5"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-5">
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="r5"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="r5">
 										AMD Ryzen 5<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="ryzen-7"
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ryzen-7">
+								<li class="filter-list"><input class="pixel-radio" type="radio" id="r7"
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="r7">
 										AMD Ryzen 7<span>(29)</span></label></li>
 							</ul>
 						</form>
-					</div> --}}
+					</div>
 					<div class="common-filter  mt-50">
 						<div class="head">Ram</div>
 						<form action="#">
 							<ul>
-								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i3" 
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="4gb" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram4g">
-										Intel Core i3</label></li>
-								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i5" 
+										4GB</label></li>
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="8gb" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram8g">
-										Intel Core i5</label></li>
-								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i7" 
+										8GB</label></li>
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="16gb" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram16gb">
-										Intel Core i7</label></li>
-								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="i9" 
+										16GB</label></li>
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="32gb" 
 										name="color"><label style="font-weight:normal;margin-left: 5px;" for="ram32gb">
-										Intel Core i9</label></li>
-								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="xeon" 
-										name="color"><label style="font-weight:normal;margin-left: 5px;" for=">ram32gb">
-										Intel Xeon</label></li>
+										32GB</label></li>
+								<li class="filter-list"><input class="pixel-radio ram" type="radio" id="ram" value="m32gb" 
+										name="color"><label style="font-weight:normal;margin-left: 5px;" for="mram32gb">
+										>32GB</label></li>
 						</form> 
 					</div>
 					<div class="common-filter  mt-50">
