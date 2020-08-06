@@ -73,7 +73,7 @@
       </ul>
     </li>
     <li class=" {{\Request::route()->getName() == 'admin.frontend' ? 'active' : ''}}">
-      <a href="{{route('admin.frontend')}}"><span class="fa fa-home"></span> <span class="xn-text">Trở Về WebSite</span></a>                        
+      <a href="{{route('admin.frontend')}}"><span class="fa fa-home"></span> <span class="xn-text">Trở về website</span></a>                        
     </li> 
   </ul>
   <!-- END X-NAVIGATION -->
