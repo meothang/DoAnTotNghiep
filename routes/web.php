@@ -132,9 +132,9 @@ Route::post('/dang-ky-user','UserController@postRegister');
 Route::get('/dang-xuat-user','UserController@getLogout')->name('get.user.logout');
 
 // Phần sản phẩm và chi tiết sản phẩm
-Route::get('/san-pham-type','ProductController@getProduct')->name('get.list.product');
+Route::get('/san-pham','ProductController@getProduct')->name('get.list.product');
 Route::get('product-detail/{slug}-{id}','ProductController@getProductDetail')->name('get.product.detail');
-Route::get('/san-pham-type/{name}','ProductController@getProductType')->name('get.list.product.type');
+Route::get('/san-pham/{name}','ProductController@getProductType')->name('get.list.product.type');
  // Phần Giỏ Hàng
 Route::get('/cart-add/{id}', 'CartController@addProduct')->name('add.cart');
 Route::get('/list-cart', 'CartController@listProduct')->name('list.cart');

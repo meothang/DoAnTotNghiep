@@ -157,7 +157,7 @@
 					$.ajax({
 						type: 'get',
 						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
-						url: 'san-pham-type',
+						url: 'san-pham',
 						data: "brand=" + Finalbrand,
 						success: function (response) {
 							console.log(response);
@@ -181,7 +181,7 @@
 					$.ajax({
 						type: 'get',
 						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
-						url: 'san-pham-type',
+						url: 'san-pham',
 						data: "ram=" + Finalram,
 						success: function (response) {
 							console.log(response);
@@ -205,7 +205,7 @@
 					$.ajax({
 						type: 'get',
 						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
-						url: 'san-pham-type',
+						url: 'san-pham',
 						data: "hard=" + Finalhard,
 						success: function (response) {
 							console.log(response);
@@ -228,7 +228,7 @@
 					$.ajax({
 						type: 'get',
 						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
-						url: 'san-pham-type',
+						url: 'san-pham',
 						data: "card=" + Finalcard,
 						success: function (response) {
 							console.log(response);
@@ -251,7 +251,7 @@
 					$.ajax({
 						type: 'get',
 						dataType: 'json', // lỗi html hum pữa nếu bạn trả về
-						url: 'san-pham-type',
+						url: 'san-pham',
 						data: "cpu=" + Finalcpu,
 						success: function (response) {
 							console.log(response);
@@ -274,7 +274,7 @@
 					$.ajax({
 						type: 'get',
 						dataType: 'json',
-						url: 'san-pham-type',
+						url: 'san-pham',
 						data: "filter_type=" + 	Finaltype,
 						success: function (response) {
 							console.log(response);
@@ -289,7 +289,7 @@
 					$.ajax({
 						type: 'get',
 						dataType: 'html',
-						url: 'san-pham-type',
+						url: 'san-pham',
 						data: "select=" + select,
 						success: function (response) {
 							console.log(response);
