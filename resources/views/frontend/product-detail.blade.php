@@ -56,7 +56,7 @@
 				<nav class="d-flex align-items-center">
 					<a href="index.html">Trang chủ<span class="lnr lnr-arrow-right"></span></a>
 					<a href="#">Sản phẩm<span class="lnr lnr-arrow-right"></span></a>
-					<a href="single-product.html">APPLE MACBOOK AIR 13 </a>
+					<a href="single-product.html">{{ $productDetail -> pro_name}}</a>
 				</nav>
 			</div>
 		</div>
