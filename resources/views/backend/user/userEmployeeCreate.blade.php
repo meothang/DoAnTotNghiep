@@ -58,7 +58,6 @@
                                         <input type="radio" id="customRadioInline2" name="sex" class="custom-control-input" value="0" {{old('sex')==0?'checked':''}}>
                                         <label class="custom-control-label" for="customRadioInline2">Nữ</label>
                                     </div>
-                                    <br>    
                                     <span style="color:red">{{$errors->first('sex')}}</span>
                                 </div>
                             </div>

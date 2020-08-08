@@ -150,7 +150,7 @@
 				<!-- Start Filter Bar -->
 				<form class="tree-most" id="form-order" method="get">
 					<div class="filter-bar d-flex flex-wrap align-items-center">
-						<div class="sorting">
+						<div class="sorting" style= "z-index: 999">
 							<select name="orderby" class="filter-select">
 								<option value="abc">Sắp xếp theo tên</option>
 								<option value="new">Mới nhất</option>
