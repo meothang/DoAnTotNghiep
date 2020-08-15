@@ -17,10 +17,34 @@
                 <div class="panel-heading">
                     <div class="page-head-text">
                         <h3 class="panel-title"><strong>Quản lý </strong>danh mục</h3>
+                        @php
+                        $listRoleOfUser = \DB::table('users')
+                        ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
+                        ->join('roles', 'user_roles.role_id', '=', 'roles.id')
+                        ->where('users.id',Auth()->user()->id)
+                        ->select('roles.*')
+                        ->get()->pluck('id')->toArray();
+
+                    
+                        $listRoleOfUser = \DB::table('roles')
+                        ->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
+                        ->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
+                        ->whereIn('roles.id',$listRoleOfUser) // lấy giá trị tại id
+                        ->select('permissions.*')
+                        ->get()->pluck('id')->unique();
+                        
+                        $checkPermissionAddCategory = \DB::table('permissions')->where('name','create-category')->value('id');
+                        $checkPermissionEditCategory = \DB::table('permissions')->where('name','edit-category')->value('id');
+                        $checkPermissionDeleteCategory = \DB::table('permissions')->where('name','delete-category')->value('id');
+                        
+                        @endphp
+
+                        @if($listRoleOfUser->contains($checkPermissionAddCategory))
                         <a href="{{ route('admin.get.create.category')}}">
                             <button class="btn btn-primary btn-rounded pull-right"><span class="fa fa-plus"></span> Thêm
                             danh mục</button>
                         </a>
+                        @endif()
                     </div>
                 </div>
                 <div class="panel-body panel-body-table">
@@ -44,16 +68,21 @@
                                     <td class="text-center">{{ $category->cate_status }}</td>
                                     <td class="text-center">{{ date_format($category->created_at,'d/m/Y H:i:s') }}</td>
                                     <td class="text-center">
-
+                                    @if($listRoleOfUser->contains($checkPermissionEditCategory))
                                         <a href="{{ route('admin.get.edit.category',$category->id) }}">
                                             <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
                                                 <span class="fa fa-pencil"></span></button>
-                                            </a>
-                                            <a>
-                                                <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$category -> id}}"><span
-                                                    class="fa fa-times"></span></button>
-                                                </a>
-                                            </td>
+                                        </a>
+                                    @endif()
+                                    @if($listRoleOfUser->contains($checkPermissionDeleteCategory))
+                                        <a>
+                                            <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$category -> id}}"><span
+                                                class="fa fa-times"></span></button>
+                                        </a>
+                                        @endif()
+                                    </td>
+                                   
+                                            
                                         </tr>
                                         @endforeach
                                         @endif

@@ -34,22 +34,22 @@ class ProductController extends Controller
             $select = $request->select; //brand
             switch ($select) {
                 case 'abc':
-                    $product = Product::orderBy('pro_name', 'DESC')->paginate(12);
+                    $product = Product::orderBy('pro_name', 'ASC')->where('status', 1)->paginate(12);
                     response()->json($product); //return to ajax
                     return view('frontend.products-filter', compact('product'));
                     break;
                 case 'new':
-                    $product = Product::orderBy('id', 'DESC')->paginate(12);
+                    $product = Product::orderBy('id', 'DESC')->where('status', 1)->paginate(12);
                     response()->json($product); //return to ajax
                     return view('frontend.products-filter', compact('product'));
                     break;
                 case 'asc':
-                    $product = Product::orderBy('pro_price', 'ASC')->paginate(12);
+                    $product = Product::orderBy('pro_price', 'ASC')->where('status', 1)->paginate(12);
                     response()->json($product); //return to ajax
                     return view('frontend.products-filter', compact('product'));
                     break;
                 case 'desc':
-                    $product = Product::orderBy('pro_price', 'DESC')->paginate(12);
+                    $product = Product::orderBy('pro_price', 'DESC')->where('status', 1)->paginate(12);
                     response()->json($product); //return to ajax
                     return view('frontend.products-filter', compact('product'));
                     break;
@@ -62,7 +62,7 @@ class ProductController extends Controller
         if ($request->ajax() && isset($request->start)) {
             $start =  str_replace(',', '', $request->start); // min price value
             $end =  str_replace(',', '', $request->end); // max price value
-            $product = Product::where('pro_price', '>=', $start)->where('pro_price', '<=', $end)->orderby('pro_price', 'ASC')->paginate(12);
+            $product = Product::where('pro_price', '>=', $start)->where('pro_price', '<=', $end)->where('status', 1)->orderby('pro_price', 'ASC')->paginate(12);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()->json(['data' => $html]); //return to ajax
         }
@@ -70,25 +70,25 @@ class ProductController extends Controller
 
         if ($request->ajax() && isset($request->ram)) {
             $ram = $request->ram; //filter_type
-            $product = Product::where('pro_detail', 'like', '%' . $request->ram . '%')->paginate(9);
+            $product = Product::where('pro_detail', 'like', '%' . $request->ram . '%')->where('status', 1)->paginate(9);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()->json(['data' => $html]); //return to ajax
         }
         if ($request->ajax() && isset($request->hard)) {
             $hard = $request->hard; //filter_type
-            $product = Product::where('pro_detail', 'like', '%' . $request->hard . '%')->paginate(9);
+            $product = Product::where('pro_detail', 'like', '%' . $request->hard . '%')->where('status', 1)->paginate(9);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()->json(['data' => $html]); //return to ajax
         }
         if ($request->ajax() && isset($request->card)) {
             $card = $request->card; //filter_type
-            $product = Product::where('pro_detail', 'like', '%' . $request->card . '%')->paginate(9);
+            $product = Product::where('pro_detail', 'like', '%' . $request->card . '%')->where('status', 1)->paginate(9);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()->json(['data' => $html]); //return to ajax
         }
          if ($request->ajax() && isset($request->cpu)) {
             $cpu = $request->cpu; //filter_type
-            $product = Product::where('pro_detail', 'like', '%' . $request->cpu . '%')->paginate(9);
+            $product = Product::where('pro_detail', 'like', '%' . $request->cpu . '%')->where('status', 1)->paginate(9);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()->json(['data' => $html]); //return to ajax
         }
@@ -96,7 +96,7 @@ class ProductController extends Controller
 
         if ($request->ajax() && isset($request->filter_type)) {
             $filter_type = $request->filter_type; //filter_type
-            $product = Product::whereIN('pro_type', explode(',', $filter_type))->paginate(12);
+            $product = Product::whereIN('pro_type', explode(',', $filter_type))->where('status', 1)->paginate(12);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()->json(['data' => $html]); //return to ajax
         }
@@ -104,11 +104,11 @@ class ProductController extends Controller
 
         if ($request->ajax() && isset($request->brand)) {
             $brand = $request->brand; //brand
-            $product = Product::whereIN('pro_cate_id', explode(',', $brand))->paginate(12);
+            $product = Product::whereIN('pro_cate_id', explode(',', $brand))->where('status', 1)->paginate(12);
             $html = view('frontend.products-filter', compact('product'))->render();
             return response()->json(['data' => $html]); //return to ajax
         } else {
-            $product = Product::orderby('id', 'DESC')->paginate(12);
+            $product = Product::orderby('id', 'DESC')->where('status', 1)->paginate(12);
             $viewData = [
                 'product' => $product,
                 'category' => $category,
@@ -120,7 +120,7 @@ class ProductController extends Controller
     public function getProductType(Request $request, $name)
     {
         $name = $request->name;
-        $product  = Product::where('pro_type', 'like', '%' . $name . '%')->paginate(12);
+        $product  = Product::where('pro_type', 'like', '%' . $name . '%')->where('status', 1)->paginate(12);
         return view('frontend.product', compact('product'));
     }
 

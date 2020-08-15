@@ -1,93 +1,162 @@
 <base href="{{ asset('') }}">
+<style type="text/css">
+    .list-product th,
+    .list-product td {
+        border: 1px solid #f1f1f1;
+        padding: 5px;
+    }
+    
+    .list-product .thead th {
+        background-color: #ffba00;
+    }
+</style>
 <div marginheight="0" marginwidth="0" style="background:#f0f0f0">
-    <div id="wrapper" style="background-color:#f0f0f0">
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="margin:0 auto;width:600px!important;min-width:600px!important" class="container">
-            <tbody>
-                <tr>
-                    <td align="center" valign="middle" style="background:#15161D">
-                        <table style="width:580px;border-bottom:1px solid #ffba00" cellpadding="0" cellspacing="0" border="0">
-                            <tbody>
-                                <tr>
-                                    <td align="left" valign="middle" style="width:500px;height:60px">
-                                        <a href="#" style="border:0" target="_blank" width="130" height="35" style="display:block;border:0px">
-                                            <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t1.15752-9/102604012_615741562628931_7779644993149935083_n.png?_nc_cat=107&_nc_sid=b96e70&_nc_ohc=CFbFUq4_C7YAX8psZRH&_nc_ht=scontent.fhan2-3.fna&oh=e30d72af14b96ac68f4002e288671c44&oe=5F3E83D3" height="50" width="auto" style="display:block;border:0px;float: left;">
-                                        </a>
-                                    </td>
-                                    
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center" valign="middle" style="background:#ffffff">
-                        <table style="width:580px" cellpadding="0" cellspacing="0" border="0" >
-                            <tbody>
-                                <tr>
-                                    <td align="left" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:20px;color:#15161D;text-transform:uppercase;font-weight:bold;padding:25px 10px 15px 10px">
-                                        Thông báo xác nhận đơn hàng thành công!
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="left" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
-                                        Chào {{ $name}},
-                                        <br> Cám ơn bạn đã mua sắm tại Electro Store.
-                                        <br>
-                                        <br> Đơn hàng của bạn đang được giao.</b> 
-                                        <br> 
-                                        <b> Sau khi quý khách được hàng vui lòng nhấn vào link sau để chúng tôi biết: <a href="{{$data}}" title="">Tại đây</a></b>
-                                        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                <table  align="left" valign="middle"  style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                Mọi thông tin xin liên hệ với cửa hàng:
-                                            </td>
-                                        </tr>
-                            
-                                        <tr>
-                                          <td>
-                                            Số điện thoại: (+84)968 686 868.
-                                          </td>
-                                        </tr>
-                            
-                                        <tr>
-                                          <td>
-                                            Địa chỉ: 236 Hoàng Quốc Việt, Cầu Giấy, Hà Nội.
-                                          </td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td>
-                                                Website: <a href="http://localhost/DoAnTotNghiep/public/" style="color: #ea8025;">www.electro.vn</a>.
-                                            </td>
-                                        </tr>
-                            
-                                        <tr>
-                                            <td height="30">
-                                            </td>
-                                        </tr>
-                            
-                                        <tr>
-                                            <td>Cảm ơn bạn!,</td>
-                                        </tr>
-                            
-                                        <tr>
-                                            <td style="font-size: 18px;"><b>Electro</b></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div> 
-</div>
+        <div id="wrapper" style="background-color:#f0f0f0">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="margin:0 auto;width:600px!important;min-width:600px!important" class="container">
+                <tbody>
+                    <tr>
+                        <td align="center" valign="middle" style="background:#15161D">
+                            <table style="width:580px;border-bottom:1px solid #ffba00" cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign="middle" style="width:500px;height:60px">
+                                            <a href="#" style="border:0" target="_blank" width="130" height="35" style="display:block;border:0px">
+                                                <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t1.15752-9/102604012_615741562628931_7779644993149935083_n.png?_nc_cat=107&_nc_sid=b96e70&_nc_ohc=CFbFUq4_C7YAX8psZRH&_nc_ht=scontent.fhan2-3.fna&oh=e30d72af14b96ac68f4002e288671c44&oe=5F3E83D3" height="50"
+                                                    width="auto" style="display:block;border:0px;float: left;">
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" valign="middle" style="background:#ffffff">
+                            <table style="width:580px" cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <tr>
+                                        <td align="left" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:20px;color:#15161D;text-transform:uppercase;font-weight:bold;padding:25px 10px 15px 10px">
+                                            Thông báo xác nhận đơn hàng thành công!
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
+                                            Chào {{ $name}},
+                                            <br> Cám ơn bạn đã mua sắm tại Electro Store.
+                                            <br>Chi tiết đơn hàng:
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width:580px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <table align="center" class="list-product" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width:600px;">
+                                                                <tr class="thead">
+                                                                    <th>Tên sản phẩm</th>
+                                                                    <th>Số lượng</th>
+                                                                    <th>Đơn giá</th>
+                                                                    <th>Thành tiền</th>
+                                                                </tr>
+
+                                                                <tbody>
+                                                                    
+                                                                    @foreach($bills as $bill) 
+                                                                  
+                                                                    
+                                                                    <tr>
+                                                                    <?php echo $bill?> 
+
+                                                                        <td align="center" style="text-transform: uppercase;"></td>
+
+                                                                        <td align="center">
+                                                                        </td>
+
+                                                                        <td align="center">
+                                                                            
+                                                                        </td align="center">
+
+                                                                    
+                                                                    </tr>
+                                                                    @endforeach
+
+                                                                </tbody>
+
+                                                                
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td height="50">
+
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br> Đơn hàng của bạn đang được giao.</b>
+                                            <br>
+                                            <b> Sau khi quý khách được hàng vui lòng nhấn vào link sau để chúng tôi biết: <a href="{{$data}}" title="">Tại đây</a></b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table align="left" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            Mọi thông tin xin liên hệ với cửa hàng:
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            Số điện thoại: (+84)968 686 868.
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            Địa chỉ: 236 Hoàng Quốc Việt, Cầu Giấy, Hà Nội.
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            Website: <a href="http://localhost/DoAnTotNghiep/public/" style="color: #ea8025;">www.electro.vn</a>.
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td height="30">
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Cảm ơn bạn!,</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td style="font-size: 18px;"><b>Electro</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
