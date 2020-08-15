@@ -6,7 +6,31 @@
     <li><a href="#">Tài khoản</a></li>
     <li class="active">Nhân viên</li>
 </ul>
+@php
+        $listRoleOfUser = \DB::table('users')
+        ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
+        ->join('roles', 'user_roles.role_id', '=', 'roles.id')
+        ->where('users.id',Auth()->user()->id)
+        ->select('roles.*')
+        ->get()->pluck('id')->toArray();
 
+
+        $listRoleOfUser = \DB::table('roles')
+        ->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
+        ->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
+        ->whereIn('roles.id',$listRoleOfUser) // lấy giá trị tại id
+        ->select('permissions.*')
+        ->get()->pluck('id')->unique();
+
+        $checkPermissionAddRole = \DB::table('permissions')->where('name','create-role')->value('id');
+        $checkPermissionEditRole = \DB::table('permissions')->where('name','edit-role')->value('id');
+        $checkPermissionDeleteRole = \DB::table('permissions')->where('name','delete-role')->value('id');
+
+        $checkPermissionViewEmployee = \DB::table('permissions')->where('name','view-user')->value('id');
+        $checkPermissionAddEmployee = \DB::table('permissions')->where('name','create-user')->value('id');
+        $checkPermissionEditEmployee = \DB::table('permissions')->where('name','edit-user')->value('id');
+        $checkPermissionDeleteEmployee = \DB::table('permissions')->where('name','delete-user')->value('id');
+    @endphp
 <div class="page-content-wrap">
 
     <!-- START RESPONSIVE TABLES -->
@@ -18,12 +42,19 @@
                     <div class="page-head-text">
                         <h1 class="panel-title"><strong>Quản lý</strong> quản trị viên</h1>
                         <div class="form-group pull-right">
+                        @if($listRoleOfUser->contains($checkPermissionAddRole))
                             <a href="{{ route('create.role')}}">
                                 <button class="btn btn-primary btn-rounded"><span class="fa fa-plus"></span> Thêm mới Nhóm Quyền</button>
                             </a>
+                            @endif()
+
+                            @if($listRoleOfUser->contains($checkPermissionAddEmployee))
+
                             <a href="{{ route('employee.user.create') }}">
                                 <button class="btn btn-primary btn-rounded"><span class="fa fa-plus"></span> Thêm mới nhân viên</button>
-                            </a>            
+                            </a>        
+                            @endif()
+    
                         </div>
                         
                     </div>
@@ -65,19 +96,27 @@
                                 @endif
 
                                 <td class="text-center">
+                                @if($listRoleOfUser->contains($checkPermissionViewEmployee))
                                     <a href="{{ route('employee.show', $groupUser -> id) }}">
-                                        <button class="btn btn-warning btn-rounded btn-condensed btn-sm"><span
-                                            class="fa fa-info"></span></button>
-                                        </a>
-                                        <a href="{{ route('edit.role', $groupUser -> id) }}">
-                                            <button   class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
-                                                class="fa fa-pencil"></span></button>
-                                            </a>
-                                            <a>
-                                               <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$groupUser -> id}}"><span
+                                        <button class="btn btn-warning btn-rounded btn-condensed btn-sm"><span class="fa fa-info"></span>
+                                        </button>
+                                    </a>
+                                    @endif()
+
+                                    @if($listRoleOfUser->contains($checkPermissionEditRole))
+                                    <a href="{{ route('edit.role', $groupUser -> id) }}">
+                                        <button   class="btn btn-primary btn-rounded btn-condensed btn-sm"><span class="fa fa-pencil"></span></button>
+                                    </a>
+                                    @endif()
+
+                                    @if($listRoleOfUser->contains($checkPermissionDeleteRole))
+                                    <a>
+                                        <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$groupUser -> id}}"><span
                                                 class="fa fa-times"></span></button>
-                                            </button>
-                                        </a>
+                                        </button>
+                                    </a>
+                                    @endif()
+
                                     </td>
 
                                 </tr>

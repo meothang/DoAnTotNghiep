@@ -29,7 +29,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
   Route::post('/create','AdminProductController@store')->name('admin.post.create.product');
   Route::get('/update/{id}','AdminProductController@edit')->middleware('CheckAcl:edit-product')->name('admin.get.edit.product');
   Route::post('/update/{id}','AdminProductController@update')->name('admin.post.update.product');
-  Route::get('/{action}/{id}','AdminProductController@action')->middleware('CheckAcl:action-product')->name('admin.get.action.product');
+  Route::get('/{action}/{id}','AdminProductController@action')->name('admin.get.action.product');
      //    Route::get('/order','AdminProductController@index1')->name('admin.get.list.order');
 });
 
@@ -47,9 +47,9 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
 
     //report
     Route::group(['prefix'=>'report'],function(){
-      Route::get('/bao-cao-theo-thang','AdminReportController@getReportMonth')->name('admin.get.list.month-report');
+      Route::get('/bao-cao-theo-thang','AdminReportController@getReportMonth')->middleware('CheckAcl:view-report-month')->name('admin.get.list.month-report');
       Route::get('/bao-cao-theo-thang/search','AdminReportController@getReportMonthSearch')->name('admin.get.list.month-report-search');
-      Route::get('/bao-cao-theo-ngay','AdminReportController@getReportDay')->name('admin.get.list.day-report');
+      Route::get('/bao-cao-theo-ngay','AdminReportController@getReportDay')->middleware('CheckAcl:view-report-day')->name('admin.get.list.day-report');
       Route::get('/bao-cao-theo-ngay/search','AdminReportController@getReportDaySearch')->name('admin.get.list.day-report-search');
          //    Route::get('/order','AdminProductController@index1')->name('admin.get.list.order');
     });
@@ -76,7 +76,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
 });
 
  // phần quyền 
- Route::get('/list-Employee', 'RoleController@index')->middleware('CheckAcl:view-user')->name('get.backend.list.employee');
+ Route::get('/list-Employee', 'RoleController@index')->middleware('CheckAcl:view-role-employee')->name('get.backend.list.employee');
  Route::get('/role/createRole','RoleController@create')->middleware('CheckAcl:create-role')->name('create.role');
  Route::post('/role/createRole','RoleController@store')->name('store.role');
  Route::get('/role/{id}/edit/','RoleController@edit')->middleware('CheckAcl:edit-role')->name('edit.role');

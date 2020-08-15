@@ -1,5 +1,25 @@
 @extends('backend.layouts.backend-master')
 @section('backend-main')
+@php
+        $listRoleOfUser = \DB::table('users')
+        ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
+        ->join('roles', 'user_roles.role_id', '=', 'roles.id')
+        ->where('users.id',Auth()->user()->id)
+        ->select('roles.*')
+        ->get()->pluck('id')->toArray();
+
+
+        $listRoleOfUser = \DB::table('roles')
+        ->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
+        ->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
+        ->whereIn('roles.id',$listRoleOfUser) // lấy giá trị tại id
+        ->select('permissions.*')
+        ->get()->pluck('id')->unique();
+
+       
+        $checkPermissionDeleteEmployee = \DB::table('permissions')->where('name','delete-user')->value('id');
+
+    @endphp
 <!-- START BREADCRUMB -->
 <ul class="breadcrumb">
     <li><a href="#">Trang chủ</a></li>
@@ -60,10 +80,12 @@
                                  <td class="text-center">{{$user -> phone}}</td>
                                  <td class="text-center">{{$user -> address}}</td>
                                  <td class="text-center">
+                                 @if($listRoleOfUser->contains($checkPermissionDeleteEmployee))
                                     <a>
                                      <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$user -> id}}"><span
                                         class="fa fa-times"></span></button>
                                     </a>
+                                @endif()
                                 </td>
                             </tr>
                             @endforeach
