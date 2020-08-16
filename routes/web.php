@@ -29,7 +29,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
   Route::post('/create','AdminProductController@store')->name('admin.post.create.product');
   Route::get('/update/{id}','AdminProductController@edit')->middleware('CheckAcl:edit-product')->name('admin.get.edit.product');
   Route::post('/update/{id}','AdminProductController@update')->name('admin.post.update.product');
-  Route::get('/{action}/{id}','AdminProductController@action')->name('admin.get.action.product');
+  Route::get('/{action}/{id}','AdminProductController@action')->middleware('CheckAcl:edit-product')->name('admin.get.action.product');
      //    Route::get('/order','AdminProductController@index1')->name('admin.get.list.order');
 });
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
 
    Route::get('/OrderApprove','AdminOrderController@getOrderApprove')->middleware('CheckAcl:view-order')->name('admin.get.list.order');
    Route::get('/OrderDetail/{id}','AdminOrderController@showOrderDetail')->name('order.detail');
-   Route::get('/OrderNotApprove','AdminOrderController@getOrderNotApprove')->middleware('CheckAcl:view-order')->name('admin.get.list.order.not');
+   Route::get('/OrderNotApprove','AdminOrderController@getOrderNotApprove')->middleware('CheckAcl:view-order-notapprove')->name('admin.get.list.order.not');
 
 // xử lý đơn hàng
    Route::get('/{action}/{id}','AdminOrderController@actionOrder')->middleware('CheckAcl:action-order')-> name('admin.get.active.order');
@@ -71,7 +71,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
 
  // user phần BackEnd
  Route::group(['prefix' => 'user'], function() {
-  Route::get('/list-user', 'AdminUserController@getCustomer')->middleware('CheckAcl:view-user')->name('get.backend.list.user');
+  Route::get('/list-user', 'AdminUserController@getCustomer')->middleware('CheckAcl:view-customer')->name('get.backend.list.user');
     Route::get('/list-admin', 'AdminUserController@getListAdmin')->middleware('CheckAcl:view-user')->name('get.backend.list.admin');
 });
 

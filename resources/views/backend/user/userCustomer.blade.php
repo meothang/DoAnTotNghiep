@@ -17,7 +17,7 @@
         ->get()->pluck('id')->unique();
 
        
-        $checkPermissionDeleteEmployee = \DB::table('permissions')->where('name','delete-user')->value('id');
+        $checkPermissionDeleteCustomer = \DB::table('permissions')->where('name','delete-customer')->value('id');
 
     @endphp
 <!-- START BREADCRUMB -->
@@ -59,7 +59,10 @@
                                     <th width="200" class="text-center">Email</th>
                                     <th width="120" class="text-center">Số điện thoại</th>
                                     <th width="300" class="text-center">Địa chỉ</th>
+                                    @if($listRoleOfUser->contains($checkPermissionDeleteCustomer))
                                     <th width="120" class="text-center">Hành động</th>
+                                    @endif()
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,14 +82,15 @@
                                  <td class="text-center">{{$user -> email}}</td>
                                  <td class="text-center">{{$user -> phone}}</td>
                                  <td class="text-center">{{$user -> address}}</td>
+                                 @if($listRoleOfUser->contains($checkPermissionDeleteCustomer))
                                  <td class="text-center">
-                                 @if($listRoleOfUser->contains($checkPermissionDeleteEmployee))
                                     <a>
                                      <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$user -> id}}"><span
                                         class="fa fa-times"></span></button>
                                     </a>
-                                @endif()
                                 </td>
+                                @endif()
+
                             </tr>
                             @endforeach
                             @endif

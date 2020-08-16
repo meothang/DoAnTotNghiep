@@ -56,7 +56,10 @@
                                     <th>Tên nhà cung cấp</th>
                                     <th width="150" class="text-center">Nổi bật</th>
                                     <th width="200" class="text-center">Ngày nhập</th>
+                                    @if($listRoleOfUser->contains($checkPermissionDeleteCategory) || $listRoleOfUser->contains($checkPermissionEditCategory))
                                     <th width="120" class="text-center">Hành động</th>
+                                    @endif()
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,6 +70,7 @@
                                     <td><strong>{{ $category->name }}</strong></td>
                                     <td class="text-center">{{ $category->cate_status }}</td>
                                     <td class="text-center">{{ date_format($category->created_at,'d/m/Y H:i:s') }}</td>
+                                    @if($listRoleOfUser->contains($checkPermissionDeleteCategory) || $listRoleOfUser->contains($checkPermissionEditCategory))
                                     <td class="text-center">
                                     @if($listRoleOfUser->contains($checkPermissionEditCategory))
                                         <a href="{{ route('admin.get.edit.category',$category->id) }}">
@@ -81,11 +85,11 @@
                                         </a>
                                         @endif()
                                     </td>
-                                   
+                                    @endif()
                                             
-                                        </tr>
-                                        @endforeach
-                                        @endif
+                                    </tr>
+                                    @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                                 <div class="message-box animated fadeIn" data-sound="alert" id="mb-remove-row">

@@ -19,7 +19,7 @@
          <p class="name">{{Auth()->user()->name}}</p>
          <p class="designation">
 
-           @php
+           <?php
            $roleUser = \DB::table('users')
            ->join('user_roles','users.id','=','user_roles.user_id')
            ->join('roles','user_roles.role_id','=','roles.id')
@@ -55,7 +55,12 @@
             $checkPermissionViewUser = \DB::table('permissions')->where('name','view-user')->value('id');
 
             $checkPermissionViewRoleEmployee = \DB::table('permissions')->where('name','view-role-employee')->value('id');
-           @endphp
+            $checkPermissionViewCustomer = \DB::table('permissions')->where('name','view-customer')->value('id');
+
+            $checkPermissionViewOrderApprove= \DB::table('permissions')->where('name','view-order')->value('id');
+            $checkPermissionViewOrderNotApprove = \DB::table('permissions')->where('name','view-order-notapprove')->value('id');
+
+           ?>
            
            {{ $roleUser->name}} 
          </div>
@@ -99,14 +104,23 @@
     </li>
     @endif()
 
+    @if($listRoleOfUser->contains($checkPermissionViewOrderApprove) || $listRoleOfUser->contains($checkPermissionViewOrderNotApprove) ) 
     <li class="xn-openable  {{\Request::route()->getName() == 'admin.get.list.order.not' || \Request::route()->getName() == 'admin.get.list.order' ? 'active' : ''}}">
       <a href="#"><span class="fa fa-shopping-cart"></span> <span class="xn-text">Đơn hàng</span></a>
-      <ul>                            
-        <li><a href="{{ route('admin.get.list.order.not')}}"><span class="fa fa-times"></span> Đơn hàng chưa duyệt</a></li>
+      <ul>
+      
+      @if($listRoleOfUser->contains($checkPermissionViewOrderApprove))
         <li><a href="{{ route('admin.get.list.order')}}"><span class="fa fa-check"></span> Đơn hàng đã duyệt</a></li>
+        @endif()
+
+        @if($listRoleOfUser->contains($checkPermissionViewOrderNotApprove))              
+        <li><a href="{{ route('admin.get.list.order.not')}}"><span class="fa fa-times"></span> Đơn hàng chưa duyệt</a></li>
+        @endif()
+
       </ul>
     </li>
-    
+    @endif()
+
     @if($listRoleOfUser->contains($checkPermissionViewReportDay) || $listRoleOfUser->contains($checkPermissionViewReportMonth))       
     <li class="xn-openable  {{\Request::route()->getName() == 'admin.get.list.day-report' || \Request::route()->getName() == 'admin.get.list.month-report' ? 'active' : ''}}">
       <a href="#"><span class="fa fa-table"></span> <span class="xn-text">Báo cáo</span></a>
@@ -125,17 +139,21 @@
     @endif()
       
    
-    @if($listRoleOfUser->contains($checkPermissionViewUser)) 
+    @if($listRoleOfUser->contains($checkPermissionViewUser) || $listRoleOfUser->contains($checkPermissionViewCustomer) ) 
     <li>
       <a href="#"><span class="fa fa-users"></span> <span class="xn-text">Tài khoản</span></a>
       <ul>            
-                    
+      @if($listRoleOfUser->contains($checkPermissionViewCustomer)) 
         <li><a href="{{ route('get.backend.list.user') }}"><span class="fa fa-users"></span>Danh sách khách hàng</a></li>
-        <li><a href="{{ route('get.backend.list.admin') }}"><span class="fa fa-users"></span>Danh sách quản trị viên</a></li>
-        
+        @endif()
+      @if($listRoleOfUser->contains($checkPermissionViewUser))
+      <li><a href="{{ route('get.backend.list.admin') }}"><span class="fa fa-users"></span>Danh sách quản trị viên</a></li>
+      @endif()
       </ul>
     </li>
+
     @endif()
+    
   
     @if($listRoleOfUser->contains($checkPermissionViewRoleEmployee)) 
       <li >

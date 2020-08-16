@@ -140,14 +140,7 @@
                                 </table>                                                
                             </div>
                         </div>
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="pull-right push-down-20">
-                                    <button class="btn btn-primary"><span class="fa fa-mail-reply"></span> Quay về</button>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <!-- END INVOICE -->
 
