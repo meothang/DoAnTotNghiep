@@ -19,7 +19,7 @@
 						<li class="nav-item"><a class="nav-link" href="{{ route('get.list.product') }}">Sản phẩm</a>
 						</li>
 						{{-- <li class="nav-item"><a class="nav-link" href="#">Blog</a></li> --}}
-						<li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+						<!-- <li class="nav-item"><a class="nav-link" href="#">Blog</a></li> -->
 						<li class="nav-item"><a class="nav-link" href="{{ route('get.contact') }}">Liên hệ</a></li>
 						@if (Auth::user())
 						<li class="nav-item"><a class="nav-link" href=""><i>Xin Chào</i> : {{ Auth::user() -> name}}</a>
@@ -44,7 +44,7 @@
 		</nav>
 	</div>
 
-	<div class="search_input" id="search_input_box">
+	<div class="search_input" id="search_input_box" style = "margin-left: -9px">
 		<div class="container">
 			<form action="" id="searchform" method="GET" class="d-flex justify-content-between">
 				<input type="text" name="keySearch" id="keySearch" class="form-control"
@@ -53,7 +53,7 @@
 				<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
 			</form>
 			<div class="product-search restrain form-search" id="form_search"
-				style="width:1100px;display: none; position: absolute;padding-top: 5px; margin-top: 5px; background-color: #3f3f3f;">
+				style="width:100%; left: 0; display: none; position: absolute;padding-top: 5px; margin-top: 5px; background-color: #3f3f3f;">
 			</div>
 		</div>
 	</div>

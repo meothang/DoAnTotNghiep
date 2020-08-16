@@ -8,6 +8,28 @@
 </ul>
 <!-- END BREADCRUMB -->
 
+    <?php
+        $listRoleOfUser = \DB::table('users')
+        ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
+        ->join('roles', 'user_roles.role_id', '=', 'roles.id')
+        ->where('users.id',Auth()->user()->id)
+        ->select('roles.*')
+        ->get()->pluck('id')->toArray();
+
+
+        $listRoleOfUser = \DB::table('roles')
+        ->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
+        ->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
+        ->whereIn('roles.id',$listRoleOfUser) // lấy giá trị tại id
+        ->select('permissions.*')
+        ->get()->pluck('id')->unique();
+
+        $checkPermissionAddProduct = \DB::table('permissions')->where('name','create-product')->value('id');
+        $checkPermissionEditProduct = \DB::table('permissions')->where('name','edit-product')->value('id');
+        $checkPermissionDeleteProduct = \DB::table('permissions')->where('name','delete-product')->value('id');
+
+    ?>
+
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
     <!-- START RESPONSIVE TABLES -->
@@ -19,7 +41,7 @@
                         <div class="page-head-text col-md-4">
                             <h1 class="panel-title"><strong>Quản lý</strong> sản phẩm</h1>
                         </div>
-                        <div class="page-head-controls col-md-8">'.'
+                        <div class="page-head-controls col-md-8">
                             <div class="row">
                                 <div class="col-md-9">
                                     <form action="">
@@ -48,13 +70,16 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-3">
-                                    <a href="{{ route('admin.get.create.product')}}">
-                                        <button class="btn btn-primary btn-rounded" style="width:100%"><span
-                                            class="fa fa-plus"></span> Thêm
-                                        sản phẩm</button>
-                                    </a>
-                                </div>
+
+                                @if($listRoleOfUser->contains($checkPermissionAddProduct))
+                                    <div class="col-md-3">
+                                        <a href="{{ route('admin.get.create.product')}}">
+                                            <button class="btn btn-primary btn-rounded" style="width:100%"><span
+                                                class="fa fa-plus"></span> Thêm
+                                            sản phẩm</button>
+                                        </a>
+                                    </div>
+                                @endif()
                             </div>
                         </div>
                     </div>
@@ -99,7 +124,10 @@
                                     <th width="100" class="text-center">Danh mục</th>
                                     <th width="50" class="text-center">Trạng thái</th>
                                     <th width="120" class="text-center">Ngày nhập</th>
+                                    @if($listRoleOfUser->contains($checkPermissionEditProduct) || $listRoleOfUser->contains($checkPermissionDeleteProduct))
                                     <th width="120" class="text-center">Hành động</th>
+                                    @endif() 
+
                                 </tr>
                             </thead>
 
@@ -138,16 +166,27 @@
                                             </a>
                                         </td>
                                         <td class="text-center">{{ date_format($product->created_at,'d/m/Y H:i:s') }}</td>
+                                        @if($listRoleOfUser->contains($checkPermissionEditProduct) || $listRoleOfUser->contains($checkPermissionDeleteProduct))
+
                                         <td class="text-center">
-                                            <a>
-                                                <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$product -> id}}"><span
-                                                    class="fa fa-times"></span></button>
-                                                </a>
-                                                <a href="{{ route('admin.get.edit.product',$product->id) }}">
-                                                    <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
-                                                        <span class="fa fa-pencil"></span></button>
+
+                                                @if($listRoleOfUser->contains($checkPermissionEditProduct))
+                                                    <a href="{{ route('admin.get.edit.product',$product->id) }}">
+                                                        <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
+                                                            <span class="fa fa-pencil"></span></button>
+                                                        </a>
+                                                @endif() 
+
+                                                @if($listRoleOfUser->contains($checkPermissionDeleteProduct))
+                                                    <a>
+                                                        <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$product -> id}}"><span
+                                                            class="fa fa-times"></span></button>
                                                     </a>
-                                                </td>
+                                                @endif()  
+                                        
+                                        </td>
+                                        @endif()  
+
                                             </tr>
                                             @endforeach
                                             @endif

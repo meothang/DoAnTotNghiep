@@ -1,10 +1,9 @@
-
 @if (count($product) == 0)
 <div style=" color: #000000;
     margin-left: 185px;
     margin-top: 20px;
     font-size: 22px;">
-	Xin Lỗi. Không Tìm Thấy Bất Kỳ Sản Phẩm Nào. 
+	Xin Lỗi. Không Tìm Thấy Bất Kỳ Sản Phẩm Nào.
 </div>
 @else
 @foreach ($product as $key => $proAll)
@@ -13,14 +12,21 @@
 		@if ($proAll -> pro_amount == 0)
 		<span style="position: absolute; background: #e91e63; color: white; border-radius: 4px; font-size: 10px; padding: 5px 10px;z-index: 100">Tạm Hết Hàng</span>
 		@endif
-		@if  ( $proAll -> pro_sale > 0 && $proAll -> pro_amount > 0)
+		@if ( $proAll -> pro_sale > 0 && $proAll -> pro_amount > 0)
 		<span class="sale_item" style="position: absolute; font-size: 11px; background-image: linear-gradient(-250deg,#ec1f1f 0%,#ff9c00 100%); border-radius: 10px; padding: 5px 10px; color: white; z-index: 100">Giảm: {{$proAll -> pro_sale}}%</span>
 		@endif
 		<img class="img-fluid" src="{{asset("/img/product/".$proAll->categories -> name."/$proAll->pro_image")}}" alt="">
 		<div class="product-details">
-			<a href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
+		<a style="overflow: hidden;
+								text-overflow: ellipsis;
+								line-height: 25px;
+								-webkit-line-clamp: 2;
+								height: 40px;
+								display: -webkit-box;
+								-webkit-box-orient: vertical;" href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
 			<div class="price">
-				<h6>$ {{ number_format($proAll -> pro_price, 0,',','.')}}</h6>
+				<h6>Giá: <span style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}}
+						VNĐ</span></h6>
 				<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
 			</div>
 			<div class="prd-bottom">
@@ -51,10 +57,10 @@
 				<option value="1">Show 12</option>
 			</select>
 		</div> --}}
-		<div class="pagination">
-			{{$product->links()}}
-		</div>
-{{-- 	</div>
+<div class="pagination">
+	{{$product->links()}}
+</div>
+{{-- </div>
 </div>
 --}}
-			<!-- End Filter Bar
+<!-- End Filter Bar

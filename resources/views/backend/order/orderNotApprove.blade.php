@@ -1,5 +1,27 @@
 @extends('backend.layouts.backend-master')
 @section('backend-main')
+@php
+        $listRoleOfUser = \DB::table('users')
+        ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
+        ->join('roles', 'user_roles.role_id', '=', 'roles.id')
+        ->where('users.id',Auth()->user()->id)
+        ->select('roles.*')
+        ->get()->pluck('id')->toArray();
+
+
+        $listRoleOfUser = \DB::table('roles')
+        ->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
+        ->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
+        ->whereIn('roles.id',$listRoleOfUser) // lấy giá trị tại id
+        ->select('permissions.*')
+        ->get()->pluck('id')->unique();
+
+        $checkPermissionViewOrderApprove= \DB::table('permissions')->where('name','view-order')->value('id');
+        $checkPermissionViewOrderNotApprove = \DB::table('permissions')->where('name','view-order-notapprove')->value('id');
+        $checkPermissionDeleteOrder = \DB::table('permissions')->where('name','delete-order')->value('id');
+        $checkPermissionActionOrder = \DB::table('permissions')->where('name','action-order')->value('id');
+
+    @endphp
 <!-- START BREADCRUMB -->
 <ul class="breadcrumb">
     <li><a href="#">Trang chủ</a></li>
@@ -24,12 +46,11 @@
                 <div class="panel-heading">
                     <div class="page-head-text">
                         <h1 class="panel-title"><strong>Quản lý</strong> Đơn hàng chưa duyệt</h1>
-                        <a href="">
+                        @if($listRoleOfUser->contains($checkPermissionViewOrderApprove))
+                        <a href="{{route('admin.get.list.order')}}">
                             <button class="btn btn-primary btn-rounded pull-right"><span class="fa fa-check"></span> Đơn hàng đã duyệt</button>
                         </a>
-                        {{-- <span class="label label-primary label-form">Quản lý đơn hàng chưa duyệt</span> --}}
-                        {{-- <h1>Quản lý đơn hàng chưa duyệt</h1> --}}
-                        {{-- <p class="page-head-subtitle">Some awesome subtitle goes here</p> --}}
+                        @endif()
                     </div>
                 </div>
 
@@ -57,7 +78,7 @@
                              @if (isset($orders))
                              @foreach ($orders as $order)
                              <tr id="trow_2">
-                                <td class="text-center">1</td>
+                             <td class="text-center">#{{ $order -> id}}</td>
                                 <td><strong>{{ $order -> user -> name}}</strong></td>
                                     {{-- <td><span class="label label-success">New</span></td>
                                     <td>$430.20</td> --}}
@@ -67,13 +88,28 @@
                                     <td class="text-center">{{number_format($order -> total,0,',','.')}} VND</td>
                                     <td class="text-center">{{$order -> note}}</td>
                                     <td class="text-center">
+
+                                    @if($listRoleOfUser->contains($checkPermissionActionOrder))
+
                                         @if ($order -> status == 0)
+
                                         <a href="{{ route('admin.get.active.order', ['status', $order -> id]) }}">
                                          <button type="button" class="btn btn-warning">
                                             Chưa Duyệt
                                         </button>
-                                    </a>
-                                    @endif
+                                       </a>
+                                         @endif
+                                         
+                                    @else 
+                                        <a href="javascipt:void(0)">
+                                         <button type="button" class="btn btn-warning">
+                                            Không có quyền duyệt
+                                        </button>
+                                       </a>
+
+                                    @endif    
+
+
                                 </td>
                                 <td class="text-center">
                                    @php
@@ -86,11 +122,14 @@
                                 <a href="{{ route('order.detail', $order -> id) }}"><button
                                     class="btn btn-primary btn-rounded btn-condensed btn-sm"><span
                                     class="fa fa-info"></span></button></a>
+                                    @if($listRoleOfUser->contains($checkPermissionDeleteOrder))
 
                                     <a>  
                                         <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$order -> id}}"><span
                                             class="fa fa-times"></span></button>
                                         </a>
+                                        @endif()
+
                                     </td>
                                 </tr>
                                 @endforeach

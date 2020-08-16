@@ -29,7 +29,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
   Route::post('/create','AdminProductController@store')->name('admin.post.create.product');
   Route::get('/update/{id}','AdminProductController@edit')->middleware('CheckAcl:edit-product')->name('admin.get.edit.product');
   Route::post('/update/{id}','AdminProductController@update')->name('admin.post.update.product');
-  Route::get('/{action}/{id}','AdminProductController@action')->middleware('CheckAcl:action-product')->name('admin.get.action.product');
+  Route::get('/{action}/{id}','AdminProductController@action')->middleware('CheckAcl:edit-product')->name('admin.get.action.product');
      //    Route::get('/order','AdminProductController@index1')->name('admin.get.list.order');
 });
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
 
    Route::get('/OrderApprove','AdminOrderController@getOrderApprove')->middleware('CheckAcl:view-order')->name('admin.get.list.order');
    Route::get('/OrderDetail/{id}','AdminOrderController@showOrderDetail')->name('order.detail');
-   Route::get('/OrderNotApprove','AdminOrderController@getOrderNotApprove')->middleware('CheckAcl:view-order')->name('admin.get.list.order.not');
+   Route::get('/OrderNotApprove','AdminOrderController@getOrderNotApprove')->middleware('CheckAcl:view-order-notapprove')->name('admin.get.list.order.not');
 
 // xử lý đơn hàng
    Route::get('/{action}/{id}','AdminOrderController@actionOrder')->middleware('CheckAcl:action-order')-> name('admin.get.active.order');
@@ -47,9 +47,9 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
 
     //report
     Route::group(['prefix'=>'report'],function(){
-      Route::get('/bao-cao-theo-thang','AdminReportController@getReportMonth')->name('admin.get.list.month-report');
+      Route::get('/bao-cao-theo-thang','AdminReportController@getReportMonth')->middleware('CheckAcl:view-report-month')->name('admin.get.list.month-report');
       Route::get('/bao-cao-theo-thang/search','AdminReportController@getReportMonthSearch')->name('admin.get.list.month-report-search');
-      Route::get('/bao-cao-theo-ngay','AdminReportController@getReportDay')->name('admin.get.list.day-report');
+      Route::get('/bao-cao-theo-ngay','AdminReportController@getReportDay')->middleware('CheckAcl:view-report-day')->name('admin.get.list.day-report');
       Route::get('/bao-cao-theo-ngay/search','AdminReportController@getReportDaySearch')->name('admin.get.list.day-report-search');
          //    Route::get('/order','AdminProductController@index1')->name('admin.get.list.order');
     });
@@ -71,12 +71,12 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
 
  // user phần BackEnd
  Route::group(['prefix' => 'user'], function() {
-  Route::get('/list-user', 'AdminUserController@getCustomer')->middleware('CheckAcl:view-user')->name('get.backend.list.user');
+  Route::get('/list-user', 'AdminUserController@getCustomer')->middleware('CheckAcl:view-customer')->name('get.backend.list.user');
     Route::get('/list-admin', 'AdminUserController@getListAdmin')->middleware('CheckAcl:view-user')->name('get.backend.list.admin');
 });
 
  // phần quyền 
- Route::get('/list-Employee', 'RoleController@index')->middleware('CheckAcl:view-user')->name('get.backend.list.employee');
+ Route::get('/list-Employee', 'RoleController@index')->middleware('CheckAcl:view-role-employee')->name('get.backend.list.employee');
  Route::get('/role/createRole','RoleController@create')->middleware('CheckAcl:create-role')->name('create.role');
  Route::post('/role/createRole','RoleController@store')->name('store.role');
  Route::get('/role/{id}/edit/','RoleController@edit')->middleware('CheckAcl:edit-role')->name('edit.role');
@@ -132,9 +132,9 @@ Route::post('/dang-ky-user','UserController@postRegister');
 Route::get('/dang-xuat-user','UserController@getLogout')->name('get.user.logout');
 
 // Phần sản phẩm và chi tiết sản phẩm
-Route::get('/san-pham-type','ProductController@getProduct')->name('get.list.product');
+Route::get('/san-pham','ProductController@getProduct')->name('get.list.product');
 Route::get('product-detail/{slug}-{id}','ProductController@getProductDetail')->name('get.product.detail');
-Route::get('/san-pham-type/{name}','ProductController@getProductType')->name('get.list.product.type');
+Route::get('/san-pham/{name}','ProductController@getProductType')->name('get.list.product.type');
  // Phần Giỏ Hàng
 Route::get('/cart-add/{id}', 'CartController@addProduct')->name('add.cart');
 Route::get('/list-cart', 'CartController@listProduct')->name('list.cart');
