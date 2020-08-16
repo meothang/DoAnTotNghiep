@@ -8,7 +8,7 @@
 </ul>
 <!-- END BREADCRUMB -->
 
-    @php
+    <?php
         $listRoleOfUser = \DB::table('users')
         ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
         ->join('roles', 'user_roles.role_id', '=', 'roles.id')
@@ -28,7 +28,7 @@
         $checkPermissionEditProduct = \DB::table('permissions')->where('name','edit-product')->value('id');
         $checkPermissionDeleteProduct = \DB::table('permissions')->where('name','delete-product')->value('id');
 
-    @endphp
+    ?>
 
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
@@ -41,7 +41,7 @@
                         <div class="page-head-text col-md-4">
                             <h1 class="panel-title"><strong>Quản lý</strong> sản phẩm</h1>
                         </div>
-                        <div class="page-head-controls col-md-8">'.'
+                        <div class="page-head-controls col-md-8">
                             <div class="row">
                                 <div class="col-md-9">
                                     <form action="">
@@ -124,7 +124,10 @@
                                     <th width="100" class="text-center">Danh mục</th>
                                     <th width="50" class="text-center">Trạng thái</th>
                                     <th width="120" class="text-center">Ngày nhập</th>
+                                    @if($listRoleOfUser->contains($checkPermissionEditProduct) || $listRoleOfUser->contains($checkPermissionDeleteProduct))
                                     <th width="120" class="text-center">Hành động</th>
+                                    @endif() 
+
                                 </tr>
                             </thead>
 
@@ -163,6 +166,8 @@
                                             </a>
                                         </td>
                                         <td class="text-center">{{ date_format($product->created_at,'d/m/Y H:i:s') }}</td>
+                                        @if($listRoleOfUser->contains($checkPermissionEditProduct) || $listRoleOfUser->contains($checkPermissionDeleteProduct))
+
                                         <td class="text-center">
 
                                                 @if($listRoleOfUser->contains($checkPermissionEditProduct))
@@ -180,6 +185,8 @@
                                                 @endif()  
                                         
                                         </td>
+                                        @endif()  
+
                                             </tr>
                                             @endforeach
                                             @endif

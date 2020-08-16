@@ -110,7 +110,7 @@
 
                                 @foreach ($orders as $order)
                                 <tr id="trow_2">
-                                    <td class="text-center">1</td>
+                                    <td class="text-center">#{{ $order -> id}}</td>
                                     <td><strong>{{ $order -> user -> name}}</strong></td>
                                     <td class="text-center">{{$order -> emailguest}}</td>
                                     <td class="text-center">{{$order -> phone}}</td>
