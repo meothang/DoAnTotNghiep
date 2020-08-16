@@ -182,6 +182,7 @@
 				<!-- single product -->
 				@if (isset($productNews))
 				@foreach ($productNews as $element => $proNews)
+				
 				<div class="col-lg-3 col-md-6">
 					<div class="single-product">
 						@if ($proNews -> pro_amount == 0)
@@ -196,7 +197,12 @@
 						<div class="product-details">
 							<a href="{{ route('get.product.detail',[$proNews -> pro_slug, $proNews ->id]) }}">{{$proNews -> pro_name}}</a>
 							<div class="price">
-								<h6>Giá: <strong>{{number_format($proNews -> pro_price)}} VNĐ</strong></h6>
+								<h6>Giá: <strong>{{number_format($proNews -> pro_price,0,',', '.')}} VNĐ</strong></h6>
+								@php
+								$priceSale = $proNews-> pro_price*(100-$proNews-> pro_sale)/100;
+								@endphp
+								<h6>Giá Đã Sale: {{number_format($priceSale, 0, ',', '.')}} VND</h6>
+								<br>
 								<h6 class="l-through">sale: {{ $proNews -> pro_sale}} %</h6>
 							</div>
 							<div class="prd-bottom">
@@ -258,7 +264,12 @@
 								<div class="product-details">
 									<a href="{{ route('get.product.detail',[$proHot -> pro_slug, $proHot ->id]) }}"> {{$proHot -> pro_name}}</a>
 									<div class="price">
-										<h6>Giá: <strong>{{ $proHot -> pro_price }}</strong></h6>
+										<h6>Giá: <strong>{{ number_format($proHot -> pro_price, 0, ',', '.') }} VND</strong></h6>
+										@php
+										$priceSale = $proHot-> pro_price*(100-$proHot-> pro_sale)/100;
+										@endphp
+										<h6>Giá Đã Sale: {{number_format($priceSale, 0, ',', '.')}} VND </h6>
+										<br>
 										<h6 class="l-through">sale: {{$proHot -> pro_sale}} %</h6>
 									</div>
 									<div class="prd-bottom">

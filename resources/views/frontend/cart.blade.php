@@ -52,7 +52,7 @@
                                 <p>{{$cart_item -> avatar}}</p>
                             </td>
                             <td>
-                                <h5>{{ number_format($cart_item -> price, 0, ',', '.')}} VNĐ</h5>
+                                <h5>{{number_format($cart_item -> options -> price_old,0, ',', '.')}} VNĐ</h5>
                                 Đã Giảm : {{$cart_item-> options -> sale}} %
                             </td>
                             <td>
