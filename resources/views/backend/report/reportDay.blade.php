@@ -91,7 +91,7 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                 <tr id="trow_2">
-                                    <td class="text-center">1</td>
+                                    <td class="text-center">#{{ $order -> id}}</td>
                                     <td><strong>{{ $order -> user -> name}}</strong></td>
                                     <td class="text-center">{{$order -> emailguest}}</td>
                                     <td class="text-center">{{$order -> phone}}</td>
@@ -105,8 +105,21 @@
                                         \Carbon\Carbon::createFromTimeStamp(strtotime($order->updated_at))->diffForHumans();
                                         @endphp
                                     </td>
+                                    @endforeach
+                                    <tr id="trow_2">
+                                    <td colspan="7" align="right">
+                                        <h3 style="padding: 0px;margin: 0;">Tổng đơn hàng: <b>{{count($orders) }}
+                                                đơn</b></h3>
+                                    </td>
                                 </tr>
-                                @endforeach
+                                <tr id="trow_2">
+                                    <td colspan="7" align="right">
+                                        <h3 style="padding: 0px;margin: 0;">Tổng tiền:
+                                            <b>{{number_format($orders->sum('total'))  }} VNĐ</b>
+                                        </h3>
+                                    </td>
+                                </tr>
+                                </tr>
                                 @else
                                 <h4 style="text-align:center">Không có đơn hàng nào !</h4>
                                 @endif()
