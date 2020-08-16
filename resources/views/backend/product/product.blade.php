@@ -8,18 +8,18 @@
 </ul>
 <!-- END BREADCRUMB -->
 
-    <?php
-        $listRoleOfUser = \DB::table('users')
-        ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
-        ->join('roles', 'user_roles.role_id', '=', 'roles.id')
-        ->where('users.id',Auth()->user()->id)
-        ->select('roles.*')
-        ->get()->pluck('id')->toArray();
+<?php
+$listRoleOfUser = \DB::table('users')
+->join('user_roles', 'users.id', '=', 'user_roles.user_id')
+->join('roles', 'user_roles.role_id', '=', 'roles.id')
+->where('users.id',Auth()->user()->id)
+->select('roles.*')
+->get()->pluck('id')->toArray();
 
 
-        $listRoleOfUser = \DB::table('roles')
-        ->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
-        ->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
+$listRoleOfUser = \DB::table('roles')
+->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
+->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
         ->whereIn('roles.id',$listRoleOfUser) // lấy giá trị tại id
         ->select('permissions.*')
         ->get()->pluck('id')->unique();
@@ -28,62 +28,62 @@
         $checkPermissionEditProduct = \DB::table('permissions')->where('name','edit-product')->value('id');
         $checkPermissionDeleteProduct = \DB::table('permissions')->where('name','delete-product')->value('id');
 
-    ?>
+        ?>
 
-<!-- PAGE CONTENT WRAPPER -->
-<div class="page-content-wrap">
-    <!-- START RESPONSIVE TABLES -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="page-head-text col-md-4">
-                            <h1 class="panel-title"><strong>Quản lý</strong> sản phẩm</h1>
-                        </div>
-                        <div class="page-head-controls col-md-8">
+        <!-- PAGE CONTENT WRAPPER -->
+        <div class="page-content-wrap">
+            <!-- START RESPONSIVE TABLES -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
                             <div class="row">
-                                <div class="col-md-9">
-                                    <form action="">
-                                        <div class="input-group" style="display: inline-flex;">
-                                            <span class="input-group-addon"><span class="fa fa-search"></span></span>
-                                            <input name="name" type="text" class="form-control"
-                                            placeholder="Nhập sản phẩm cần tìm kiếm"
-                                            value="{{ \Request::get('name') }}">
-                                            <div class="form-group" style="margin:0px">
-                                                <!-- <label for="inputState">Danh mục</label> -->
-                                                <select class="form-control select" name="cate" id="inputState">
-                                                    <!-- <option>Danh mục</option> -->
-                                                    @if($categories)
-                                                    @foreach($categories as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ \Request::get('cate') == $item->id ? "selected = 'selected'" : ""  }}>
-                                                        {{ $item->name }}
-                                                    </option>
-                                                    @endforeach
-                                                    @endif
-                                                </select>
-                                            </div>
-                                            <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-primary">Search</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <div class="page-head-text col-md-4">
+                                    <h1 class="panel-title"><strong>Quản lý</strong> sản phẩm</h1>
                                 </div>
+                                <div class="page-head-controls col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <form action="">
+                                                <div class="input-group" style="display: inline-flex;">
+                                                    <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                                                    <input name="name" type="text" class="form-control"
+                                                    placeholder="Nhập sản phẩm cần tìm kiếm"
+                                                    value="{{ \Request::get('name') }}">
+                                                    <div class="form-group" style="margin:0px">
+                                                        <!-- <label for="inputState">Danh mục</label> -->
+                                                        <select class="form-control select" name="cate" id="inputState">
+                                                            <!-- <option>Danh mục</option> -->
+                                                            @if($categories)
+                                                            @foreach($categories as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                {{ \Request::get('cate') == $item->id ? "selected = 'selected'" : ""  }}>
+                                                                {{ $item->name }}
+                                                            </option>
+                                                            @endforeach
+                                                            @endif
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-group-btn">
+                                                        <button type="submit" class="btn btn-primary">Search</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
 
-                                @if($listRoleOfUser->contains($checkPermissionAddProduct))
-                                    <div class="col-md-3">
-                                        <a href="{{ route('admin.get.create.product')}}">
-                                            <button class="btn btn-primary btn-rounded" style="width:100%"><span
-                                                class="fa fa-plus"></span> Thêm
-                                            sản phẩm</button>
-                                        </a>
+                                        @if($listRoleOfUser->contains($checkPermissionAddProduct))
+                                        <div class="col-md-3">
+                                            <a href="{{ route('admin.get.create.product')}}">
+                                                <button class="btn btn-primary btn-rounded" style="width:100%"><span
+                                                    class="fa fa-plus"></span> Thêm
+                                                sản phẩm</button>
+                                            </a>
+                                        </div>
+                                        @endif()
                                     </div>
-                                @endif()
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
                 {{-- <div class="row">
                     <div class="col-md-6">
                         <form action="" class="form-inline" style="margin-bottom :15px">
@@ -136,7 +136,11 @@
                                 @foreach($products as $product )
                                 <tr>
                                     <td class="text-center">{{ $product->id }}</td>
-                                    <td><strong>{{ $product->pro_name}}</strong></td>
+                                    <td><strong>{{ $product->pro_name}}</strong>
+                                        <br>
+                                        <h6>Số Lượng:   {{$product -> pro_amount}}</h6>
+                                       
+                                    </td>
                                     <td style="display: -webkit-box; -webkit-line-clamp: 4; overflow:
                                     hidden; -webkit-box-orient: vertical;border-width:1px 0 0 0">
                                     {{$product->pro_content}}</td>
@@ -170,22 +174,22 @@
 
                                         <td class="text-center">
 
-                                                @if($listRoleOfUser->contains($checkPermissionEditProduct))
-                                                    <a href="{{ route('admin.get.edit.product',$product->id) }}">
-                                                        <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
-                                                            <span class="fa fa-pencil"></span></button>
-                                                        </a>
+                                            @if($listRoleOfUser->contains($checkPermissionEditProduct))
+                                            <a href="{{ route('admin.get.edit.product',$product->id) }}">
+                                                <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
+                                                    <span class="fa fa-pencil"></span></button>
+                                                </a>
                                                 @endif() 
 
                                                 @if($listRoleOfUser->contains($checkPermissionDeleteProduct))
-                                                    <a>
-                                                        <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$product -> id}}"><span
-                                                            class="fa fa-times"></span></button>
+                                                <a>
+                                                    <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$product -> id}}"><span
+                                                        class="fa fa-times"></span></button>
                                                     </a>
+                                                    @endif()  
+
+                                                </td>
                                                 @endif()  
-                                        
-                                        </td>
-                                        @endif()  
 
                                             </tr>
                                             @endforeach
@@ -204,34 +208,34 @@
                                                     </div>
                                                     <div class="mb-footer">
                                                         <div class="pull-right">
-                                                           <button class="btn btn-warning btn-lg delPro">Xóa
-                                                           </button>
-                                                           <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                       <!-- END MESSAGE BOX-->
+                                                         <button class="btn btn-warning btn-lg delPro">Xóa
+                                                         </button>
+                                                         <button class="btn btn-default btn-lg mb-control-close">Hủy</button>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <!-- END MESSAGE BOX-->
 
-                                   </div>
+                                 </div>
 
-                               </div>
-                           </div>
+                             </div>
+                         </div>
 
-                       </div>
-                   </div>
-                   <!-- END RESPONSIVE TABLES -->
+                     </div>
+                 </div>
+                 <!-- END RESPONSIVE TABLES -->
 
-               </div>
-               @stop
-               @section('script')
-               <script>
+             </div>
+             @stop
+             @section('script')
+             <script>
                 $(".notiDelete").click(function(){
                     $("#mb-remove-row").addClass("open");
                     let id = $(this).data('id');
                     $('.delPro').click(function(){
-                       $.ajax({
+                     $.ajax({
                         url: 'backend/product/delete/'+id,
                         data:{
                             id: id,
@@ -246,19 +250,19 @@
                             init_reload();
                             function init_reload(){
                                 setInterval( function() {
-                                   window.location.reload();
+                                 window.location.reload();
 
-                               },1000);
+                             },1000);
                             }
                         }else {
-                         toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
+                           toastr.error($result.error, 'Thông Báo',{timeOut: 3000});
                      // location.reload();
                  }
              }
 
          });
 
-                   });
+                 });
                 });
             </script>
             @stop
