@@ -55,18 +55,6 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','CheckLoginAdmin'],
     });
     
 // 
-   // Route::get('/','AdminOrderController@getCart')->name('admin.get.cart');
-   // Route::get('/cart', 'AdminOrderController@cart')->name('cart.index');
-   // Route::get('/checkout', 'AdminOrderController@checkout')->name('check.get');
-   // Route::post('/checkout', 'AdminOrderController@saveOrder')->name('check.post');
-   // Route::post('/add', 'AdminOrderController@add')->name('cart.store');
-   // Route::get('/update/{id}', 'AdminOrderController@getupdate')->name('cart.update.get');
-   //   // Route::get('/update', 'AdminOrderController@update')->name('cart.update');
-   // Route::post('/update', 'AdminOrderController@update')->name('cart.update');
-   // Route::get('/reset/{id}', 'AdminOrderController@reset')->name('cart.reset');
-   // Route::post('/remove', 'AdminOrderController@remove')->name('cart.remove'); 
-   // Route::get('/{action}/{id}', 'AdminOrderController@action')->name('cart.delete');    
-   // Route::get('/clear', 'AdminOrderController@clear')->name('cart.clear');
 
 
  // user phần BackEnd
