@@ -192,13 +192,13 @@
 								display: -webkit-box;
 								-webkit-box-orient: vertical;" href="{{ route('get.product.detail',[$proAll -> pro_slug, $proAll ->id]) }}">{{ $proAll -> pro_name}}</a>
 								<div class="price">
-									<h6>Giá: <span style="font-size: 20px;">{{ number_format($proAll -> pro_price, 0,',','.')}} VNĐ</span></h6>
 									@php
 									$priceSale = $proAll-> pro_price*(100-$proAll-> pro_sale)/100;
 									@endphp
-									<h6>Giá Đã Sale: {{number_format($priceSale, 0, ',', '.')}} VND </h6>
+									<h4><span><strong>Giá: {{number_format($priceSale, 0, ',', '.')}} VND </strong></span></h4>
+									<h6  class="l-through">Giá gốc: {{ number_format($proAll -> pro_price, 0,',','.')}} VNĐ</h6>
 									<br>
-									<h6 class="l-through">Sale: {{$proAll -> pro_sale}} %</h6>
+									<h6>Tiết kiệm: {{$proAll -> pro_sale}} %</h6>
 								</div>
 								<div class="prd-bottom">
 

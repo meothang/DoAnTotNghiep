@@ -6614,7 +6614,7 @@ label {
 .order_box .list li a .middle {
     float: none;
     width: 50px;
-    text-align: right;
+    /* text-align: right; */
     display: inline-block;
     margin-left: 30px;
     color: #222222;

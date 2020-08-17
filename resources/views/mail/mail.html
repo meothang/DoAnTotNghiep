@@ -58,71 +58,39 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="left" valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
+                                        <td valign="middle" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
                                             Chào {{ $name}},
                                             <br> Cám ơn bạn đã mua sắm tại Electro Store.
-                                            <br>Chi tiết đơn hàng:
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align:center">
+                                        <td align: "center">
+                                            <h3><span><strong>CHI TIẾT ĐƠN HÀNG</strong></span></h3>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width:580px;">
+                                            <table align="center" class="list-product" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width:600px;">
+                                                <tr class="thead">
+                                                    <th>Tên sản phẩm</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Thành tiền</th>
+                                                </tr>
                                                 <tbody>
+                                                    @foreach($bills as $bill)
                                                     <tr>
-                                                        <td>
-                                                            <table align="center" class="list-product" width="100%" border="0" cellspacing="0" cellpadding="0" style="max-width:600px;">
-                                                                <tr class="thead">
-                                                                    <th>STT</th>
-                                                                    <th>Tên sản phẩm</th>
-                                                                    <th>Số lượng</th>
-                                                                    <th>Đơn giá</th>
-                                                                    <th>Thành tiền</th>
-                                                                </tr>
-
-                                                                <tbody>
-                                                                    @php $stt = 1; @endphp @foreach($cart->items as $item) @php $tt = $item['quantity']*$item['price']; @endphp
-                                                                    <tr>
-                                                                        <td align="center">{{ $stt }}</td>
-
-                                                                        <td align="center" style="text-transform: uppercase;">{{ $item['name'] }}</td>
-
-                                                                        <td align="center">
-                                                                            {{$item['quantity']}}
-                                                                        </td>
-
-                                                                        <td align="center">
-                                                                            {{ number_format($item['price'],0,'','.') }}
-                                                                        </td align="center">
-
-                                                                        <td align="center">{{ number_format($tt,0,'','.') }}đ</td>
-                                                                    </tr>
-                                                                    @php $stt++ @endphp @endforeach
-
-                                                                </tbody>
-
-                                                                <tfoot>
-                                                                    <tr>
-                                                                        <th colspan="4" style="text-align: center">Tổng tiền</th>
-                                                                        <th colspan="4" align="center" style="font-size: 16px">{{number_format($cart->total(),0,'','.')}} vnđ
-                                                                        </th>
-                                                                    </tr>
-                                                                </tfoot>
-                                                            </table>
-                                                        </td>
+                                                        <td align="center" style="text-transform: uppercase;">{{ $bill -> name}}</td>
+                                                        <td align="center">{{ $bill -> qty}} </td>
+                                                        <td align="center">{{number_format($bill -> price, 0, ',', '.')}} VND </td>
                                                     </tr>
-
-                                                    <tr>
-                                                        <td height="50">
-
-                                                        </td>
-                                                    </tr>
-
+                                                    @endforeach
                                                 </tbody>
+
                                             </table>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666;padding:0 10px 20px 10px;line-height:17px">
                                             <br> Đơn hàng của bạn đang được giao.</b>
                                             <br>
                                             <b> Sau khi quý khách được hàng vui lòng nhấn vào link sau để chúng tôi biết: <a href="{{$data}}" title="">Tại đây</a></b>
@@ -178,11 +146,8 @@
                     </tr>
                 </tbody>
             </table>
-
         </div>
     </div>
-
-
 </body>
 
 </html>

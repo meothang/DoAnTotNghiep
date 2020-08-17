@@ -29,7 +29,7 @@ class CartController extends Controller
         $price = $product -> pro_price;
       }
       if ($product -> pro_amount == 0) {
-        return redirect() -> back()-> with(['flash_level' => 'danger', 'flash_message' => 'Xin Lỗi Bạn! Sản Phẩm Này Của Chúng Tôi Tạm Hết Hàng']);
+        return redirect() -> back()-> with(['flash_level' => 'danger', 'flash_message' => 'Sản phẩm này hiện đang hết hàng']);
       }
 
       \Cart::add([
@@ -40,7 +40,7 @@ class CartController extends Controller
         'options' => ['avatar' => $product -> pro_image, 'pro_cate' => $product -> categories -> name ,'sale' => $product ->pro_sale, 'price_old' => $product ->pro_price]
       ]   );
       $content = Cart::content();
-      return redirect()->back()-> with(['flash_level' => 'success', 'flash_message' => 'Thêm Giỏ Hàng Thành Công! Click Vô Đây Để Đến ->  <a href="list-cart" title="">Giỏ Hàng</a> ']);;
+      return redirect()->back()-> with(['flash_level' => 'success', 'flash_message' => 'Thêm vào giỏ hàng thành công! Click vào đây để đến <a href="list-cart" title="">Giỏ Hàng</a> ']);;
     }
     // update số lượng sản phẩm trong giỏ hàng
     public function updateProduct(Request $request, $id){
@@ -49,17 +49,17 @@ class CartController extends Controller
       // kiểm tra số lượng sản phẩm
         if ($number -> pro_amount > 0) {
           \Cart::update($id, $request -> qty);
-          return response()-> json(['result' => 'Đã Sửa Thành Công '.$number -> name]);
+          return response()-> json(['result' => 'Đã cập nhật giỏ hàng Thành Công '.$number -> name]);
         }
-        return response()-> json(['error' => 'Sửa không thành công. Tạm hết hàng']);
+        return response()-> json(['error' => 'Cập nhật giỏ hàng không thành công. Tạm hết hàng']);
         
       } 
-      return response()-> json(['error' => 'Sửa không thành công. Tạm hết hàng']);
+      return response()-> json(['error' => 'Cập nhật giỏ hàng không thành công. Tạm hết hàng']);
     }
 
     public function listProduct(){
       $content = Cart::content();
-      $total = Cart::subTotal(0, ',', '.');
+      $total = Cart::subTotal(0, ',' , '.');
       $viewData = [
         'content' => $content,
         'total' => $total
@@ -105,11 +105,11 @@ class CartController extends Controller
         'route' => $url
       ];
       // gửi mail xác nhận giao hàng
-      Mail::send('mail.shopping',array('data' => $data['route'], 'name' => $request -> name, 'bills' => $content), function ($message) use ($email, $data) {
+      Mail::send('mail.shopping',array('data' => $data['route'], 'name' => $request -> name, 'bills' => $content, 'totalMoney'=> $totalMoney), function ($message) use ($email, $data) {
         $message->to($email, 'User')->subject('Xác Nhận Giao Hàng');
       });
       \Cart::destroy();
-      return redirect()->route('admin.frontend')->with(['flash_level' => 'success', 'flash_message' => 'Thành Toán Thành Công. Click vô Mail để xác nhận đã giao hàng->  <a target="_blank" href="https://mail.google.com/" title="">Gmail</a> ']);
+      return redirect()->route('admin.frontend')->with(['flash_level' => 'success', 'flash_message' => 'Đặt hàng thành công. Vui lòng vào mail xác nhận đã giao hàng ->  <a target="_blank" href="https://mail.google.com/" title="">Gmail</a> ']);
     }
     // check giao giao thanh công
     public function verifyOrderReceive(Request $request){

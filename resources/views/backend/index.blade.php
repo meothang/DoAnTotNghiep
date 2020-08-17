@@ -234,81 +234,16 @@ tbody {
             </div>
         </div>
     </div>   
-  {{--   <div class="row">
-        <div class="col-md-4">
-
-            <!-- START SALES & EVENTS BLOCK -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-title-box">
-                        <h3>Sales & Event</h3>
-                        <span>Event "Purchase Button"</span>
-                    </div>
-                    <ul class="panel-controls" style="margin-top: 2px;">
-                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-body padding-0">
-                    <div class="chart-holder" id="dashboard-line-1" style="height: 200px;"></div>
-                </div>
-            </div>
-            <!-- END SALES & EVENTS BLOCK -->
-
-        </div> --}}
-      {{--   <div class="col-md-4">
-
-            <!-- START USERS ACTIVITY BLOCK -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="panel-title-box">
-                        <h3>Users Activity</h3>
-                        <span>Users vs returning</span>
-                    </div>
-                    <ul class="panel-controls" style="margin-top: 2px;">
-                        <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-body padding-0">
-                    <div class="chart-holder" id="dashboard-bar-1" style="height: 200px;"></div>
-                </div>
-            </div>
-            <!-- END USERS ACTIVITY BLOCK -->
-
-        </div> --}}
-        <div class="col-md-4">
-
+    <div class="row">
+        <div class="col-md-12">
             <!-- START VISITORS BLOCK -->
             <div id="container"></div>
             <p class="highcharts-description text-center" style="font-size: 15px; font-weight: bold;">
-               Biểu Đồ Thống Kê Tổng Doanh Thu Website.
+               Biểu đồ thống kê doanh thu Website.
            </p>
            <!-- END VISITORS BLOCK -->
-
        </div>
-   </div>
-
-   <!-- START DASHBOARD CHART -->
-   <div class="block-full-width">
-    <div id="dashboard-chart" style="height: 250px; width: 100%; float: left;"></div>
-    <div class="chart-legend">
-        <div id="dashboard-legend"></div>
-    </div>
+   </div>   
 </div>
 <!-- END DASHBOARD CHART -->
 </div>
@@ -349,7 +284,7 @@ Highcharts.chart('container', {
     type: 'column'
 },
 title: {
-    text: 'Tổng Doanh Thu Trong Ngày Và Tháng!'
+    text: 'Tổng doanh thu trong tháng <b><?php echo date("m/Y"); ?></b>'
 },
 accessibility: {
     announceNewData: {

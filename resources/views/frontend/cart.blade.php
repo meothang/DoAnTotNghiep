@@ -57,13 +57,14 @@
                             </td>
                             <td>
                                 <div class="product_count">
-                                    <input type="text" name="qty"  min='1' data-id="{{ $cart_item->rowId }}"  value="{{ $cart_item -> qty}}" class=" input-text qty">
+                                <input type="number" name="qty"  min='1' data-id="{{ $cart_item->rowId }}" value="{{ $cart_item -> qty}}"  class=" input-text qty">
+                                    <!-- <input type="text" name="qty"  min='1' data-id="{{ $cart_item->rowId }}"  value="{{ $cart_item -> qty}}" class=" input-text qty"> -->
                                     <input type="hidden" name="" class="pro_id{{$cart_item -> rowId}}" value="{{$cart_item -> id}}">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                    <!-- <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                                     class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
                                     <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                                         class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                    </div>
+                                    </div> -->
                                 </td>
                                 <td>
                                     <h5>{{number_format($cart_item -> price * $cart_item -> qty,0, ',', '.')}} VNĐ</h5>
@@ -77,11 +78,11 @@
                                 <td>
                                     <a class="gray_btn" href="#">Cập nhật giỏ hàng</a>
                                 </td>                    
-                                <td>
-                                    <h5>Tổng</h5>
-                                </td>
                                 <td></td>
                                 <td>
+                                    <h5>Tổng tiền</h5>
+                                </td>
+                                <td colspan="2" style="text-align:center">
                                     <h5 style="font-size: 18px;font-weight:bold">{{$total}} VNĐ</h5>
                                 </td>
                             </tr>

@@ -23,7 +23,7 @@
     <div class="billing_details">
       <div class="row">
         @if (Auth::user())
-        <div class="col-lg-8">
+        <div class="col-lg-7">
           <h3>Thông tin đơn hàng</h3>
           <form action="" method="POST">
             @csrf
@@ -50,11 +50,10 @@
             <div class="col-md-12 form-group p_star">
               <label for="name">Ghi Chú</label>
               <input type="text" class="form-control" id="note" name="note">
-              <span class="placeholder" data-placeholder="Ghi chú"></span>
             </div>
-            <div class="col-md-12 form-group p_star">
+            <!-- <div class="col-md-12 form-group p_star">
               <span style="color:red">Quá trình mất 1 ít thời gian để gửi Mail. Vui lòng đợi trong giây lát!</span>
-            </div>
+            </div> -->
 
             <div class="col-md-offset-3 col-md-6  form-group p_star">
               <button type="submit" value="submit" class="btn btn-info"> XÁC NHẬN </button>
@@ -63,7 +62,7 @@
         </div>
         @endif
 
-        <div class="col-lg-4">
+        <div class="col-lg-5">
           <div class="order_box">
             <h2>Đơn hàng</h2>
             <ul class="list">
@@ -79,7 +78,11 @@
 
               @endforeach
               @endif
-              <li>Tổng Tiền:{{ \Cart::subTotal() }}</li>
+              <li>
+                <a href="#">Tổng tiền
+                  <span class="last"><strong>{{ \Cart::subTotal() }} VNĐ</strong></span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
