@@ -104,7 +104,7 @@ public function updateEmployeeUser(Request $request, $id)
  if($request->password){
   $dataUser['password'] = bcrypt($request->password);
 }else{
-  $dataUser['password'] =  bcrypt($request->password);
+  $dataUser['password'] =bcrypt( $user->password);
 }
 
 $user->update($dataUser);
