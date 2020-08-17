@@ -52,7 +52,7 @@
 						<?php $cats = DB::table('categories')->orderby('name', 'ASC')->get(); ?>
 						@foreach($cats as $cat)
 						<li class="filter-list"><input class="pixel-radio try" type="radio" id="brandId" value="{{$cat->id}}" name="color">
-							{{ucwords($cat->name)}}<span>({{App\Models\Product::where('pro_cate_id',$cat->id)->count()}})</span>
+							{{ucwords($cat->name)}}<span> ({{App\Models\Product::where('pro_cate_id',$cat->id)->where('status',1)->count()}})</span>
 						</li>
 						@endforeach
 					</ul>
