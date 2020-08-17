@@ -89,10 +89,10 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-md-3 control-label">Giảm Giá %</label>
+                                            <label class="col-md-3 control-label">Giảm giá(%)</label>
                                             <div class="col-md-9">
                                                 <div class="input-group">
-                                                    <span class="input-group-addon"><span class=""></span></span>
+                                                    <span class="input-group-addon"><span class="fa fa-dollar"></span></span>
                                                     <input type="text" class="form-control" name="pro_sale"  value="{{ old('pro_sale',isset($product->pro_sale) ? $product->pro_sale : '') }}" />
                                                 </div>
                                                 @if($errors->has('pro_sale'))
@@ -106,7 +106,7 @@
                                         <label class="col-md-3 control-label">Số Lượng</label>
                                         <div class="col-md-9">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><span class="fa fa-info"></span></span>
+                                                <span class="input-group-addon"><span class="fa fa-sort-numeric-asc"></span></span>
                                                 <input type="text" class="form-control" name="pro_amount"  value="{{ old('pro_amount',isset($product->pro_amount) ? $product->pro_amount : '') }}" />
                                             </div>
                                             @if($errors->has('pro_amount'))

@@ -89,11 +89,23 @@
 			<div class="col-lg-5 offset-lg-1">
 				@if (isset($productDetail))
 				<div class="s_product_text">
-					<h3>{{ $productDetail -> pro_name}}</h3>
-					<h2><span>Giá:<span> {{number_format($productDetail -> pro_price)}} VNĐ</h2>
+						<h3>{{ $productDetail -> pro_name}}</h3>
+						@php
+						$priceSale = $productDetail-> pro_price*(100-$productDetail-> pro_sale)/100;
+						@endphp
+						<div style="display:flex">
+						<h2 style="margin-bottom:5px"><span><strong>Giá: {{number_format($priceSale, 0, ',', '.')}} VND  </strong></span></h2>
+						<h6>(Tiết kiệm: {{$productDetail -> pro_sale}} %)</h6>
+						</div>
+						<h6 style="text-decoration: line-through">Giá gốc: {{ number_format($productDetail -> pro_price, 0,',','.')}} VNĐ</h6>
 						<ul class="list">
 							<li><a class="active" href="#"><span>Danh mục</span> : {{ $cateProduct -> name}}</a></li>
-							<li><a href="#"><span>Tình trạng</span> : Có sẵn</a></li>
+							@if ($productDetail ->pro_amount != 0)
+							<li><a href="#"><span>Tình trạng</span>: Có sẵn</a></li>
+							@else
+							<li><a href="#"><span>Tình trạng</span>: Hết hàng</a></li>
+							@endif
+
 						</ul>
 						<p>{{ $productDetail -> pro_content}}</p>
 						<div class="product_count">
@@ -105,7 +117,11 @@
 								class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 							</div>
 							<div class="card_area d-flex align-items-center">
+								@if ($productDetail ->pro_amount != 0)
 								<a class="primary-btn" href="{{ route('add.cart', $productDetail -> id) }}">Thêm vào giỏ hàng</a>
+								@else
+								<a class="primary-btn" href="{{ route('add.cart', $productDetail -> id) }}">Tạm hết hàng</a>
+								@endif
 								{{-- <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a> --}}
 								<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 							</div>

@@ -8,7 +8,6 @@
         ->select('roles.*')
         ->get()->pluck('id')->toArray();
 
-
         $listRoleOfUser = \DB::table('roles')
         ->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
         ->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
@@ -16,10 +15,8 @@
         ->select('permissions.*')
         ->get()->pluck('id')->unique();
 
-       
         $checkPermissionDeleteCustomer = \DB::table('permissions')->where('name','delete-customer')->value('id');
-
-    @endphp
+@endphp
 <!-- START BREADCRUMB -->
 <ul class="breadcrumb">
     <li><a href="#">Trang chủ</a></li>
@@ -35,12 +32,10 @@
 
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
-
     <!-- START RESPONSIVE TABLES -->
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-
                 <div class="panel-heading">
                     <div class="page-head-text">
                         <h1 class="panel-title"><strong>Quản lý</strong> khách hàng</h1>

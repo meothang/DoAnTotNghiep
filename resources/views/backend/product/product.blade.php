@@ -10,25 +10,24 @@
 
 <?php
 $listRoleOfUser = \DB::table('users')
-->join('user_roles', 'users.id', '=', 'user_roles.user_id')
-->join('roles', 'user_roles.role_id', '=', 'roles.id')
-->where('users.id',Auth()->user()->id)
-->select('roles.*')
-->get()->pluck('id')->toArray();
-
+    ->join('user_roles', 'users.id', '=', 'user_roles.user_id')
+    ->join('roles', 'user_roles.role_id', '=', 'roles.id')
+    ->where('users.id', Auth()->user()->id)
+    ->select('roles.*')
+    ->get()->pluck('id')->toArray();
 
 $listRoleOfUser = \DB::table('roles')
-->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
-->join('permissions','role_permissions.permission_id', '=', 'permissions.id')
-        ->whereIn('roles.id',$listRoleOfUser) // lấy giá trị tại id
-        ->select('permissions.*')
-        ->get()->pluck('id')->unique();
+    ->join('role_permissions', 'roles.id', '=', 'role_permissions.role_id')
+    ->join('permissions', 'role_permissions.permission_id', '=', 'permissions.id')
+    ->whereIn('roles.id', $listRoleOfUser) // lấy giá trị tại id
+    ->select('permissions.*')
+    ->get()->pluck('id')->unique();
 
-        $checkPermissionAddProduct = \DB::table('permissions')->where('name','create-product')->value('id');
-        $checkPermissionEditProduct = \DB::table('permissions')->where('name','edit-product')->value('id');
-        $checkPermissionDeleteProduct = \DB::table('permissions')->where('name','delete-product')->value('id');
+$checkPermissionAddProduct = \DB::table('permissions')->where('name', 'create-product')->value('id');
+$checkPermissionEditProduct = \DB::table('permissions')->where('name', 'edit-product')->value('id');
+$checkPermissionDeleteProduct = \DB::table('permissions')->where('name', 'delete-product')->value('id');
 
-        ?>
+?>
 
         <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
@@ -126,7 +125,7 @@ $listRoleOfUser = \DB::table('roles')
                                     <th width="120" class="text-center">Ngày nhập</th>
                                     @if($listRoleOfUser->contains($checkPermissionEditProduct) || $listRoleOfUser->contains($checkPermissionDeleteProduct))
                                     <th width="120" class="text-center">Hành động</th>
-                                    @endif() 
+                                    @endif()
 
                                 </tr>
                             </thead>
@@ -139,7 +138,7 @@ $listRoleOfUser = \DB::table('roles')
                                     <td><strong>{{ $product->pro_name}}</strong>
                                         <br>
                                         <h6>Số Lượng:   {{$product -> pro_amount}}</h6>
-                                       
+
                                     </td>
                                     <td style="display: -webkit-box; -webkit-line-clamp: 4; overflow:
                                     hidden; -webkit-box-orient: vertical;border-width:1px 0 0 0">
@@ -150,8 +149,8 @@ $listRoleOfUser = \DB::table('roles')
                                         <td class="text-center">{{ $product->product_type->name}}</td>
                                         <td class="text-center">{{ number_format($product->pro_price) }} VNĐ</td>
                                         <?php
-                                        $category=DB::table('categories')->where('id',$product->id)->first();
-                                        ?>
+$category = DB::table('categories')->where('id', $product->id)->first();
+?>
                                         <td class="text-center">
                                             {{ $product->getCategory() }}
                                         </td>
@@ -179,17 +178,17 @@ $listRoleOfUser = \DB::table('roles')
                                                 <button class="btn btn-primary btn-rounded btn-condensed btn-sm">
                                                     <span class="fa fa-pencil"></span></button>
                                                 </a>
-                                                @endif() 
+                                                @endif()
 
                                                 @if($listRoleOfUser->contains($checkPermissionDeleteProduct))
                                                 <a>
                                                     <button class="btn btn-danger btn-rounded btn-condensed btn-sm notiDelete" data-id="{{$product -> id}}"><span
                                                         class="fa fa-times"></span></button>
                                                     </a>
-                                                    @endif()  
+                                                    @endif()
 
                                                 </td>
-                                                @endif()  
+                                                @endif()
 
                                             </tr>
                                             @endforeach
@@ -243,7 +242,7 @@ $listRoleOfUser = \DB::table('roles')
                         },
                         dataType: 'json',
                         type:'get',
-                        success:function($result){ 
+                        success:function($result){
                           if ($result.success) {
                             toastr.success($result.success, 'Thông Báo',{timeOut: 3000});
                             $("#mb-remove-row").addClass("hide");

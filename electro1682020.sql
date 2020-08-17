@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2020 at 07:07 AM
+-- Generation Time: Aug 16, 2020 at 12:56 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -307,7 +307,7 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `pro_name`, `pro_slug`, `pro_type`, `pro_content`, `pro_sale`, `pro_detail`, `pro_amount`, `status`, `pro_image`, `image1`, `image2`, `image3`, `pro_hot`, `pro_price`, `pro_cate_id`, `pro_total_rating`, `pro_total_number`, `created_at`, `updated_at`) VALUES
 (2, 'Asus VivoBook A512DA', 'asus-vivobook-a512da', '3', 'Bất kể là công việc hay giải trí, dòng Laptop Asus Vivobook 15 luôn có thể hỗ trợ bạn hết mình. Hãy cùng HANOICOMPUTER tìm hiểu Laptop Asus VivoBook A512DA-EJ421T – một trong những chiếc máy tính tiêu biểu cho dòng sản phẩm', 5, 'AMD Dual Core i3-3200U,4GB,15.6\'//Ultra Slim 200nits//FHD 1920x1080,AMD Radeon™ Vega 3 Graphics,PCIEG3x2 NVME 256GB M.2 SSD,1.35 kg (Without Battery)  1.60 kg (with 2 cell battery),HD Web Camera,2x USB 2.0; 1x Micro SD; 1x HDMI; 1x USB3.1 Type A (Gen1); 1x USB3.1 Type C,37WHrs', 453, 1, '16-06-2020_1310395987_vivobook_a512da_1.jpg', '16-06-2020_1057640676_vivobook_a512da_2.jpg', '16-06-2020_913989548_vivobook_a512da_3.jpg', '16-06-2020_1173938029_vivobook_a512da_4.jpg', 1, 10999000, 10, 1, 3, '2020-04-10 17:00:00', '2020-07-21 21:19:46'),
 (3, 'Apple Macbook Pro 13\" (2019)', 'apple-macbook-pro-13-2019', '2', 'MacBook Pro 13 inch năm nay có ngoại hình không thay đổi nhưng có sự nâng cấp ngoạn mục về sức mạnh hiệu năng.\r\n\r\nVề thiết kế tổng thể, diện mạo của dòng MacBook Pro năm nay không có gì thay đổi. Nhìn vào chiếc MacBook Pro 2019, người dùng sẽ thấy chúng rất quen mắt vì đây là diện mạo MacBook Pro mà người dùng đã thấy kể từ năm 2016.', 5, 'AMD Dual Core i3-3200U,4GB,15.6\'//Ultra Slim 200nits//FHD 1920x1080,AMD Radeon™ Vega 3 Graphics,PCIEG3x2 NVME 256GB M.2 SSD,1.35 kg (Without Battery)  1.60 kg (with 2 cell battery),HD Web Camera,2x USB 2.0; 1x Micro SD; 1x HDMI; 1x USB3.1 Type A (Gen1); 1x USB3.1 Type C,37WHrs', 29, 1, '16-06-2020_259834443_macbook_pro_13_touchbar_muhp2_1.jpg', '16-06-2020_864313381_macbook_pro_13_touchbar_muhp2_2.jpg', '16-06-2020_1956361228_macbook_pro_13_touchbar_muhp2_3.jpg', '16-06-2020_1696596206_macbook_pro_13_touchbar_muhp2_4.jpg', 1, 35999000, 1, 2, 8, '2020-04-10 17:00:00', '2020-06-16 10:07:26'),
-(8, 'Acer Nitro AN515 43 R9FD', 'acer-nitro-an515-43-r9fd', '1', 'Laptop Acer Nitro AN515 (NH.Q6ZSV.003) là mẫu laptop gaming tầm trung có thiết kế hầm hố, cấu hình mạnh, đồ họa mượt mà với card màn hình Geforce GTX 1650. Đây là chiếc laptop không chỉ phù hợp cho chơi game mà còn làm việc, thiết kế đồ họa tốt. \r\n\r\nCấu hình dành cho chơi game và đồ họa\r\nVới phiên bản này, Acer Nitro AN515 sử dụng CPU AMD Ryzen 5 4 nhân, tốc độ xung nhịp 2.1 – 3.7 GHz cho hiệu năng ổn định, sử dụng được các ứng dụng nặng.\r\n\r\nKết hợp là RAM 8 GB có khả năng nâng cấp tối đa lên đến 32 GB giúp đa nhiệm tốt, thoải mái sử dụng nhiều ứng dụng cùng lúc hay mở nhiều tab Chrome. \r\n\r\nCard đồ họa rời khủng Geforce GTX 1650 4 GB cho máy sức mạnh chiến mượt các tựa game nặng. Bạn cũng sẽ có trải nghiệm sử dụng mượt mà, chuyên nghiệp các ứng dụng đồ họa 2D như Photoshop, Ai,...', 10, 'AMD Ryzen 5 3550H,8GB DDR4,15.6\" FHD Acer ComfyView IPS LED LCD,Nvidia Geforce GTX1650 4G DDR5,512GB SSD PCIe NVMe,363.4 (W) x 255 (D) x 25.9 (H) mm,HD,1 x USB 2.0; 1 x USB 3.0 Type C; 2 x USB 3.1; 1 x HDMI;1 x RJ45; 1 x Headphone,4 Cell', 12, 1, '16-06-2020_2033583238_acer_gaming_nitro_5_1.png', '16-06-2020_375792200_acer_gaming_nitro_5_2.png', '16-06-2020_1473731834_acer_gaming_nitro_5_3.png', '16-06-2020_831130735_acer_gaming_nitro_5_4.png', 0, 18798000, 11, NULL, NULL, '2020-06-04 20:18:40', '2020-06-27 07:11:24'),
+(8, 'Acer Nitro AN515 43 R9FD', 'acer-nitro-an515-43-r9fd', '1', 'Laptop Acer Nitro AN515 (NH.Q6ZSV.003) là mẫu laptop gaming tầm trung có thiết kế hầm hố, cấu hình mạnh, đồ họa mượt mà với card màn hình Geforce GTX 1650. Đây là chiếc laptop không chỉ phù hợp cho chơi game mà còn làm việc, thiết kế đồ họa tốt. \r\n\r\nCấu hình dành cho chơi game và đồ họa\r\nVới phiên bản này, Acer Nitro AN515 sử dụng CPU AMD Ryzen 5 4 nhân, tốc độ xung nhịp 2.1 – 3.7 GHz cho hiệu năng ổn định, sử dụng được các ứng dụng nặng.\r\n\r\nKết hợp là RAM 8 GB có khả năng nâng cấp tối đa lên đến 32 GB giúp đa nhiệm tốt, thoải mái sử dụng nhiều ứng dụng cùng lúc hay mở nhiều tab Chrome. \r\n\r\nCard đồ họa rời khủng Geforce GTX 1650 4 GB cho máy sức mạnh chiến mượt các tựa game nặng. Bạn cũng sẽ có trải nghiệm sử dụng mượt mà, chuyên nghiệp các ứng dụng đồ họa 2D như Photoshop, Ai,...', 90, 'AMD Ryzen 5 3550H,8GB DDR4,15.6\" FHD Acer ComfyView IPS LED LCD,Nvidia Geforce GTX1650 4G DDR5,512GB SSD PCIe NVMe,363.4 (W) x 255 (D) x 25.9 (H) mm,HD,1 x USB 2.0; 1 x USB 3.0 Type C; 2 x USB 3.1; 1 x HDMI;1 x RJ45; 1 x Headphone,4 Cell', 12, 1, '16-06-2020_2033583238_acer_gaming_nitro_5_1.png', '16-06-2020_375792200_acer_gaming_nitro_5_2.png', '16-06-2020_1473731834_acer_gaming_nitro_5_3.png', '16-06-2020_831130735_acer_gaming_nitro_5_4.png', 0, 18798000, 11, NULL, NULL, '2020-06-04 20:18:40', '2020-08-16 03:35:22'),
 (11, 'Asus Gaming TUF FA506II', 'asus-gaming-tuf-fa506ii', '1', 'ASUS TUF FA506II-AL016T sẽ thay đổi cách bạn nhìn vào laptop chơi game. Được trang bị phần cứng ấn tượng, thiết kế gọn nhưng mạnh mẽ. Trang bị CPU R7 4800H, hỗ trợ ram tối đa 32GB, VGA GTX 16 series, màn hình IPS 120Hz với bàn phím có đèn nền RGB.\r\nASUS TUF FA506II-AL016T có bàn phím chuyên dụng chơi game với các phím RGB-backlit, cụm phím WASD nổi bật và công nghệ Overstroke để thao tác nhanh và chính xác. Với màn hình NanoEdge IPS cấp độ tiên tiến, và độ bền được chứng nhận kiểm tra MIL-STD-810G. Sẽ mang đến trải nghiệm chơi game phong phú mọi lúc mọi nơi!', 0, 'AMD Ryzen™ 7 4800H Processor 2.9 GHz (8M Cache,up to 4.2 GHz),8GB DDR4-3200 SO-DIMM,15,6” FHD (1920x1080) 16:9/ 144hz/ 170:170/ Value IPS-level/ 1000:1,NVIDIA® GeForce® GTX 1650 Ti with ROG Boost/ 4GB GDDR6,PCIE NVME 512G M.2 SSD,2.30 Kg,720P HD', 5, 0, '16-06-2020_395873460_asus-tuf-fa506ii_1.jpg', '16-06-2020_1907255578_asus-tuf-fa506ii_2.jpg', '16-06-2020_524999867_asus-tuf-fa506ii_3.jpg', '16-06-2020_424379921_asus-tuf-fa506ii_4.jpg', 0, 23999000, 10, 1, 5, '2020-06-13 19:52:34', '2020-08-15 21:35:08'),
 (19, 'Lenovo ThinkBook 15', 'lenovo-thinkbook-15', '4', 'Được trang bị cấu hình hiệu năng cao cũng như có thiết kế nhằm đảm bảo tính bảo mật và độ bền bỉ, dòng Laptop ThinkBook 15 của Lenovo sẽ giúp bạn tự tin xử lý công việc ở bất cứ đâu. Hôm nay, HANOICOMPUTER sẽ giúp các bạn có một cái nhìn sơ lược về dòng máy này qua bài viết đánh giá Laptop Lenovo ThinkBook 15-IML (20RW0091VN)', 10, 'I5-10210U,4GB DDR4 2666,15.6FHD TN AG 220N,Intel® UHD Graphics,256GB HDD M.2 2280 NVME TLC,WxDxH: 14.33\" x 9.65\" x 0.74\"; 364mm x 245mm x 18.9mm,HD720p camera, fixed focus, ThinkShutter,One USB-C 3.1 Gen 1, one USB-C 3.1 Gen 2,Integrated Li-ion 45Wh', 10, 0, '16-06-2020_697288140_laptop_lenovo_thinkbook_15_1.jpg', '16-06-2020_2144739151_laptop_lenovo_thinkbook_15_2.jpg', '16-06-2020_1162142394_laptop_lenovo_thinkbook_15_3.jpg', '16-06-2020_388263389_laptop_lenovo_thinkbook_15_4.jpg', 0, 13999000, 12, NULL, NULL, '2020-06-16 10:13:16', '2020-08-14 22:37:32'),
 (20, 'Laptop Dell Inspiron 5391', 'laptop-dell-inspiron-5391', '3', 'Dell Inspiron 5391 sở hữu thiết kế hoàn hảo với lớp vỏ kim loại nguyên khối màu bạc có bề mặt cắt kim cương sang trọng. Với độ mỏng 14.9mm cùng khối lượng 1.24kg, máy sẽ là người bạn đồng hành hoàn hảo với người dùng trên mọi chuyến đi. Hai bên thân máy được trang bị đa dạng cổng kết nối để đáp ứng nhu cầu liên kết với các thiết bị ngoại vi của người dùng. Cụ thể cạnh phải máy là 1 USB-A 3.1 gen 1 và jack cắm tai nghe/micro. Còn cạnh trái máy đa dạng hơn với jack nguồn, HDMI 1.4b, USB-C 3.1 gen 1 và đầu đọc Micro SD Card.', 0, 'Intel Core™ i7 10510U (1.8Ghz, 8MB Cache),8GB LPDDR3 2133Mhz (Onboard),13.3-inch FHD (1920 x 1080) TrueLife LED Backlight,NVIDIA® GeForce® MX250 with 2GB GDDR5,512GB M2 NVMe SSD,1.24Kg,HD,1 x HDMI 1.4b, 1 x USB 3.1 Gen 1 Type-C™ DP/PowerDelivery), 1 x USB 3.1 Gen 1,4 cell (45Whr)', 0, 1, '27-06-2020_747550199_laptop_dell_inspiron_5391_1.png', '27-06-2020_820534786_laptop_dell_inspiron_5391_2.png', '27-06-2020_1698865323_laptop_dell_inspiron_5391_3.png', '27-06-2020_1737307774_laptop_dell_inspiron_5391_4.png', 0, 23989000, 13, NULL, NULL, '2020-06-27 07:02:26', '2020-08-14 22:41:02'),
@@ -446,31 +446,30 @@ INSERT INTO `role_permissions` (`id`, `role_id`, `permission_id`, `deleted_at`, 
 (479, 3, 28, NULL, '2020-08-16 03:29:42', '2020-08-16 03:29:42'),
 (480, 3, 30, NULL, '2020-08-16 03:29:42', '2020-08-16 03:29:42'),
 (481, 3, 31, NULL, '2020-08-16 03:29:42', '2020-08-16 03:29:42'),
-(564, 2, 1, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(565, 2, 2, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(566, 2, 3, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(567, 2, 4, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(568, 2, 5, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(569, 2, 6, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(570, 2, 7, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(571, 2, 8, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(572, 2, 10, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(573, 2, 11, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(574, 2, 12, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(575, 2, 13, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(576, 2, 15, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(577, 2, 16, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(578, 2, 17, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(579, 2, 19, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(580, 2, 20, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(581, 2, 21, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(582, 2, 22, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(583, 2, 24, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(584, 2, 27, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(585, 2, 28, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(586, 2, 30, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(587, 2, 31, NULL, '2020-08-16 04:43:28', '2020-08-16 04:43:28'),
-(638, 9, 26, NULL, '2020-08-16 05:07:21', '2020-08-16 05:07:21');
+(638, 9, 26, NULL, '2020-08-16 05:07:21', '2020-08-16 05:07:21'),
+(639, 2, 1, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(640, 2, 2, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(641, 2, 3, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(642, 2, 4, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(643, 2, 5, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(644, 2, 6, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(645, 2, 7, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(646, 2, 8, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(647, 2, 10, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(648, 2, 11, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(649, 2, 12, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(650, 2, 13, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(651, 2, 15, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(652, 2, 16, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(653, 2, 17, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(654, 2, 19, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(655, 2, 20, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(656, 2, 21, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(657, 2, 22, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(658, 2, 24, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(659, 2, 25, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(660, 2, 26, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02'),
+(661, 2, 27, NULL, '2020-08-16 10:53:02', '2020-08-16 10:53:02');
 
 -- --------------------------------------------------------
 
@@ -731,7 +730,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `role_permissions`
 --
 ALTER TABLE `role_permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=639;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=662;
 
 --
 -- AUTO_INCREMENT for table `users`
