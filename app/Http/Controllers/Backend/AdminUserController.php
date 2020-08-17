@@ -102,9 +102,9 @@ public function updateEmployeeUser(Request $request, $id)
  $user = User::find($id);
  $dataUser = $request->only('name','sex','email','phone','address');
  if($request->password){
-  $dataUser['password'] = $request->password;
+  $dataUser['password'] = bcrypt($request->password);
 }else{
-  $dataUser['password'] = $user->password;
+  $dataUser['password'] =  bcrypt($request->password);
 }
 
 $user->update($dataUser);

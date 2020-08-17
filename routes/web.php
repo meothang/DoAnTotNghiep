@@ -138,7 +138,9 @@ Route::get('/san-pham/{name}','ProductController@getProductType')->name('get.lis
  // Phần Giỏ Hàng
 Route::get('/cart-add/{id}', 'CartController@addProduct')->name('add.cart');
 Route::get('/list-cart', 'CartController@listProduct')->name('list.cart');
-Route::post('cart-update/{id}','CartController@updateProduct');
+Route::get('/list-cart/update-cart/', 'CartController@updateProduct')->name('update.cart');
+Route::get('/list-cart/delete/{id}', 'CartController@deleteProduct')->name('delete.cart');
+
 // thanh toán
 Route::group(['prefix' => 'giohang', 'middleware' =>'CheckLogin'], function() {
   Route::get('/thanh-toan', 'CartController@getFormPay')->name('get.checkout');

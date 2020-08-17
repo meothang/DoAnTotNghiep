@@ -118,7 +118,7 @@
 					$("#slider-range").slider("values", 1, $(this).val());
 				})
 				
-
+// tìm kiếm sản phảm
 				$("#keySearch").keyup(function(){
 					let key = $("#keySearch").val();
 					let urlSearch = '{{ route('get.form.search') }}';

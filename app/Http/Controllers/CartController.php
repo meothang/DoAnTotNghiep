@@ -43,18 +43,18 @@ class CartController extends Controller
       return redirect()->back()-> with(['flash_level' => 'success', 'flash_message' => 'Thêm vào giỏ hàng thành công! Click vào đây để đến <a href="list-cart" title="">Giỏ Hàng</a> ']);;
     }
     // update số lượng sản phẩm trong giỏ hàng
-    public function updateProduct(Request $request, $id){
-      if ($request -> ajax()) {
-        $number = Product::find($request -> proid);
+    public function updateProduct(Request $request){
+      if ($request -> id ){
+        $number = Product::find($request -> id);
       // kiểm tra số lượng sản phẩm
-        if ($number -> pro_amount > 0) {
-          \Cart::update($id, $request -> qty);
-          return response()-> json(['result' => 'Đã cập nhật giỏ hàng Thành Công '.$number -> name]);
+        if ($number -> pro_amount > 0 && $request -> qty <= $number -> pro_amount) {
+          \Cart::update($request -> rowId, $request -> qty);
+          return redirect()->back()-> with(['flash_level' => 'success', 'flash_message' => 'Cập nhật giỏ hàng thành công.']);
         }
-        return response()-> json(['error' => 'Cập nhật giỏ hàng không thành công. Tạm hết hàng']);
+        return redirect()->back()-> with(['flash_level' => 'danger', 'flash_message' => 'Cập nhật giỏ hàng không thành công. Tạm hết hàng']);
         
       } 
-      return response()-> json(['error' => 'Cập nhật giỏ hàng không thành công. Tạm hết hàng']);
+      return redirect()->back()-> with(['flash_level' => 'danger', 'flash_message' => 'Cập nhật giỏ hàng không thành công. Tạm hết hàng']);
     }
 
     public function listProduct(){
@@ -130,6 +130,10 @@ class CartController extends Controller
       }
       
     }
+  }
+  public function deleteProduct($id){
+    Cart::remove($id);
+      return redirect()->back()-> with(['flash_level' => 'success', 'flash_message' => 'Xóa sản phẩm trong giỏ hàng thành công.']);
   }
 
 
